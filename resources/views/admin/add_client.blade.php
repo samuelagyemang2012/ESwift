@@ -26,9 +26,9 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-2"></div>
+            <div class="col-sm-3"></div>
 
-            <div class="col-sm-8">
+            <div class="col-sm-6">
                 <h3>Add Client</h3>
                 <br>
 
@@ -124,7 +124,7 @@
                 </form>
             </div>
 
-            <div class="col-sm-2"></div>
+            <div class="col-sm-3"></div>
         </div>
     </div>
 @stop

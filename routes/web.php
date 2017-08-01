@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//requires login
+//Requires login
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('eswift/home', 'HomeController@index')->name('home');
@@ -59,7 +60,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('change_password', 'AdminController@change_password')->name('change_password');
 
-//Accountant
+//Transaction
+
 
 //Logs
     Route::get('eswift/admin/logs', 'AdminController@show_admin_logs')->name('show_admin_logs');
