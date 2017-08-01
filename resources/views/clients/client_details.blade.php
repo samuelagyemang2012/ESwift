@@ -60,7 +60,7 @@
             </table>
             <hr>
             <div>
-                <h3>Carthograph</h3>
+                <h3>Carthograph </h3>
                 <hr>
                 <img src="/uploads/{{$data->carthograph}}">
             </div>
