@@ -66,26 +66,28 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
+
         <div class="top-right links">
 
+                <a href="{{route('show_transactions_login')}}">Login</a>
+                {{--                        <a href="{{ url('/register') }}">Register</a>--}}
         </div>
-    @endif
 
     <div class="content">
         <div class="title m-b-md" style="color: #3c8dbc">
             ESWIFT
         </div>
 
-        <div class="links" style="">
-            <a></a>
+        <div class="links" style="font-weight: bold">
+            TRANSACTIONS PANEL
         </div>
 
-        {{--<br><br><br><br>--}}
         <div class="links">
-            <a href="{{route('show_admin_login')}}">Admin Login</a>
-            <a href="{{route('show_transactions_login')}}">Transactions Login</a>
-            <a href="">Payments Login</a>
+            {{--<a href="https://laravel.com/docs">Documentation</a>--}}
+            {{--<a href="https://laracasts.com">Laracasts</a>--}}
+            {{--<a href="https://laravel-news.com">News</a>--}}
+            {{--<a href="https://forge.laravel.com">Forge</a>--}}
+            {{--<a href="https://github.com/laravel/laravel">GitHub</a>--}}
         </div>
     </div>
 </div>

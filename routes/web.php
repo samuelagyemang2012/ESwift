@@ -11,15 +11,19 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('eswift', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('ewsift/logout', 'HomeController@logout')->name('logout');
 
-//Requires login
+//Admin
+Route::get('eswift/admin/login', 'AdminController@show_login')->name('show_admin_login');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::post('admin_login', 'AdminController@login')->name('admin_login');
+
+
+Route::group(['middleware' => ['admin']], function () {
 
     Route::get('eswift/home', 'HomeController@index')->name('home');
 
@@ -60,12 +64,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('change_password', 'AdminController@change_password')->name('change_password');
 
-//Transaction
-
-
 //Logs
     Route::get('eswift/admin/logs', 'AdminController@show_admin_logs')->name('show_admin_logs');
 
     Route::get('ewift/client/logs', 'AdminController@show_client_logs')->name('show_client_logs');
 
 });
+
+//    Transaction
+Route::get('eswift/transactions/', 'TransactionController@index')->name('transactions');
+
+Route::get('eswift/transactions/login', 'TransactionController@show_login')->name('show_transactions_login');
+
+Route::post('transactions_login', 'TransactionController@login')->name('transactions_login');
