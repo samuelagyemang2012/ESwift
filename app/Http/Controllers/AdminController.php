@@ -12,6 +12,30 @@ use Datatables;
 
 class AdminController extends Controller
 {
+    public function show_login()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $l = new Log();
+
+        $data = $request->all();
+
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+
+            $user_data = Auth::user();
+//            return $user_data;
+            return redirect('eswift/home');
+        } else {
+
+            return redirect('eswift/admin/login')->with('error', 'These credentials do not match our records.');
+
+        }
+    }
+
+
     public function show_add_admin()
     {
         return view('admin.add_admin');
@@ -234,26 +258,5 @@ class AdminController extends Controller
         $data = $user->get_client($id);
 
         return view('clients.client_details')->with('data', $data[0]);
-    }
-
-    function show_login()
-    {
-        return view('auth.login');
-    }
-
-    function login(Request $request)
-    {
-        $l = new Log();
-
-        $data = $request->all();
-
-        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
-
-            $user_data = Auth::user();
-            return redirect('eswift/home');
-        } else {
-
-            return redirect('eswift/admin/login')->with('error', 'These credentials do not match our records.');
-        }
     }
 }

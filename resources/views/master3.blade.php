@@ -351,11 +351,11 @@
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
-                <li><a href="{{route('home')}}"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
+                <li><a href="{{route('home')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a></li>
 
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Loans</span>
+                        <i class="fa fa-money"></i> <span>Loans</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -373,14 +373,14 @@
 
                 <li class="treeview">
                     <a href=" {{route('clients')}}">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fa fa-users"></i>
                         <span>Manage Clients</span>
                     </a>
                 </li>
 
                 <li class="treeview">
                     <a href="{{route('packages')}}">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fa fa-cube"></i>
                         <span>Add Package</span>
                     </a>
                 </li>
@@ -388,7 +388,7 @@
 
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Manage Admin</span>
+                        <i class="fa fa-user"></i> <span>Manage Users</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -396,14 +396,17 @@
                     <ul class="treeview-menu">
                         {{--<li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a></li>--}}
                         <li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>
-                        <li><a href="{{route('show_change_password')}}"><i class="fa fa-circle-o"></i> Change
-                                Password</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i>Add Level 1</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i>Add Level 2</a></li>
+                        <li><a href="{{route('show_change_password')}}"><i class="fa fa-circle-o"></i>
+                                ChangePassword</a></li>
                     </ul>
                 </li>
 
+
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>System Logs</span>
+                        <i class="fa fa-archive"></i> <span>System Logs</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

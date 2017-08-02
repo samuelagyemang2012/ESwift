@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Transactions Login</div>
+                    <div class="panel-heading" style="font-weight: bold; color: #3c8dbc">Transactions Login</div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{route('transactions_login')}}">
                             {{ csrf_field() }}
@@ -54,9 +54,9 @@
                                         Login
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Forgot Your Password?
-                                    </a>
+                                    {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
+                                        {{--Forgot Your Password?--}}
+                                    {{--</a>--}}
                                 </div>
                             </div>
                         </form>

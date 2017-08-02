@@ -17,16 +17,24 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        $role_id = $user['role_id'];
 
-        if ($role_id == '2') {
-            // is admin
-            return $next($request);
-        } else {
-            return redirect('eswift/admin/login');
+//        return $user;
+
+        if ($user['role_id'] == '3') {
+
+            return redirect('eswift/admin/login')->with('error', 'Access Denied. Please use the Transactions Portal');
         }
 
-//        abort('403');
+        if ($user['role_id'] == '4') {
 
+            return redirect('eswift/admin/login')->with('error', 'Access Denied. Please use the Payments Portal');
+        }
+
+        if($user['role_id'] == null){
+            return redirect('eswift/admin/login')->with('error', 'Session cleared. Please login again');
+        }
+
+        return $next($request);
     }
+
 }
