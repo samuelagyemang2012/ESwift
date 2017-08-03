@@ -24,7 +24,6 @@ Route::post('admin_login', 'AdminController@login')->name('admin_login');
 
 Route::group(['middleware' => 'admin'], function () {
 
-
     Route::get('eswift/home', 'HomeController@index')->name('home');
 
 //Packages
