@@ -33,6 +33,12 @@ class PaymentController extends Controller
 
     public function index()
     {
-        return view('payments.index');
+//        return 'das';
+        return redirect('');
+    }
+
+    public function get_pending_transfers()
+    {
+
     }
 }

@@ -87,7 +87,7 @@ Route::group(['middleware' => 'transactions'], function () {
 
     Route::get('eswift/transactions/refused-loans', 'TransactionController@get_refused_loans')->name('transactions_refused_loans');
 
-    Route::get('transactions/approve/{id}', 'TransactionController@approve_loan')->name('transactions_approve');
+    Route::get('transactions/approve/{id}/{amount}', 'TransactionController@approve_loan')->name('transactions_approve');
 
     Route::get('transactions/refuse/{id}', 'TransactionController@refuse_loan')->name('transactions_refuse');
 
@@ -102,5 +102,7 @@ Route::post('payments_login', 'PaymentController@login')->name('payments_login')
 Route::group(['middleware' => 'payments'], function () {
 
     Route::get('eswift/payments/', 'PaymentController@index')->name('payments_home');
+
+    Route::get('eswift/payments/pending-transfers', 'PaymentController@get_pending_transfers')->name('pending_transfers');
 
 });

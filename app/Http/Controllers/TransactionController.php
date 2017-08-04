@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Loan;
 use App\Log;
+use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
@@ -82,11 +83,13 @@ class TransactionController extends Controller
         return view('transactions.refused');
     }
 
-    public function approve_loan($id)
+    public function approve_loan($id, $amount)
     {
         $l = new Loan();
+        $p = new Payment();
 
         $l->approve_loan($id);
+        $p->insert($id, $amount);
 
         return redirect('eswift/transactions/pending-loans')->with('status', 'Loan Approved');
     }

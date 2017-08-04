@@ -351,11 +351,11 @@
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
-                <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a></li>
+                <li><a href="{{route('payments_home')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a></li>
 
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-money"></i> <span>Loans</span>
+                        <i class="fa fa-money"></i> <span>Transfers</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -364,10 +364,10 @@
                         {{--<li class="active"><a href="{{route('transactions_all_loans')}}"><i class="fa fa-circle-o"></i>--}}
                                 {{--All Loans</a>--}}
                             {{--</li>--}}
-                        <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-circle-o"></i> Pending Loans</a></li>
-                        <li><a href="{{route('transactions_approved_loans')}}"><i class="fa fa-circle-o"></i> Approved Loans</a></li>
-                        <li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused Loans</a></li>
-                        <li></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i> Pending Transfers</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i> Completed Transfers</a></li>
+                        {{--<li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused Loans</a></li>--}}
+                        {{--<li></li>--}}
                     </ul>
                 </li>
 

@@ -39,7 +39,7 @@
                                     '<a title="approve" class="btn btn-sm btn-primary" href="client/details/' + full['id'] + '">' +
                                     '<i class="fa fa-question"></i>' +
                                     '</a>' +
-                                    '<a title="approve" class="btn btn-sm btn-success" href="/transactions/approve/' + full['id'] + '">' +
+                                    '<a title="approve" class="btn btn-sm btn-success" href="/transactions/approve/' + full['id'] + '/'+ full['amount'] +'">' +
                                     '<i class="fa fa-check"></i>' +
                                     '</a>' +
                                     '<a title="refuse" class="btn btn-sm btn-danger" href="/transactions/refuse/' + full['id'] + '">' +
