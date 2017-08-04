@@ -1,0 +1,47 @@
+@extends('master2')
+
+@section('content')
+    <div class="col-2">
+        <table class="table" id="mytable">
+            <thead>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Package</th>
+            <th>Amount</th>
+            {{--<th>Status</th>--}}
+            {{--<th>Date</th>--}}
+            <th></th>
+            </thead>
+        </table>
+
+        @push('scripts')
+        <script>
+            $(function () {
+                $('#mytable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: '{{route('transactions_approved_loans')}}',
+
+                    columns: [
+                        {data: 'id', name: 'id'},
+                        {data: 'first_name', name: 'fname'},
+                        {data: 'last_name', name: 'lname'},
+                        {data: 'pname', name: 'package'},
+                        {data: 'amount', name: 'amount'},
+//                        {data: 'sname', name: 'status'},
+//                        {data: 'created_at', name: 'date'},
+//                        {data: '6', name: 'action'}
+                    ]
+                });
+            })
+            ;
+        </script>
+        @endpush
+    </div>
+@stop
+
+@section('footer')
+
+@stop
+

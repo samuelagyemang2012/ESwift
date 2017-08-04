@@ -35,6 +35,7 @@ class HomeController extends Controller
     {
         Auth::logout();
         Session::flush();
-        return redirect('eswift/admin/login');
+        return redirect('eswift');
     }
+
 }

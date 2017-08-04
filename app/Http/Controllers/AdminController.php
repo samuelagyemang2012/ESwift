@@ -35,7 +35,6 @@ class AdminController extends Controller
         }
     }
 
-
     public function show_add_admin()
     {
         return view('admin.add_admin');

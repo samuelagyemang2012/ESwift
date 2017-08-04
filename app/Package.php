@@ -10,7 +10,7 @@ class Package extends Model
     public function insert($name, $desc, $max)
     {
         DB::table('packages')->insert([
-            'name' => $name,
+            'pname' => $name,
             'description' => $desc,
             'maximum' => $max
         ]);
@@ -34,7 +34,7 @@ class Package extends Model
     {
         DB::table('packages')
             ->where('id', '=', $id)
-            ->update(['name' => $name, 'description' => $desc, 'maximum' => $max]);
+            ->update(['pname' => $name, 'description' => $desc, 'maximum' => $max]);
     }
 
     public function delete_package($id)

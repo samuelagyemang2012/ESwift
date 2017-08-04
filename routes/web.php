@@ -11,6 +11,7 @@
 |
 */
 
+//Global
 Route::get('eswift', function () {
     return view('welcome');
 });
@@ -70,9 +71,36 @@ Route::group(['middleware' => 'admin'], function () {
 
 });
 
-//    Transaction
-Route::get('eswift/transactions/', 'TransactionController@index')->name('transactions');
 
+//Transactions
 Route::get('eswift/transactions/login', 'TransactionController@show_login')->name('show_transactions_login');
 
 Route::post('transactions_login', 'TransactionController@login')->name('transactions_login');
+
+Route::group(['middleware' => 'transactions'], function () {
+
+    Route::get('eswift/transactions/', 'TransactionController@index')->name('transactions_home');
+
+    Route::get('eswift/transactions/pending-loans', 'TransactionController@get_pending_loans')->name('transactions_pending_loans');
+
+    Route::get('eswift/transactions/approved-loans', 'TransactionController@get_approved_loans')->name('transactions_approved_loans');
+
+    Route::get('eswift/transactions/refused-loans', 'TransactionController@get_refused_loans')->name('transactions_refused_loans');
+
+    Route::get('transactions/approve/{id}', 'TransactionController@approve_loan')->name('transactions_approve');
+
+    Route::get('transactions/refuse/{id}', 'TransactionController@refuse_loan')->name('transactions_refuse');
+
+});
+
+
+//Payment
+Route::get('eswift/payments/login', 'PaymentController@show_login')->name('show_payments_login');
+
+Route::post('payments_login', 'PaymentController@login')->name('payments_login');
+
+Route::group(['middleware' => 'payments'], function () {
+
+    Route::get('eswift/payments/', 'PaymentController@index')->name('payments_home');
+
+});
