@@ -105,4 +105,10 @@ Route::group(['middleware' => 'payments'], function () {
 
     Route::get('eswift/payments/pending-transfers', 'PaymentController@get_pending_transfers')->name('pending_transfers');
 
+    Route::get('eswift/payments/completed-transfers', 'PaymentController@get_completed_transfers')->name('completed_transfers');
+
+    Route::get('eswift/payments/make-payment/{id}/{amount}', 'PaymentController@show_make_payment')->name('show_make_payment');
+
+    Route::post('payments/make-payment', 'PaymentController@make_payment')->name('make_payment');
+
 });

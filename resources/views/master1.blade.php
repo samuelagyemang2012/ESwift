@@ -364,8 +364,8 @@
                         {{--<li class="active"><a href="{{route('transactions_all_loans')}}"><i class="fa fa-circle-o"></i>--}}
                                 {{--All Loans</a>--}}
                             {{--</li>--}}
-                        <li><a href=""><i class="fa fa-circle-o"></i> Pending Transfers</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Completed Transfers</a></li>
+                        <li><a href="{{route('pending_transfers')}}"><i class="fa fa-circle-o"></i> Pending Transfers</a></li>
+                        <li><a href="{{route('completed_transfers')}}"><i class="fa fa-circle-o"></i> Completed Transfers</a></li>
                         {{--<li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused Loans</a></li>--}}
                         {{--<li></li>--}}
                     </ul>
