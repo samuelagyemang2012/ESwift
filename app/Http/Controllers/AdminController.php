@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Debt;
+use App\Loan;
 use App\Log;
+use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
-use Datatables;
+use Yajra\Datatables\Datatables;
 
 class AdminController extends Controller
 {
@@ -250,12 +253,86 @@ class AdminController extends Controller
 
     }
 
-    function get_client_details($id)
+    public function get_client_details($id)
     {
         $user = new User();
 
         $data = $user->get_client($id);
 
         return view('clients.client_details')->with('data', $data[0]);
+    }
+
+    public function get_debts()
+    {
+        $d = new Debt();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $d->get_debts();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('debts.all');
+    }
+
+    public function get_all_loans()
+    {
+        $l = new Loan();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $l->get_all_loans();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.all_loans');
+    }
+
+    public function get_pending_loans()
+    {
+        $l = new Loan();
+//        $data = $l->get_pending_loans();
+//        return $data;
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $l->get_pending_loans();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.pending_loans');
+    }
+
+    public function get_approved_loans()
+    {
+
+    }
+
+    public function get_refused_loans()
+    {
+
+    }
+
+    public function approve_loan($id, $user_id, $amount, $loan_id, $telephone)
+    {
+        $l = new Loan();
+        $p = new Payment();
+
+        $l->approve_loan($id);
+        $p->insert($id, $amount, $user_id, $loan_id, $telephone);
+
+        return redirect('eswift/loans/pending')->with('status', 'Loan Approved');
+    }
+
+    public function refuse_loan($id)
+    {
+        $l = new Loan();
+
+        $l->refuse_loan($id);
+
+        return redirect('eswift/loans/pending')->with('status', 'Loan Refused');
     }
 }

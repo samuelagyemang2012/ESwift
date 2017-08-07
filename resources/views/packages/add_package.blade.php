@@ -43,7 +43,7 @@
 
                     <label>Description</label>
                     <div>
-                        <textarea rows="4" class="form-control" name="description" type="text" required
+                        <textarea rows="4" class="form-control" name="description" type="text"
                                   value="{{old('desc')}}"></textarea>
                     </div>
                     <br>

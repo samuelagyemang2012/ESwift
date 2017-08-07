@@ -28,7 +28,7 @@
                         {data: 'transaction_id', name: 'transaction_id'},
                         {data: 'transferred_by', name: 'transferred_by'},
 //                        {data: 'telephone', name: 'telephone'},
-                        {data: 'amount_to_transfer', name: 'amount'},
+                        {data: 'amount_to_transfer', name: 'amount_to_transfer'},
 //                        {data: '6', name: 'action',}
                     ]
                 });

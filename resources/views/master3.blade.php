@@ -361,11 +361,30 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a>
+                        <li class="active"><a href="{{route('admin_get_all_loans')}}"><i class="fa fa-circle-o"></i> All
+                                Loans</a>
                         </li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Pending Loans</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Approved Loans</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Refused Loans</a></li>
+                        <li><a href="{{route('admin_get_pending_loans')}}"><i class="fa fa-circle-o"></i> Pending Loans</a>
+                        </li>
+                        <li><a href="{{route('admin_get_approved_loans')}}"><i class="fa fa-circle-o"></i> Approved
+                                Loans</a></li>
+                        <li><a href="{{route('admin_get_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused Loans</a>
+                        </li>
+                        <li></li>
+                    </ul>
+                </li>
+
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-credit-card"></i> <span>Make Payments</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href=""><i class="fa fa-circle-o"></i> Pending Transfers</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i> Completed Transfers</a></li>
+                        {{--<li><a href=""><i class="fa fa-circle-o"></i> Refused Loans</a></li>--}}
                         <li></li>
                     </ul>
                 </li>
@@ -388,7 +407,7 @@
 
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Manage Users</span>
+                        <i class="fa fa-user"></i> <span>Manage Personnel</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -396,11 +415,18 @@
                     <ul class="treeview-menu">
                         {{--<li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a></li>--}}
                         <li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i>Add Level 1</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i>Add Level 2</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i>Add Payments Personnel</a></li>
+                        <li><a href=""><i class="fa fa-circle-o"></i>Add Transactions Personnel</a></li>
                         <li><a href="{{route('show_change_password')}}"><i class="fa fa-circle-o"></i>
                                 ChangePassword</a></li>
                     </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="{{route('get_debts')}}">
+                        <i class="fa fa-bank"></i>
+                        <span>Debts</span>
+                    </a>
                 </li>
 
 

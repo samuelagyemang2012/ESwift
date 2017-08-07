@@ -47,10 +47,10 @@
                     ajax: '{{route('packages')}}',
 
                     columns: [
-                        {data: '0', name: 'id'},
-                        {data: '1', name: 'name'},
-                        {data: '2', name: 'desc'},
-                        {data: '3', name: 'maximum'},
+                        {data: '0', name: '0'},
+                        {data: '1', name: '1'},
+                        {data: '2', name: '2'},
+                        {data: '3', name: '3'},
 //                        {data: '6', name: 'maximum'}
                         {
                             data: '6', name: 'action', render: function (data, type, full, meta) {

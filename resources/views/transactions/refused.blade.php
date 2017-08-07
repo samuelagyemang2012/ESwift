@@ -25,9 +25,9 @@
 
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'first_name', name: 'fname'},
-                        {data: 'last_name', name: 'lname'},
-                        {data: 'pname', name: 'package'},
+                        {data: 'first_name', name: 'first_name'},
+                        {data: 'last_name', name: 'last_name'},
+                        {data: 'pname', name: 'pname'},
                         {data: 'amount', name: 'amount'},
 //                        {data: 'sname', name: 'status'},
 //                        {data: 'created_at', name: 'date'},

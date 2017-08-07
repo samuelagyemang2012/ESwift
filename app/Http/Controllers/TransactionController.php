@@ -42,6 +42,8 @@ class TransactionController extends Controller
     public function get_pending_loans()
     {
         $loan = new Loan();
+//        $data = $loan->get_pending_loans();
+//        return $data;
 
         if (request()->isXmlHttpRequest()) {
 

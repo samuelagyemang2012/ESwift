@@ -67,7 +67,23 @@ Route::group(['middleware' => 'admin'], function () {
 //Logs
     Route::get('eswift/admin/logs', 'AdminController@show_admin_logs')->name('show_admin_logs');
 
-    Route::get('ewift/client/logs', 'AdminController@show_client_logs')->name('show_client_logs');
+    Route::get('eswift/client/logs', 'AdminController@show_client_logs')->name('show_client_logs');
+
+//Debts
+    Route::get('eswift/debts', 'AdminController@get_debts')->name('get_debts');
+
+//Loans
+    Route::get('eswift/loans', 'AdminController@get_all_loans')->name('admin_get_all_loans');
+
+    Route::get('eswift/loans/pending', 'AdminController@get_pending_loans')->name('admin_get_pending_loans');
+
+    Route::get('eswift/loans/approved', 'AdminController@get_approved_loans')->name('admin_get_approved_loans');
+
+    Route::get('eswift/loans/refused', 'AdminController@get_refused_loans')->name('admin_get_refused_loans');
+
+    Route::get('eswift/approve/{id}/{amount}/{user_id}/{loan_id}/{telephone}', 'AdminController@approve_loan')->name('transactions_approve');
+
+    Route::get('eswift/refuse/{id}', 'AdminController@refuse_loan')->name('transactions_refuse');
 
 });
 

@@ -45,6 +45,7 @@ class Payment extends Model
                 'amount_transferred' => $amount_transferred,
                 'is_transferred' => 1,
                 'telephone' => $telephone,
-                'comments' => $comments]);
+                'comments' => $comments
+            ]);
     }
 }

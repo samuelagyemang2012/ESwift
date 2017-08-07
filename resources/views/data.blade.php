@@ -47,11 +47,11 @@
 
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'first_name', name: 'fname'},
-                        {data: 'last_name', name: 'lname'},
-                        {data: 'telephone', name: 'desc'},
-                        {data: 'residential_address', name: 'raddress'},
-                        {data: 'monthly_salary', name: 'salary'},
+                        {data: 'first_name', name: 'first_name'},
+                        {data: 'last_name', name: 'last_name'},
+                        {data: 'telephone', name: 'telephone'},
+                        {data: 'residential_address', name: 'residential_address'},
+                        {data: 'monthly_salary', name: 'monthly_salary'},
                         {
                             data: '6', name: 'action', render: function (data, type, full, meta) {
                             console.log(full);

@@ -24,7 +24,7 @@
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'telephone', name: 'telephone'},
-                        {data: 'amount_to_transfer', name: 'amount'},
+                        {data: 'amount_to_transfer', name: 'amount_to_transfer'},
                         {
                             data: '6', name: 'action', render: function (data, type, full, meta) {
                             console.log(full);

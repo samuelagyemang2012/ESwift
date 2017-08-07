@@ -67,7 +67,7 @@
             <br>
 
             <div>
-                <a class="btn  btn-primary" href="{{route('clients')}}">Back</a>
+                {{--<a class="btn  btn-primary" href="{{route('clients')}}">Back</a>--}}
             </div>
         </div>
 

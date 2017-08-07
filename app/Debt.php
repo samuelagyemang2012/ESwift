@@ -16,4 +16,13 @@ class Debt extends Model
             'amount_borrowed' => $amount_borrowed,
         ]);
     }
+
+    public function get_debts()
+    {
+        return DB::table('debts')
+            ->join('users', 'users.id', '=', 'debts.user_id')
+            ->select('debts.id', 'users.first_name', 'users.last_name', 'users.telephone', 'debts.amount_borrowed', 'debts.amount_paid', 'debts.created_at')
+            ->where('is_paid', '=', 0)
+            ->get();
+    }
 }

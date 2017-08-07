@@ -1,17 +1,21 @@
-@extends('master2')
+@extends('master3')
 
 @section('content')
     <div class="col-2">
+        {{--<div class="container">--}}
+            <center><h2 style="color: #3D8DBB">Debts</h2></center>
+            <hr>
+        </div>
+
         <table class="table" id="mytable">
             <thead>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Package</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Telephone</th>
             <th>Amount</th>
-            {{--<th>Status</th>--}}
-            {{--<th>Date</th>--}}
-            <th></th>
+            <th>Amount Paid</th>
+            <th>Date</th>
             </thead>
         </table>
 
@@ -21,17 +25,16 @@
                 $('#mytable').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{{route('transactions_approved_loans')}}',
+                    ajax: '{{route('get_debts')}}',
 
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'first_name', name: 'first_name'},
                         {data: 'last_name', name: 'last_name'},
-                        {data: 'pname', name: 'pname'},
-                        {data: 'amount', name: 'amount'}
-//                        {data: 'sname', name: 'status'},
-//                        {data: 'created_at', name: 'date'},
-//                        {data: '6', name: 'action'}
+                        {data: 'telephone', name: 'telephone'},
+                        {data: 'amount_borrowed', name: 'amount_borrowed'},
+                        {data: 'amount_paid', name: 'amount_paid'},
+                        {data: 'created_at', name: 'created_at'}
                     ]
                 });
             })
@@ -40,8 +43,3 @@
         @endpush
     </div>
 @stop
-
-@section('footer')
-
-@stop
-
