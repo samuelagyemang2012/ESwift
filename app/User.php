@@ -68,6 +68,11 @@ class User extends Authenticatable
             ->get();
     }
 
+    public function get_client_with_account($id)
+    {
+
+    }
+
     public function change_password($email, $password)
     {
         DB::table('users')

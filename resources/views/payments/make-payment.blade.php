@@ -51,9 +51,18 @@
                     {{csrf_field()}}
 
                     <div>
+                        <label>Telephone Number</label>
+                        <input class="form-control" readonly name="telephone" value="{{$telephone}}">
+                        <br>
+                    </div>
+
+                    <div>
                         <label>Amount To Transfer</label>
                         <input hidden value="{{$id}}" name="id">
+                        <input hidden value="{{$user_id}}" name="user_id">
+
                         <input class="form-control" readonly name="amount_to_transfer" value="{{$amount}}">
+                        {{--<br>--}}
                     </div>
                     <hr>
 
@@ -65,13 +74,13 @@
 
                     <div>
                         <label>Transaction ID<b style="color: crimson"> *</b></label>
-                        <input class="form-control" name="transaction_id" required>
+                        <input class="form-control" name="transaction_id" required value="{{old('transaction_id')}}">
                     </div>
                     <br>
 
                     <div>
                         <label>Comments</label>
-                        <textarea class="form-control" name="comments"></textarea>
+                        <textarea class="form-control" name="comments" value="{{old('comments')}}"></textarea>
                     </div>
                     <br>
 

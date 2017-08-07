@@ -7,11 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class Payment extends Model
 {
-    public function insert($user_id, $amount_to_transfer)
+    public function insert($id, $user_id, $amount_to_transfer, $loan_id, $telephone)
     {
         DB::table('payments')->insert([
+            'id' => $id,
             'user_id' => $user_id,
-            'amount_to_transfer' => $amount_to_transfer
+            'loan_id' => $loan_id,
+            'amount_to_transfer' => $amount_to_transfer,
+            'telephone' => $telephone
         ]);
     }
 
@@ -19,7 +22,7 @@ class Payment extends Model
     {
         return DB::table('payments')
             ->join('users', 'users.id', '=', 'payments.user_id')
-            ->select('payments.id', 'users.telephone', 'amount_to_transfer')
+            ->select('payments.id', 'users.telephone', 'amount_to_transfer', 'payments.user_id')
             ->where('is_transferred', '=', 0)
             ->get();
     }
@@ -33,7 +36,7 @@ class Payment extends Model
             ->get();
     }
 
-    public function make_payment($id, $transaction_id, $transferred_by, $amount_transferred, $comments)
+    public function make_payment($id, $transaction_id, $transferred_by, $amount_transferred, $comments, $telephone)
     {
         DB::table('payments')
             ->where('id', $id)
@@ -41,7 +44,7 @@ class Payment extends Model
                 'transaction_id' => $transaction_id,
                 'amount_transferred' => $amount_transferred,
                 'is_transferred' => 1,
+                'telephone' => $telephone,
                 'comments' => $comments]);
-
     }
 }

@@ -83,13 +83,13 @@ class TransactionController extends Controller
         return view('transactions.refused');
     }
 
-    public function approve_loan($id, $amount)
+    public function approve_loan($id, $user_id, $amount, $loan_id, $telephone)
     {
         $l = new Loan();
         $p = new Payment();
 
         $l->approve_loan($id);
-        $p->insert($id, $amount);
+        $p->insert($id, $amount, $user_id, $loan_id, $telephone);
 
         return redirect('eswift/transactions/pending-loans')->with('status', 'Loan Approved');
     }
@@ -101,5 +101,10 @@ class TransactionController extends Controller
         $l->refuse_loan($id);
 
         return redirect('eswift/transactions/pending-loans')->with('status', 'Loan Refused');
+    }
+
+    public function get_client_details($id)
+    {
+
     }
 }

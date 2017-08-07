@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Debt;
 use App\Log;
 use App\Payment;
 use Illuminate\Http\Request;
@@ -23,9 +24,6 @@ class PaymentController extends Controller
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
 
-//            $user_data = Auth::user();
-
-//            $this->get_all_loans();
             return redirect('eswift/payments/');
 
         } else {
@@ -42,6 +40,8 @@ class PaymentController extends Controller
     public function get_pending_transfers()
     {
         $p = new Payment();
+//        $data = $p->get_pending_transfers();
+//        return $data;
 
         if (request()->isXmlHttpRequest()) {
 
@@ -67,17 +67,24 @@ class PaymentController extends Controller
         return view('payments.completed');
     }
 
-    public function show_make_payment($id, $amount)
+    public function show_make_payment($id, $amount, $user_id, $telephone)
     {
-        return view('payments.make-payment')->with('amount', $amount)->with('id', $id);
+        return view('payments.make-payment')
+            ->with('amount', $amount)
+            ->with('id', $id)
+            ->with('user_id', $user_id)
+            ->with('telephone', $telephone);
     }
 
     public function make_payment(Request $request)
     {
+//        return $request->all();
+        
         $user = Auth::user();
         $input = $request->all();
 
         $p = new Payment();
+        $d = new Debt();
 
         $rules = [
             'amount_transferred' => 'required|same:amount_to_transfer',
@@ -86,7 +93,10 @@ class PaymentController extends Controller
 
         $this->validate($request, $rules);
 
-        $p->make_payment($input['id'], $input['transaction_id'], $user['email'], $input['amount_transferred'], $input['comments']);
+        $p->make_payment($input['id'], $input['transaction_id'], $user['email'], $input['amount_transferred'], $input['comments'], $input['telephone']);
+
+        //insert to debt
+        $d->insert($input['user_id'], $input['id'], $input['telephone'], $input['amount_transferred']);
 
         return redirect('eswift/payments/pending-transfers')->with('status', 'Transaction Recorded');
     }
