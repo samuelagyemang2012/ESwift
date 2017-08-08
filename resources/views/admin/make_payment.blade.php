@@ -1,7 +1,6 @@
 @extends('master3')
 
 @section('content')
-
     <div class="container">
         <div class="row">
             <div class="col-sm-4"></div>
@@ -45,44 +44,52 @@
             <div class="col-sm-3"></div>
 
             <div class="col-sm-6">
-                <h3>Add New Administrator</h3>
+                <h3>Make Payment</h3>
                 <br>
 
-                <form class="form-horizontal" action="{{route('add_admin')}}" method="post">
+                <form class="form-horizontal" action="{{route('admin_make_payment')}}" method="post">
                     {{csrf_field()}}
 
-                    <label>Last Name</label>
                     <div>
-                        <input class="form-control" name="lastname" type="text" required value="{{old('lastname')}}">
+                        <label>Telephone Number</label>
+                        <input class="form-control" readonly name="telephone" value="{{$telephone}}">
+                        <br>
+                    </div>
+
+                    <div>
+                        <label>Amount To Transfer</label>
+                        <input hidden value="{{$id}}" name="id">
+                        <input hidden value="{{$user_id}}" name="user_id">
+
+                        <input class="form-control" readonly name="amount_to_transfer" value="{{$amount}}">
+                        {{--<br>--}}
+                    </div>
+                    <hr>
+
+                    <div>
+                        <label>Amount Transferred<b style="color: crimson"> *</b></label>
+                        <input class="form-control" name="amount_transferred" required>
                     </div>
                     <br>
 
-                    <label>First Name</label>
                     <div>
-                        <input class="form-control" name="firstname" type="text" required value="{{old('lastname')}}">
+                        <label>Transaction ID<b style="color: crimson"> *</b></label>
+                        <input class="form-control" name="transaction_id" required value="{{old('transaction_id')}}">
                     </div>
                     <br>
 
-                    <label>Email</label>
                     <div>
-                        <input class="form-control" name="email" type="email" required value="{{old('email')}}">
+                        <label>Comments</label>
+                        <textarea class="form-control" name="comments" value="{{old('comments')}}"></textarea>
                     </div>
                     <br>
 
-                    <label>Password</label>
                     <div>
-                        <input class="form-control" name="password" type="password" required>
+                        <button class="btn btn-primary" type="submit">Make Payment</button>
                     </div>
-                    <br>
 
-                    <label>Confirm Password</label>
-                    <div>
-                        <input class="form-control" name="confirm_password" type="password" required>
-                    </div>
-                    <br>
-
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </form>
+
             </div>
 
             <div class="col-sm-3"></div>

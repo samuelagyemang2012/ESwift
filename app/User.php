@@ -68,11 +68,6 @@ class User extends Authenticatable
             ->get();
     }
 
-    public function get_client_with_account($id)
-    {
-
-    }
-
     public function change_password($email, $password)
     {
         DB::table('users')
@@ -80,11 +75,52 @@ class User extends Authenticatable
             ->update(['password' => $password]);
     }
 
-    public function get_password($email)
+    public function add_payment($firstname, $lastname, $email, $password, $telephone, $residential)
     {
-        return DB::table('users')
-            ->select('password')
-            ->where('email', '=', $email)
-            ->get();
+        DB::table('users')->insert([
+            'first_name' => $firstname,
+            'last_name' => $lastname,
+            'email' => $email,
+            'password' => $password,
+            'telephone' => $telephone,
+            'employer' => 'Multi-Money',
+            'employer_location' => 'Agbobloshie',
+            'residential_address' => $residential,
+            'carthograph' => 'n/a',
+            'monthly_salary' => 'n/a',
+            'mobile_money_account' => 'n/a',
+            'role_id' => 4
+        ]);
     }
+
+    public function add_transaction($firstname, $lastname, $email, $password, $telephone, $residential)
+    {
+        DB::table('users')->insert([
+            'first_name' => $firstname,
+            'last_name' => $lastname,
+            'email' => $email,
+            'password' => $password,
+            'telephone' => $telephone,
+            'employer' => 'Multi-Money',
+            'employer_location' => 'Agbobloshie',
+            'residential_address' => $residential,
+            'carthograph' => 'n/a',
+            'monthly_salary' => 'n/a',
+            'mobile_money_account' => 'n/a',
+            'role_id' => 3
+        ]);
+    }
+
+//    public function get_client_with_account($id)
+//    {
+//
+//    }
+
+//    public function get_password($email)
+//    {
+//        return DB::table('users')
+//            ->select('password')
+//            ->where('email', '=', $email)
+//            ->get();
+//    }
 }

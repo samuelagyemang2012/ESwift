@@ -78,8 +78,7 @@ class PaymentController extends Controller
 
     public function make_payment(Request $request)
     {
-//        return $request->all();
-        
+
         $user = Auth::user();
         $input = $request->all();
 

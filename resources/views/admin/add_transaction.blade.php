@@ -25,41 +25,27 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-4"></div>
-
-            <div class="col-sm-4">
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        <p>{{ session('status') }}</p>
-                    </div>
-                @endif
-            </div>
-
-            <div class="col-sm-4"></div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
 
             <div class="col-sm-3"></div>
 
             <div class="col-sm-6">
-                <h3>Add New Administrator</h3>
+                <h3>Add Transactions Personnel</h3>
                 <br>
 
-                <form class="form-horizontal" action="{{route('add_admin')}}" method="post">
+                <form class="form-horizontal" action="{{route('add_transaction')}}" method="post">
                     {{csrf_field()}}
-
-                    <label>Last Name</label>
-                    <div>
-                        <input class="form-control" name="lastname" type="text" required value="{{old('lastname')}}">
-                    </div>
-                    <br>
 
                     <label>First Name</label>
                     <div>
-                        <input class="form-control" name="firstname" type="text" required value="{{old('lastname')}}">
+                        <input class="form-control" name="first_name" type="text" required value="{{old('first_name')}}"
+                               min="2">
+                    </div>
+                    <br>
+
+                    <label>Last Name</label>
+                    <div>
+                        <input class="form-control" name="last_name" type="text" required value="{{old('last_name')}}"
+                               min="2">
                     </div>
                     <br>
 
@@ -69,9 +55,23 @@
                     </div>
                     <br>
 
+                    <label>Telephone</label>
+                    <div>
+                        <input class="form-control" name="telephone" type="tel" required value="{{old('telephone')}}"
+                               min="10">
+                    </div>
+                    <br>
+
+                    <label>Residential Address</label>
+                    <div>
+                        <input class="form-control" name="residential_address" type="text" required
+                               value="{{old('residential_address')}}" min="2">
+                    </div>
+                    <br>
+
                     <label>Password</label>
                     <div>
-                        <input class="form-control" name="password" type="password" required>
+                        <input class="form-control" name="password" type="password" required min="6">
                     </div>
                     <br>
 

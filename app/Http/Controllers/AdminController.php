@@ -158,7 +158,7 @@ class AdminController extends Controller
         $rules = [
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
-            'email' => 'required',
+            'email' => 'required|email',
             'telephone' => 'required|min:10|unique:users',
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
@@ -273,7 +273,7 @@ class AdminController extends Controller
             return Datatables::of($data)->make(true);
         }
 
-        return view('debts.all');
+        return view('admin.debts');
     }
 
     public function get_all_loans()
@@ -308,12 +308,30 @@ class AdminController extends Controller
 
     public function get_approved_loans()
     {
+        $l = new Loan();
 
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $l->get_approved_loans();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.approved');
     }
 
     public function get_refused_loans()
     {
+        $l = new Loan();
 
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $l->get_refused_loans();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.refused');
     }
 
     public function approve_loan($id, $user_id, $amount, $loan_id, $telephone)
@@ -334,5 +352,120 @@ class AdminController extends Controller
         $l->refuse_loan($id);
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Refused');
+    }
+
+    public function get_pending_payments()
+    {
+        $p = new Payment();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $p->get_pending_transfers();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.pending-transfers');
+    }
+
+    public function get_completed_payments()
+    {
+        $p = new Payment();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $p->get_completed_transfers();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.completed-transfers');
+    }
+
+    public function show_make_payments($id, $amount, $user_id, $telephone)
+    {
+        return view('admin.make_payment')
+            ->with('amount', $amount)
+            ->with('id', $id)
+            ->with('user_id', $user_id)
+            ->with('telephone', $telephone);
+    }
+
+    public function make_payment(Request $request)
+    {
+        $user = Auth::user();
+        $input = $request->all();
+
+        $p = new Payment();
+        $d = new Debt();
+
+        $rules = [
+            'amount_transferred' => 'required|same:amount_to_transfer',
+            'transaction_id' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        $p->make_payment($input['id'], $input['transaction_id'], $user['email'], $input['amount_transferred'], $input['comments'], $input['telephone']);
+
+        //insert to debt
+        $d->insert($input['user_id'], $input['id'], $input['telephone'], $input['amount_transferred']);
+
+        return redirect('eswift/admin/pending-transfers')->with('status', 'Transaction Recorded');
+    }
+
+    public function show_add_payment()
+    {
+        return view('admin.add_payment');
+    }
+
+    public function add_payment(Request $request)
+    {
+        $u = new User();
+
+        $input = $request->all();
+
+        $rules = [
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'email' => 'required|email|unique:users',
+            'telephone' => 'required|min:10|unique:users',
+            'residential_address' => 'required|min:2',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password'
+        ];
+
+        $this->validate($request, $rules);
+
+        $npass = bcrypt($input['password']);
+
+        $u->add_payment($input['first_name'], $input['last_name'], $input['email'], $npass, $input['telephone'], $input['residential_address']);
+
+        return redirect('eswift/admin/add/payment-personnel')->with('status', 'Payment Personnel Added');
+    }
+
+    public function add_transaction(Request $request)
+    {
+        $u = new User();
+
+        $input = $request->all();
+
+        $rules = [
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'email' => 'required|email|unique:users',
+            'telephone' => 'required|min:10|unique:users',
+            'residential_address' => 'required|min:2',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password'
+        ];
+
+        $this->validate($request, $rules);
+
+        $npass = bcrypt($input['password']);
+
+        $u->add_transaction($input['first_name'], $input['last_name'], $input['email'], $npass, $input['telephone'], $input['residential_address']);
+
+        return redirect('eswift/admin/add/transaction-personnel')->with('status', 'Payment Personnel Added');
     }
 }

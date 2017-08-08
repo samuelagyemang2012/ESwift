@@ -56,7 +56,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('eswift/client/details/{id}', 'AdminController@get_client_details')->name('client_details');
 
 //Admin
-    Route::get('eswift/admin/add', 'AdminController@show_add_admin')->name('show_add_admin');
+    Route::get('eswift/admin/add-admin', 'AdminController@show_add_admin')->name('show_add_admin');
 
     Route::post('add_admin', 'AdminController@add_admin')->name('add_admin');
 
@@ -81,14 +81,33 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/loans/refused', 'AdminController@get_refused_loans')->name('admin_get_refused_loans');
 
-    Route::get('eswift/approve/{id}/{amount}/{user_id}/{loan_id}/{telephone}', 'AdminController@approve_loan')->name('transactions_approve');
+    Route::get('eswift/approve/{id}/{amount}/{user_id}/{loan_id}/{telephone}', 'AdminController@approve_loan')->name('admin_approve');
 
-    Route::get('eswift/refuse/{id}', 'AdminController@refuse_loan')->name('transactions_refuse');
+    Route::get('eswift/refuse/{id}', 'AdminController@refuse_loan')->name('admin_refuse');
+
+
+//Payments
+    Route::get('eswift/admin/pending-transfers', 'AdminController@get_pending_payments')->name('admin_pending_payments');
+
+    Route::get('eswift/admin/completed-transfers', 'AdminController@get_completed_payments')->name('admin_completed_payments');
+
+    Route::get('eswift/admin/make-payment/{id}/{amount}/{user_id}/{telephone}', 'AdminController@show_make_payments')->name('admin_show_make_payments');
+
+    Route::post('eswift/admin/make_payment', 'AdminController@make_payment')->name('admin_make_payment');
+
+//Add Payment
+    Route::get('eswift/admin/add/payment-personnel', 'AdminController@show_add_payment')->name('show_add_payment');
+
+    Route::post('eswift/add_payment', 'AdminController@add_payment')->name('add_payment');
+
+    Route::get('eswift/admin/add/transaction-personnel', 'AdminController@show_add_transaction')->name('show_add_transaction');
+
+    Route::post('eswift/add_transaction', 'AdminController@add_transaction')->name('add_transaction');
 
 });
 
-
-//Transactions
+//--------------------------------------------------------------------------------------------------------
+//Transactions Module
 Route::get('eswift/transactions/login', 'TransactionController@show_login')->name('show_transactions_login');
 
 Route::post('transactions_login', 'TransactionController@login')->name('transactions_login');
@@ -109,8 +128,9 @@ Route::group(['middleware' => 'transactions'], function () {
 
 });
 
+//--------------------------------------------------------------------------------------------------------
 
-//Payment
+//Payment Module
 Route::get('eswift/payments/login', 'PaymentController@show_login')->name('show_payments_login');
 
 Route::post('payments_login', 'PaymentController@login')->name('payments_login');
