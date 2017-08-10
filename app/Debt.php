@@ -14,6 +14,7 @@ class Debt extends Model
             'loan_id' => $loan_id,
             'telephone' => $telephone,
             'amount_borrowed' => $amount_borrowed,
+            'amount_left' => $amount_borrowed
         ]);
     }
 
