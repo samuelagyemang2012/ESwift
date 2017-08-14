@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Debt;
 use App\Loan;
 use App\Log;
+use App\Package;
 use App\Payment;
 use App\Sms;
 use App\User;
@@ -72,7 +73,7 @@ class AdminController extends Controller
         $msg = $done_by['email'] . ' added ' . $input['email'] . ' as a new admin';
         $l->insert($done_by['email'], $msg, 2);
 
-        return redirect('eswift/add_admin')->with('status', 'New Administrator added successfully');
+        return redirect('eswift/admin/add-admin')->with('status', 'New Administrator added successfully');
     }
 
     public function show_change_password()
@@ -145,7 +146,27 @@ class AdminController extends Controller
 
     public function show_add_client()
     {
-        return view('admin.add_client');
+        $p = new Package();
+        $packages = $p->get_packages();
+
+//        return $packages;
+
+        return view('admin.add_client')->with('packages', $packages);
+    }
+
+    private function process_telephone($telephone)
+    {
+        $tel = str_replace("+", "", $telephone);
+
+        $array = substr($telephone, 0, 1);
+        $array1 = substr($telephone, 1, 9);
+
+        if ($array == "0") {
+            $ntelephone = "233" . $array1;
+            return $ntelephone;
+        } else {
+            return $tel;
+        }
     }
 
     public function add_client(Request $request)
@@ -167,9 +188,9 @@ class AdminController extends Controller
             'carthograph' => 'required',
             'salary' => 'required',
             'mobile_money_account' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'required|min:4',
+            'package' => 'required',
             'confirm_password' => 'required|same:password'
-
         ];
 
         $this->validate($request, $rules);
@@ -180,6 +201,7 @@ class AdminController extends Controller
         $iv = '595d234644at789h';
 
         $npass = openssl_encrypt($input['password'], $method, $pass, $options, $iv);
+        $ntelephone = $this->process_telephone($input['telephone']);
 
 //        return $en;
 
@@ -189,9 +211,7 @@ class AdminController extends Controller
             $file_name = $file->getClientOriginalName();
         }
 
-//        Convert numbers to 233
-
-        $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1);
+        $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1);
 
         return redirect('eswift/clients')->with('status', 'Client added successfully');
 
@@ -209,12 +229,12 @@ class AdminController extends Controller
     public function show_edit_client($id)
     {
         $u = new User;
+        $p = new Package();
 
         $data = $u->get_client($id);
+        $packages = $p->get_packages();
 
-//        print_r($data[0]);
-//
-        return view('admin.edit')->with('data', $data[0]);
+        return view('admin.edit')->with('data', $data[0])->with('packages', $packages);
     }
 
     public function edit_client(Request $request, $id)
@@ -444,7 +464,12 @@ class AdminController extends Controller
 
         $u->add_payment($input['first_name'], $input['last_name'], $input['email'], $npass, $input['telephone'], $input['residential_address']);
 
-        return redirect('eswift/admin/add/payment-personnel')->with('status', 'Payment Personnel Added');
+        return redirect('eswift/admin/add/payment-personnel')->with('status', 'Payments Personnel Added');
+    }
+
+    public function show_add_transaction()
+    {
+        return view('admin.add_transaction');
     }
 
     public function add_transaction(Request $request)
@@ -469,6 +494,6 @@ class AdminController extends Controller
 
         $u->add_transaction($input['first_name'], $input['last_name'], $input['email'], $npass, $input['telephone'], $input['residential_address']);
 
-        return redirect('eswift/admin/add/transaction-personnel')->with('status', 'Payment Personnel Added');
+        return redirect('eswift/admin/add/transaction-personnel')->with('status', 'Transactions Personnel Added');
     }
 }

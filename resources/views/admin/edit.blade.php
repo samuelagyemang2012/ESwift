@@ -32,7 +32,8 @@
                 <h3>Edit Client</h3>
                 <br>
 
-                <form class="form-horizontal" action="{{route('edit_client',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{route('edit_client',['id'=>$data->id])}}" method="post"
+                      enctype="multipart/form-data">
                     {{csrf_field()}}
 
                     <label>First Name</label>
@@ -90,7 +91,8 @@
 
                     <label>Carthograph</label>
                     <div>
-                        <input type="file" class="form-control" name="carthograph" required value="{{old('carthograph')}}">
+                        <input type="file" class="form-control" name="carthograph" required
+                               value="{{old('carthograph')}}">
                     </div>
                     <br>
 
@@ -111,11 +113,32 @@
                     </div>
                     <br>
                     <div>
-                        <select name="mobile_money_account" id="s_mma" onchange="helper()">
+                        <select class="form-control" name="mobile_money_account" id="s_mma" onchange="helper()">
                             <option value="MTN">MTN</option>
                             <option value="TIGO">TIGO</option>
                             <option value="AIRTEL">AIRTEL</option>
                             <option value="VODAFONE">VODAFONE</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <label>Package</label>
+                    <div>
+                        <input readonly class="form-control" name="package"
+                               value="{{$data->package}}"
+                               value="{{old('package')}}" id="pk">
+                    </div>
+                    <br>
+                    <div>
+                        <select class="form-control" name="packages" id="s_pkg" onchange="packages_helper()">
+
+                            @foreach($packages as $p)
+                                <option value="{{$p->pname}}">{{$p->pname}}</option>
+                            @endforeach
+                            {{--<option value="MTN">MTN</option>--}}
+                            {{--<option value="TIGO">TIGO</option>--}}
+                            {{--<option value="AIRTEL">AIRTEL</option>--}}
+                            {{--<option value="VODAFONE">VODAFONE</option>--}}
                         </select>
                     </div>
                     <br>

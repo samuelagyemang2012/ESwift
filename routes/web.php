@@ -58,7 +58,7 @@ Route::group(['middleware' => 'admin'], function () {
 //Admin
     Route::get('eswift/admin/add-admin', 'AdminController@show_add_admin')->name('show_add_admin');
 
-    Route::post('add_admin', 'AdminController@add_admin')->name('add_admin');
+    Route::post('eswift/add_admin', 'AdminController@add_admin')->name('add_admin');
 
     Route::get('eswift/admin/change_password', 'AdminController@show_change_password')->name('show_change_password');
 

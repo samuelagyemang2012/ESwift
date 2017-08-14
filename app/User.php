@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
-    public function insert($fname, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role)
+    public function insert($fname, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package)
     {
         DB::table('users')->insert(
             ['first_name' => $fname,
@@ -22,7 +22,8 @@ class User extends Authenticatable
                 'carthograph' => $carthograph,
                 'monthly_salary' => $salary,
                 'mobile_money_account' => $mmacount,
-                'role_id' => $role
+                'role_id' => $role,
+                'package' => $package
             ]);
     }
 
@@ -33,7 +34,7 @@ class User extends Authenticatable
             ->delete();
     }
 
-    public function update_client($id, $fname, $lastname, $email, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount)
+    public function update_client($id, $fname, $lastname, $email, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $package)
     {
         DB::table('users')
             ->where('id', '=', $id)
@@ -47,7 +48,8 @@ class User extends Authenticatable
                 'residential_address' => $r_add,
                 'carthograph' => $carthograph,
                 'monthly_salary' => $salary,
-                'mobile_money_account' => $mmacount
+                'mobile_money_account' => $mmacount,
+                'package' => $package
             ]);
     }
 

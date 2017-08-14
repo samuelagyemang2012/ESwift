@@ -57,6 +57,12 @@
                 <td style="color: #3c8dbc">{{$data->mobile_money_account}}</td>
                 </thead>
 
+                <thead>
+                <th>Package</th>
+                <td style="color: #3c8dbc">{{$data->package}}</td>
+                </thead>
+
+
             </table>
             <hr>
             <div>

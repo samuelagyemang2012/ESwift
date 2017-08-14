@@ -34,6 +34,7 @@
 
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src=""></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -131,25 +132,32 @@
 
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-credit-card"></i> <span>Make Payments</span>
+                        <i class="fa fa-credit-card"></i>
+                        <span>Make Payments</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('admin_pending_payments')}}"><i class="fa fa-circle-o"></i> Pending Transfers</a></li>
-                        <li><a href="{{route('admin_completed_payments')}}"><i class="fa fa-circle-o"></i> Completed Transfers</a></li>
+                        <li><a href="{{route('admin_pending_payments')}}"><i class="fa fa-circle-o"></i> Pending
+                                Transfers</a></li>
+                        <li><a href="{{route('admin_completed_payments')}}"><i class="fa fa-circle-o"></i> Completed
+                                Transfers</a></li>
                         {{--<li><a href=""><i class="fa fa-circle-o"></i> Refused Loans</a></li>--}}
                         <li></li>
                     </ul>
                 </li>
 
 
-                <li class="treeview">
-                    <a href=" {{route('clients')}}">
+                <li class="active treeview">
+                    <a href="{{route('clients')}}">
                         <i class="fa fa-users"></i>
-                        <span>Manage Clients</span>
+                        <span>Clients</span>
                     </a>
+                    {{--<ul class="treeview-menu">--}}
+                        {{--<li><a href="{{route('clients')}}"><i class="fa fa-circle-o"></i>Manage Clients</a></li>--}}
+                        {{--<li><a href="{{route('clients')}}"><i class ="fa fa-cirle-o"></i></a></li>--}}
+                    {{--</ul>--}}
                 </li>
 
                 <li class="treeview">
@@ -170,10 +178,12 @@
                     <ul class="treeview-menu">
                         {{--<li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a></li>--}}
                         <li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>
-                        <li><a href="{{route('show_add_payment')}}"><i class="fa fa-circle-o"></i>Add Payments Personnel</a></li>
-                        <li><a href="{{route('show_add_transaction')}}"><i class="fa fa-circle-o"></i>Add Transactions Personnel</a></li>
+                        <li><a href="{{route('show_add_payment')}}"><i class="fa fa-circle-o"></i>Add Payments Personnel</a>
+                        </li>
+                        <li><a href="{{route('show_add_transaction')}}"><i class="fa fa-circle-o"></i>Add Transactions
+                                Personnel</a></li>
                         <li><a href="{{route('show_change_password')}}"><i class="fa fa-circle-o"></i>
-                                ChangePassword</a></li>
+                                Change Password</a></li>
                     </ul>
                 </li>
 

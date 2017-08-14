@@ -25,6 +25,22 @@
 
     <div class="container">
         <div class="row">
+            <div class="col-sm-4"></div>
+
+            <div class="col-sm-4">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        <p>{{ session('status') }}</p>
+                    </div>
+                @endif
+            </div>
+
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
 
             <div class="col-sm-3"></div>
 

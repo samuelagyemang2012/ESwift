@@ -32,7 +32,8 @@
                 <h3>Add Client</h3>
                 <br>
 
-                <form class="form-horizontal" action="{{route('add_client')}}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{route('add_client')}}" method="post"
+                      enctype="multipart/form-data">
                     {{csrf_field()}}
 
                     <label>First Name</label>
@@ -97,9 +98,21 @@
                     </div>
                     <br>
 
+                    <label>Select a Package</label><br>
+                    <span style="color: cornflowerblue"><b id="package"></b></span><br>
+                    <div>
+                        <select class="form-control" name="package" id="pkg" onchange="packages()" required>
+                            <option></option>
+                            @foreach($packages as $p)
+                                <option value="{{$p->pname}}" onselect="packages()">{{$p->pname}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <br>
+
                     <label>Mobile Money Account</label>
                     <div>
-                        <select name="mobile_money_account">
+                        <select class="form-control" name="mobile_money_account">
                             <option value="MTN">MTN</option>
                             <option value="TIGO">TIGO</option>
                             <option value="AIRTEL">AIRTEL</option>
@@ -107,6 +120,7 @@
                         </select>
                     </div>
                     <br>
+
 
                     <label>Password</label>
                     <div>
