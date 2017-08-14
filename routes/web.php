@@ -12,7 +12,7 @@
 */
 
 //Global
-Route::get('eswift', function () {
+Route::get('', function () {
     return view('welcome');
 });
 
