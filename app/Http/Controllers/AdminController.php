@@ -6,6 +6,7 @@ use App\Debt;
 use App\Loan;
 use App\Log;
 use App\Payment;
+use App\Sms;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -338,9 +339,11 @@ class AdminController extends Controller
     {
         $l = new Loan();
         $p = new Payment();
+        $s = new Sms();
 
         $l->approve_loan($id);
         $p->insert($id, $amount, $user_id, $loan_id, $telephone);
+        $s->send($telephone, "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.");
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Approved');
     }
