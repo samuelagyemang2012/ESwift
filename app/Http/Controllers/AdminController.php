@@ -211,7 +211,7 @@ class AdminController extends Controller
             $file_name = $file->getClientOriginalName();
         }
 
-        $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1);
+        $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
 
         return redirect('eswift/clients')->with('status', 'Client added successfully');
 
