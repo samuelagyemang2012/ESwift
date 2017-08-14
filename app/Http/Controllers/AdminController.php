@@ -300,6 +300,7 @@ class AdminController extends Controller
     public function get_all_loans()
     {
         $l = new Loan();
+//        return $l->get_all_loans();
 
         if (request()->isXmlHttpRequest()) {
 

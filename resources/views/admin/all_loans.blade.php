@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-2">
-        <center><h2 style="color: #3D8DBB">All Loans</h2></center><center>
+        <center><h2 style="color: #3D8DBB">All Loans</h2></center>
         <hr>
         <table class="table" id="mytable">
             <thead>
@@ -10,7 +10,6 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Telephone</th>
-            <th>Package</th>
             <th>Amount</th>
             <th>Status</th>
             <th>Date</th>
@@ -31,7 +30,6 @@
                         {data: 'first_name', name: 'first_name'},
                         {data: 'last_name', name: 'last_name'},
                         {data: 'telephone', name: 'telephone'},
-                        {data: 'pname', name: 'pname'},
                         {data: 'amount', name: 'amount'},
                         {data: 'sname',name:'sname'},
                         {data: 'created_at', name: 'created_at'},
@@ -53,8 +51,7 @@
                         }
                     ]
                 });
-            })
-            ;
+            });
         </script>
         @endpush
     </div>

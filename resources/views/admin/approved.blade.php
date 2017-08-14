@@ -7,11 +7,8 @@
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Package</th>
             <th>Amount</th>
-            {{--<th>Status</th>--}}
-            {{--<th>Date</th>--}}
-            <th></th>
+            {{--<th></th>--}}
             </thead>
         </table>
 
@@ -27,15 +24,10 @@
                         {data: 'id', name: 'id'},
                         {data: 'first_name', name: 'first_name'},
                         {data: 'last_name', name: 'last_name'},
-                        {data: 'pname', name: 'pname'},
                         {data: 'amount', name: 'amount'}
-//                        {data: 'sname', name: 'status'},
-//                        {data: 'created_at', name: 'date'},
-//                        {data: '6', name: 'action'}
                     ]
                 });
-            })
-            ;
+            });
         </script>
         @endpush
     </div>

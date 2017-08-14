@@ -12,7 +12,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Telephone</th>
-                <th>Package</th>
+                {{--<th>Package</th>--}}
                 <th>Amount</th>
                 <th>Mobile Network</th>
                 <th>Date</th>
@@ -32,7 +32,7 @@
                             {data: 'id', name: 'id'},
                             {data: 'first_name', name: 'first_name'},
                             {data: 'last_name', name: 'last_name'},
-                            {data: 'pname', name: 'pname'},
+//                            {data: 'pname', name: 'pname'},
                             {data: 'telephone', name: 'telephone'},
                             {data: 'amount', name: 'amount'},
                             {data: 'mobile_money_account', name: 'mobile_money_account'},
