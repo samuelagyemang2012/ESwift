@@ -35,7 +35,7 @@ class Loan extends Model
 
     public function get_total_returns()
     {
-        return DB::table('amount_left')->sum('amount_left');
+        return DB::table('debts')->sum('amount_left');
     }
 
     public function get_num_pending()
