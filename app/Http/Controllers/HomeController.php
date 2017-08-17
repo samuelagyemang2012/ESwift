@@ -23,13 +23,13 @@ class HomeController extends Controller
         $total_approved = $l->get_approved_loans();
         $total_refused = $l->get_refused_loans();
 
-        return $total_pending;
+//        return $total_pending;
 
         return view('index')
             ->with('processed', $processed_loans)
             ->with('amount_given', $amount_given)
             ->with('total_returns', $total_returns)
-            ->with('total_pending', $total_pending == null ? 0 : $total_pending)
+            ->with('total_pending', $total_pending == '[]' ? 0 : $total_pending)
             ->with('total_approved', $total_approved == null ? 0 : $total_approved)
             ->with('total_refused', $total_refused == null ? 0 : $total_refused);
     }
