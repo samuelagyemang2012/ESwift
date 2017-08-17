@@ -45,7 +45,7 @@
 
                     <label>Description</label>
                     <div>
-                        <textarea rows="4" class="form-control" name="description" type="text" required placeholder="{{$data->description}}"
+                        <textarea rows="4" class="form-control" name="description" type="text" required value="{{$data->description}}"
                                   value="{{old('desc')}}" ></textarea>
                     </div>
                     <br>
