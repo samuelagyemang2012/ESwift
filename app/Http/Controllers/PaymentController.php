@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Debt;
 use App\Log;
 use App\Payment;
+use App\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Facades\Datatables;
@@ -78,9 +79,11 @@ class PaymentController extends Controller
 
     public function make_payment(Request $request)
     {
-
+        $s = new Sms();
+        $lg = new Log();
         $user = Auth::user();
         $input = $request->all();
+
 
         $p = new Payment();
         $d = new Debt();
@@ -97,6 +100,24 @@ class PaymentController extends Controller
         //insert to debt
         $d->insert($input['user_id'], $input['id'], $input['telephone'], $input['amount_transferred']);
 
+        $s->send($input['telephone'], "Your loan request for GHC " . $input['amount_transferred'] . "has been transferred to your mobile money account.");
+
         return redirect('eswift/payments/pending-transfers')->with('status', 'Transaction Recorded');
+    }
+
+    public function logs()
+    {
+        $lg = new Log();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $lg->get_payment_logs();
+
+//        return $data;
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('payments.logs');
     }
 }

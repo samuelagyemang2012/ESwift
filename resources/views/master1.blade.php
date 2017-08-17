@@ -151,9 +151,9 @@
                     <!-- Notifications: style can be found in dropdown.less -->
                     <li class="dropdown notifications-menu">
                         {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
-                            {{--<i class="fa fa-bell-o"></i>--}}
-                            {{--<span class="label label-warning">10</span>--}}
-                            {{--</a>--}}
+                        {{--<i class="fa fa-bell-o"></i>--}}
+                        {{--<span class="label label-warning">10</span>--}}
+                        {{--</a>--}}
                         <ul class="dropdown-menu">
                             <li class="header">You have 10 notifications</li>
                             <li>
@@ -194,9 +194,9 @@
                     <!-- Tasks: style can be found in dropdown.less -->
                     <li class="dropdown tasks-menu">
                         {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
-                            {{--<i class="fa fa-flag-o"></i>--}}
-                            {{--<span class="label label-danger">9</span>--}}
-                            {{--</a>--}}
+                        {{--<i class="fa fa-flag-o"></i>--}}
+                        {{--<span class="label label-danger">9</span>--}}
+                        {{--</a>--}}
                         <ul class="dropdown-menu">
                             <li class="header">You have 9 tasks</li>
                             <li>
@@ -351,7 +351,8 @@
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
-                <li><a href="{{route('payments_home')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a></li>
+                <li><a href="{{route('payments_home')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a>
+                </li>
 
                 <li class="active treeview">
                     <a href="#">
@@ -362,17 +363,19 @@
                     </a>
                     <ul class="treeview-menu">
                         {{--<li class="active"><a href="{{route('transactions_all_loans')}}"><i class="fa fa-circle-o"></i>--}}
-                                {{--All Loans</a>--}}
-                            {{--</li>--}}
-                        <li><a href="{{route('pending_transfers')}}"><i class="fa fa-circle-o"></i> Pending Transfers</a></li>
-                        <li><a href="{{route('completed_transfers')}}"><i class="fa fa-circle-o"></i> Completed Transfers</a></li>
+                        {{--All Loans</a>--}}
+                        {{--</li>--}}
+                        <li><a href="{{route('pending_transfers')}}"><i class="fa fa-circle-o"></i> Pending
+                                Transfers</a></li>
+                        <li><a href="{{route('completed_transfers')}}"><i class="fa fa-circle-o"></i> Completed
+                                Transfers</a></li>
                         {{--<li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused Loans</a></li>--}}
                         {{--<li></li>--}}
                     </ul>
                 </li>
 
                 <li class="active treeview">
-                    <a href="#">
+                    <a href="{{route('payments_log')}}">
                         <i class="fa fa-archive"></i> <span>System Logs</span>
                     </a>
                 </li>
@@ -386,18 +389,18 @@
     <div class="content-wrapper" style="background-color: #fff">
         <!-- Content Header (Page header) -->
         {{--<section class="content-header">--}}
-            {{--<h1>--}}
-                {{--Dashboard--}}
-                {{--<small>Control panel</small>--}}
-                {{--</h1>--}}
-            {{--<ol class="breadcrumb">--}}
-                {{--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
-                {{--<li class="active">Dashboard</li>--}}
-                {{--</ol>--}}
-            {{--</section>--}}
+        {{--<h1>--}}
+        {{--Dashboard--}}
+        {{--<small>Control panel</small>--}}
+        {{--</h1>--}}
+        {{--<ol class="breadcrumb">--}}
+        {{--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
+        {{--<li class="active">Dashboard</li>--}}
+        {{--</ol>--}}
+        {{--</section>--}}
 
         {{--kmdsmdmsmdsmdmssmmdmsfsdfkdskfdskjfdsfjdlskfljsdljsdjkdjfahjhjhjhaskksdjlkfsjalkjfkslfdsflhshfsjhflshjsklhdjfhsfhsjsdkhfjsdkf--}}
-        <!-- Main content -->
+                <!-- Main content -->
         <section class="content" style="background-color: #fff">
             <!-- Small boxes (Stat box) -->
             {{--<h1>jsdjfskfskfsdfsdfsdf</h1>--}}
@@ -405,7 +408,7 @@
 
                 @yield('dashboard')
 
-                <!-- ./col -->
+                        <!-- ./col -->
             </div>
             <!-- /.row -->
             <!-- Main row -->
@@ -416,8 +419,8 @@
 
 
                 {{--<div class="box-footer clearfix">--}}
-                    {{--                            @yield('content')--}}
-                    {{--</div>--}}
+                {{--                            @yield('content')--}}
+                {{--</div>--}}
             </div>
 
         </section>
@@ -613,7 +616,7 @@
 
 @yield('footer')
 
-<!-- jQuery UI 1.11.4 -->
+        <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 <script src="{{asset('js/help.js')}}"></script>

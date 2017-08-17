@@ -36,7 +36,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('delete_package/{id}', 'PackageController@delete_package')->name('delete_package');
 
-    Route::get('eswift/edit/package/{id}', 'PackageController@show_edit_package')->name('show_edit_package');
+    Route::get('/eswift/edit/package/{id}', 'PackageController@show_edit_package')->name('show_edit_package');
 
     Route::post('edit_package', 'PackageController@edit_package')->name('edit_package');
 
@@ -122,10 +122,11 @@ Route::group(['middleware' => 'transactions'], function () {
 
     Route::get('eswift/transactions/refused-loans', 'TransactionController@get_refused_loans')->name('transactions_refused_loans');
 
-    Route::get('transactions/approve/{id}/{amount}/{user_id}/{loan_id}/{telephone}', 'TransactionController@approve_loan')->name('transactions_approve');
+    Route::get('eswift/transactions/approve/{amount}/{user_id}/{loan_id}/{telephone}', 'TransactionController@approve_loan')->name('transactions_approve');
 
-    Route::get('transactions/refuse/{id}', 'TransactionController@refuse_loan')->name('transactions_refuse');
+    Route::get('eswift/transactions/refuse/{id}/{amount}/{telephone}', 'TransactionController@refuse_loan')->name('transactions_refuse');
 
+    Route::get('eswift/transactions/logs', 'TransactionController@logs')->name('transactions_log');
 });
 
 //--------------------------------------------------------------------------------------------------------
@@ -147,6 +148,7 @@ Route::group(['middleware' => 'payments'], function () {
 
     Route::post('payments/make-payment', 'PaymentController@make_payment')->name('make_payment');
 
+    Route::get('eswift/payments/logs', 'PaymentController@logs')->name('payments_log');
 
 });
 

@@ -56,7 +56,7 @@
                             data: '6', name: 'action', render: function (data, type, full, meta) {
                             console.log(full);
 //                            var  s = full['0'];
-                            return '<div class="btn-group"><a title="Edit User" class="btn btn-sm btn-primary" href="edit/package/' + full['0'] + '"><i class="fa fa-pencil"></i></a><a class="btn btn-sm btn-danger"href="delete_package/package/' + full['0'] + '"><i class="fa fa-trash"></i></a></div>';
+                            return '<div class="btn-group"><a title="Edit User" class="btn btn-sm btn-primary" href="/eswift/edit/package/' + full['0'] + '"><i class="fa fa-pencil"></i></a><a class="btn btn-sm btn-danger"href="/delete_package/' + full['0'] + '"><i class="fa fa-trash"></i></a></div>';
                         }
                         }
                     ]

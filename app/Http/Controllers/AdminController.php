@@ -67,7 +67,7 @@ class AdminController extends Controller
 
         $tel = uniqid();
 
-        $u->insert($input['firstname'], $input['lastname'], $input['email'], $npass, $tel, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 2);
+        $u->insert($input['firstname'], $input['lastname'], $input['email'], $npass, $tel, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 2, 'n/a');
 
 //        Log
         $msg = $done_by['email'] . ' added ' . $input['email'] . ' as a new admin';
@@ -112,13 +112,13 @@ class AdminController extends Controller
 
             $msg = $email . ' changed password successfully';
             $l->insert($email, $msg, 2);
-            return redirect('eswift/change_password')->with('status1', 'Your password has been changed successfuly');
+            return redirect('eswift/admin/change_password')->with('status1', 'Your password has been changed successfuly');
 
         } else {
 
             $msg = $email . ' tried to change password but failed';
             $l->insert($email, $msg, 2);
-            return redirect('eswift/change_password')->with('status', 'Your old password does not match your current password');
+            return redirect('eswift/admin/change_password')->with('status', 'Your old password does not match your current password');
         }
     }
 
@@ -365,9 +365,7 @@ class AdminController extends Controller
         $s = new Sms();
 
         $l->approve_loan($loan_id);
-
         $p->insert($user_id, $amount, $loan_id, $telephone);
-
         $s->send($telephone, "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.");
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Approved');

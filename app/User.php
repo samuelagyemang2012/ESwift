@@ -113,16 +113,11 @@ class User extends Authenticatable
         ]);
     }
 
-//    public function get_client_with_account($id)
-//    {
-//
-//    }
-
-//    public function get_password($email)
-//    {
-//        return DB::table('users')
-//            ->select('password')
-//            ->where('email', '=', $email)
-//            ->get();
-//    }
+    public function get_password($email)
+    {
+        return DB::table('users')
+            ->select('password')
+            ->where('email', '=', $email)
+            ->get();
+    }
 }

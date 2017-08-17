@@ -100,7 +100,7 @@
 
                     <label>Select a Package</label><br>
                     <span style="color: cornflowerblue"><b id="package"></b></span><br>
-                    {{--<label>This package allows you to borrow a maximum of GHC 500</label>--}}
+
                     <div>
                         <select class="form-control" name="package" id="pkg" onchange="packages()" required>
                             <option></option>

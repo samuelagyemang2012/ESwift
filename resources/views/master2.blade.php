@@ -372,7 +372,7 @@
                 </li>
 
                 <li class="active treeview">
-                    <a href="#">
+                    <a href="{{route('transactions_log')}}">
                         <i class="fa fa-archive"></i> <span>System Logs</span>
                     </a>
                 </li>

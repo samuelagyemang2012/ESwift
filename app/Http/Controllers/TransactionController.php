@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Loan;
 use App\Log;
 use App\Payment;
+use App\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
@@ -85,28 +86,58 @@ class TransactionController extends Controller
         return view('transactions.refused');
     }
 
-    public function approve_loan($id, $user_id, $amount, $loan_id, $telephone)
+    public function approve_loan($amount, $user_id, $loan_id, $telephone)
     {
         $l = new Loan();
         $p = new Payment();
+        $s = new Sms();
+        $lg = new Log();
 
-        $l->approve_loan($id);
-        $p->insert($id, $amount, $user_id, $loan_id, $telephone);
+        $auth = Auth::user();
+
+        $l->approve_loan($loan_id);
+        $p->insert($user_id, $amount, $loan_id, $telephone);
+        $s->send($telephone, "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.");
+
+        $lg->insert($auth['email'], $auth['email'] . " approved a loan", $auth['role_id']);
 
         return redirect('eswift/transactions/pending-loans')->with('status', 'Loan Approved');
     }
 
-    public function refuse_loan($id)
+    public function refuse_loan($id, $amount, $telephone)
     {
         $l = new Loan();
+        $s = new Sms();
+        $lg = new Log();
+
+        $auth = Auth::user();
 
         $l->refuse_loan($id);
+        $s->send($telephone, "Your loan request for GHC " . $amount . " has been refused.");
+
+        $lg->insert($auth['email'], $auth['email'] . " refused a loan", $auth['role_id']);
 
         return redirect('eswift/transactions/pending-loans')->with('status', 'Loan Refused');
     }
 
-    public function get_client_details($id)
+    public function logs()
     {
+        $lg = new Log();
 
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $lg->get_transaction_logs();
+
+//        return $data;
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('transactions.logs');
     }
+
+//    public function get_client_details($id)
+//    {
+//
+//    }
 }

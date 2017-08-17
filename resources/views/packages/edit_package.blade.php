@@ -39,7 +39,7 @@
 
                     <label>Name</label>
                     <div>
-                        <input style="" class="form-control" name="name" type="text" required value="{{$data->name}}" value="{{old('name')}}">
+                        <input style="" class="form-control" name="name" type="text" required value="{{$data->pname}}" value="{{old('name')}}">
                     </div>
                     <br>
 
