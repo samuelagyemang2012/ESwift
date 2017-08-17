@@ -30,8 +30,8 @@ class HomeController extends Controller
             ->with('amount_given', $amount_given)
             ->with('total_returns', $total_returns)
             ->with('total_pending', $total_pending == '[]' ? 0 : $total_pending)
-            ->with('total_approved', $total_approved == null ? 0 : $total_approved)
-            ->with('total_refused', $total_refused == null ? 0 : $total_refused);
+            ->with('total_approved', $total_approved == '[]' ? 0 : $total_approved)
+            ->with('total_refused', $total_refused == '[]' ? 0 : $total_refused);
     }
 
     public function view_all_clients()
