@@ -102,7 +102,7 @@
                     <span style="color: cornflowerblue"><b id="package"></b></span><br>
 
                     <div>
-                        <select class="form-control" name="package" id="pkg" onchange="packages()" required>
+                        <select class="form-control" name="package" id="pkg" onchange="" required>
                             <option></option>
                             @foreach($packages as $p)
                                 <option id="{{$p->id}}" value="{{$p->pname}}" onselect="packages(this)">{{$p->pname}}</option>
