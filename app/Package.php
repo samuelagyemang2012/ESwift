@@ -30,6 +30,13 @@ class Package extends Model
             ->get();
     }
 
+    public function get_package_by_name($name)
+    {
+        return DB::table('packages')
+            ->where('pname', '=', $name)
+            ->get();
+    }
+
     public function update_package($id, $name, $desc, $max)
     {
         DB::table('packages')

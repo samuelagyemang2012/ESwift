@@ -105,7 +105,7 @@
                         <select class="form-control" name="package" id="pkg" onchange="packages()" required>
                             <option></option>
                             @foreach($packages as $p)
-                                <option id="{{$p->id}}" value="{{$p->pname}}" onselect="">{{$p->pname}}</option>
+                                <option id="{{$p->id}}" value="{{$p->pname}}" onselect="packages(this)">{{$p->pname}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('get_packages/{id}', 'ApiController@get_packages');
+Route::get('get_packages/{name}', 'ApiController@get_packages');

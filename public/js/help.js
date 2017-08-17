@@ -10,19 +10,27 @@ function packages_helper() {
     document.getElementById('pk').value = select_data;
 }
 
-function packages() {
+function packages(id) {
 
-    var select_data = document.getElementById('pkg').selectedIndex;
+
+    var e = document.getElementById("pkg");
+    var strUser = e.options[e.selectedIndex].value;
+
+    //var select_data = document.getElementById('pkg').selectedIndex.;
+
+    alert(strUser);
 
 }
 
 function pa() {
 
-    $.get("http://deywuro.com/api/login",
-        {
-            username: username,
-            password: password
-        },
+    var select_data = document.getElementById('pkg').selectedIndex;
+
+    $.get("http://eswift.npontu.com/api/get_packages/" + select_data,
+        //{
+        //    username: username,
+        //    password: password
+        //},
 
         function (response) {
 
