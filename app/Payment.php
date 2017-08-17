@@ -48,4 +48,20 @@ class Payment extends Model
             ]);
     }
 
+    public function get_transfers()
+    {
+        return DB::table('payments')->count();
+    }
+
+    public function get_total_amount_transferred()
+    {
+        return DB::table('payments')->sum('amount_transferred');
+    }
+
+    public function get_today_transfers()
+    {
+        return DB::table('payments')->select(DB::raw('*'))
+            ->whereRaw('Date(created_at) = CURDATE()')->get();
+    }
+
 }

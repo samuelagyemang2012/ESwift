@@ -1,4 +1,4 @@
-@extends('master1');
+@extends('master1')
 
 @section('dashboard')
 
@@ -6,7 +6,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>12</h3>
+                <h3>{{$total_transfers}}</h3>
 
                 <p>Total Transfers</p>
             </div>
@@ -21,7 +21,7 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>12</h3>
+                <h3>{{$total_amount}}</h3>
 
                 <p>Total Amount Transferred</p>
             </div>
@@ -37,7 +37,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>12</h3>
+                <h3>{{$total_transfers_today}}</h3>
 
                 <p>Total Transfers Today</p>
             </div>

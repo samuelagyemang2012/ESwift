@@ -34,8 +34,19 @@ class PaymentController extends Controller
 
     public function index()
     {
-//        return 'das';
-        return view('payments.dashboard');
+        $p = new Payment();
+
+        $total_transfers = $p->get_transfers();
+        $total_amount = $p->get_total_amount_transferred();
+        $total_transfers_today = $p->get_today_transfers();
+
+//        return $total_transfers;
+
+        return view('payments.dashboard')
+            ->with('total_transfers', $total_transfers)
+            ->with('total_amount', $total_amount)
+            ->with('total_transfers_today', count($total_transfers_today));
+
     }
 
     public function get_pending_transfers()
