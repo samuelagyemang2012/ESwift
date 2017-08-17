@@ -41,8 +41,9 @@ class Loan extends Model
     public function get_num_pending()
     {
         return DB::table('loans')
-            ->where('status_id', '=', 1)
-            ->count();
+            ->count()
+            ->where('status_id', '=', 1);
+
     }
 
     public function get_num_approved()
