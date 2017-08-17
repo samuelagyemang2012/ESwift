@@ -47,7 +47,7 @@ class Loan extends Model
         return DB::table('loans')
             ->select(DB::raw('COUNT(id)'))
             ->where('status_id', '=', 1)
-            ->get();
+            ->count();
 
     }
 
