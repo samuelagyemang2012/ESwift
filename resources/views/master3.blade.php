@@ -155,8 +155,8 @@
                         <span>Clients</span>
                     </a>
                     {{--<ul class="treeview-menu">--}}
-                        {{--<li><a href="{{route('clients')}}"><i class="fa fa-circle-o"></i>Manage Clients</a></li>--}}
-                        {{--<li><a href="{{route('clients')}}"><i class ="fa fa-cirle-o"></i></a></li>--}}
+                    {{--<li><a href="{{route('clients')}}"><i class="fa fa-circle-o"></i>Manage Clients</a></li>--}}
+                    {{--<li><a href="{{route('clients')}}"><i class ="fa fa-cirle-o"></i></a></li>--}}
                     {{--</ul>--}}
                 </li>
 
@@ -194,20 +194,27 @@
                     </a>
                 </li>
 
-
-                <li class="active treeview">
-                    <a href="#">
-                        <i class="fa fa-archive"></i> <span>System Logs</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                <li class="treeview">
+                    <a href="{{route('show_admin_logs')}}">
+                        <i class="fa fa-archive"></i>
+                        <span>Systems Logs</span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{route('show_client_logs')}}"><i class="fa fa-circle-o"></i>Client
-                                Logs</a></li>
-                        <li><a href="{{route('show_admin_logs')}}"><i class="fa fa-circle-o"></i> Admin Logs</a></li>
-                    </ul>
                 </li>
+
+
+                {{--<li class="active treeview">--}}
+                {{--<a href="#">--}}
+                {{--<i class="fa fa-archive"></i> <span>System Logs</span>--}}
+                {{--<span class="pull-right-container">--}}
+                {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                {{--</span>--}}
+                {{--</a>--}}
+                {{--<ul class="treeview-menu">--}}
+                {{--<li class="active"><a href="{{route('show_client_logs')}}"><i class="fa fa-circle-o"></i>Client--}}
+                {{--Logs</a></li>--}}
+                {{--<li><a href="{{route('show_admin_logs')}}"><i class="fa fa-circle-o"></i> Admin Logs</a></li>--}}
+                {{--</ul>--}}
+                {{--</li>--}}
 
             </ul>
         </section>
