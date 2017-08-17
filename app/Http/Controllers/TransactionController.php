@@ -128,8 +128,6 @@ class TransactionController extends Controller
 
             $data = $lg->get_transaction_logs();
 
-//        return $data;
-
             return Datatables::of($data)->make(true);
         }
 

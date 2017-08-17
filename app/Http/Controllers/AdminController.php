@@ -172,6 +172,9 @@ class AdminController extends Controller
     public function add_client(Request $request)
     {
         $u = new User;
+        $lg = new Log();
+        $s = new Sms();
+        $auth = Auth::user();
 
         $file_name = '';
 
@@ -213,6 +216,10 @@ class AdminController extends Controller
 
         $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
 
+        $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Limited.");
+
+        $lg->insert($auth['email'], $auth['email'] . " registered " . $input['email'] . " as a new client", $auth['role_id']);
+
         return redirect('eswift/clients')->with('status', 'Client added successfully');
 
     }
@@ -240,6 +247,8 @@ class AdminController extends Controller
     public function edit_client(Request $request, $id)
     {
         $u = new User;
+        $lg = new Log();
+        $auth = Auth::user();
 
         $input = $request->all();
 
@@ -271,6 +280,7 @@ class AdminController extends Controller
         }
 
         $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package']);
+        $lg->insert($auth['email'], $auth['email'] . " edited a client", $auth['role_id']);
 
         return redirect('eswift/clients')->with('status', 'Client updated successfully');
 
@@ -363,10 +373,14 @@ class AdminController extends Controller
         $l = new Loan();
         $p = new Payment();
         $s = new Sms();
+        $lg = new Log();
+        $auth = Auth::user();
 
         $l->approve_loan($loan_id);
         $p->insert($user_id, $amount, $loan_id, $telephone);
         $s->send($telephone, "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.");
+
+        $lg->insert($auth['email'], $auth['email'] . " approved a loan", $auth['role_id']);
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Approved');
     }
@@ -375,10 +389,13 @@ class AdminController extends Controller
     {
         $l = new Loan();
         $s = new Sms();
+        $lg = new Log();
+        $auth = Auth::user();
 
         $l->refuse_loan($id);
 
         $s->send($telephone, "Your loan request for GHC " . $amount . " has been refused.");
+        $lg->insert($auth['email'], $auth['email'] . " refused a loan", $auth['role_id']);
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Refused');
     }
@@ -428,6 +445,7 @@ class AdminController extends Controller
         $p = new Payment();
         $d = new Debt();
         $s = new Sms();
+        $lg = new Log();
 
         $rules = [
             'amount_transferred' => 'required|same:amount_to_transfer',
@@ -443,6 +461,7 @@ class AdminController extends Controller
 
         $s->send($input['telephone'], "Your loan request for GHC " . $input['amount_transferred'] . "has been transferred to your mobile money account.");
 
+        $lg->insert($user['email'], $user['email'] . " transferred GHC " . $input['amount_transferred'] . " to " . $input['telephone'], $user['role_id']);
         return redirect('eswift/admin/pending-transfers')->with('status', 'Transaction Recorded');
     }
 
@@ -454,6 +473,8 @@ class AdminController extends Controller
     public function add_payment(Request $request)
     {
         $u = new User();
+        $lg = new Log();
+        $auth = Auth::user();
 
         $input = $request->all();
 
@@ -473,6 +494,8 @@ class AdminController extends Controller
 
         $u->add_payment($input['first_name'], $input['last_name'], $input['email'], $npass, $input['telephone'], $input['residential_address']);
 
+        $lg->insert($auth['email'], $auth['email'] . " added " . $input['email'] . " as a payments personnel", $auth['role_id']);
+
         return redirect('eswift/admin/add/payment-personnel')->with('status', 'Payments Personnel Added');
     }
 
@@ -484,6 +507,8 @@ class AdminController extends Controller
     public function add_transaction(Request $request)
     {
         $u = new User();
+        $lg = new Log();
+        $auth = Auth::user();
 
         $input = $request->all();
 
@@ -502,6 +527,8 @@ class AdminController extends Controller
         $npass = bcrypt($input['password']);
 
         $u->add_transaction($input['first_name'], $input['last_name'], $input['email'], $npass, $input['telephone'], $input['residential_address']);
+
+        $lg->insert($auth['email'], $auth['email'] . " added " . $input['email'] . " as a transactions personnel", $auth['role_id']);
 
         return redirect('eswift/admin/add/transaction-personnel')->with('status', 'Transactions Personnel Added');
     }
