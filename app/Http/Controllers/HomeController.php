@@ -23,7 +23,7 @@ class HomeController extends Controller
         $total_approved = $l->get_approved_loans();
         $total_refused = $l->get_refused_loans();
 
-//        return $total_pending;
+        return $total_pending;
 
         return view('index')
             ->with('processed', $processed_loans)
