@@ -120,4 +120,12 @@ class User extends Authenticatable
             ->where('email', '=', $email)
             ->get();
     }
+
+    public function get_telephone($msisdn)
+    {
+        return DB::table('users')
+            ->select('telephone')
+            ->where('telephone', '=', $msisdn)
+            ->get();
+    }
 }

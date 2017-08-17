@@ -16,6 +16,13 @@
                         </ul>
                     </div>
                 @endif
+
+                    @if (session('status1'))
+                        <div class="alert alert-danger">
+                            <p>{{ session('status1') }}</p>
+                        </div>
+                    @endif
+
             </div>
 
             <div class="col-sm-4"></div>
