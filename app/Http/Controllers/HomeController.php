@@ -27,7 +27,7 @@ class HomeController extends Controller
             ->with('processed', $processed_loans != null ? $processed_loans : 0)
             ->with('amount_given', $amount_given != null ? $amount_given : 0)
             ->with('total_returns', $total_returns != null ? $total_returns : 0)
-            ->with('total_pending', $total_pending != null ? $total_pending : 0)
+            ->with('total_pending', $total_pending !== null ? $total_pending : 0)
             ->with('total_approved', $total_approved != null ? $total_approved : 0)
             ->with('total_refused', $total_refused != null ? $total_refused : 0);
     }
