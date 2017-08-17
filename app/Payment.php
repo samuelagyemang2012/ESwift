@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -63,5 +64,14 @@ class Payment extends Model
         return DB::table('payments')->select(DB::raw('*'))
             ->whereRaw('Date(created_at) = CURDATE()')->get();
     }
+
+//    public function get_total_amount_today()
+//    {
+//        return DB::table('payments')->select(DB::raw('SUM(amount_transferred) as amount_today'))
+//            ->whereRaw('Date(created_at) = CURDATE()')->get();
+
+//        return DB::table('payments')//->sum('amount_transferred')
+//        ->where('created_at', '=', Carbon::today());
+//    }
 
 }

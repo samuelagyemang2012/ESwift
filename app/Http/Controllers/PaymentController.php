@@ -39,13 +39,15 @@ class PaymentController extends Controller
         $total_transfers = $p->get_transfers();
         $total_amount = $p->get_total_amount_transferred();
         $total_transfers_today = $p->get_today_transfers();
+//        $total_amount_today = $p->get_total_amount_today();
 
-//        return $total_transfers;
+//        return $total_amount_today;
 
         return view('payments.dashboard')
             ->with('total_transfers', $total_transfers)
             ->with('total_amount', $total_amount)
             ->with('total_transfers_today', count($total_transfers_today));
+//            ->with('total_amount_today', $total_amount_today);
 
     }
 
