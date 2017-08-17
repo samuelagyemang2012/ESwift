@@ -7,10 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class Payment extends Model
 {
-    public function insert($id, $user_id, $amount_to_transfer, $loan_id, $telephone)
+    public function insert($user_id, $amount_to_transfer, $loan_id, $telephone)
     {
         DB::table('payments')->insert([
-            'id' => $id,
             'user_id' => $user_id,
             'loan_id' => $loan_id,
             'amount_to_transfer' => $amount_to_transfer,

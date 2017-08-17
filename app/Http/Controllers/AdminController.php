@@ -243,7 +243,7 @@ class AdminController extends Controller
 
         $input = $request->all();
 
-//        $file_name = Input::file('carthograph')->getClientOriginalName();
+        $file_name = '';
 
         $rules = [
             'first_name' => 'required|min:2',
@@ -252,23 +252,25 @@ class AdminController extends Controller
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
             'residential_address' => 'required|min:2',
-            'carthograph' => 'required',
+//            'carthograph' => '',
             'salary' => 'required',
-            'mobile_money_account' => 'required'
+            'mobile_money_account' => 'required',
+            'package' => 'required'
         ];
 
         $this->validate($request, $rules);
 
         if (Input::hasFile('carthograph')) {
 
-//            return 'true';
-
             $file = Input::file('carthograph');
             $file->move('uploads', $file->getClientOriginalName());
             $file_name = $file->getClientOriginalName();
+        } else {
+            $carthograph = $u->get_client($id);
+            $file_name = $carthograph[0]->carthograph;
         }
 
-        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account']);
+        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package']);
 
         return redirect('eswift/clients')->with('status', 'Client updated successfully');
 
@@ -356,29 +358,29 @@ class AdminController extends Controller
         return view('admin.refused');
     }
 
-    public function approve_loan($id, $user_id, $amount, $loan_id, $telephone)
+    public function approve_loan($amount, $user_id, $loan_id, $telephone)
     {
         $l = new Loan();
         $p = new Payment();
         $s = new Sms();
 
-        $l->approve_loan($id);
-        $p->insert($id, $amount, $user_id, $loan_id, $telephone);
+        $l->approve_loan($loan_id);
 
-        $message = "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.";
+        $p->insert($user_id, $amount, $loan_id, $telephone);
 
-        $umessage = urlencode($message);
-
-        $s->send(urlencode($telephone), $umessage);
+        $s->send($telephone, "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.");
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Approved');
     }
 
-    public function refuse_loan($id)
+    public function refuse_loan($id, $amount, $telephone)
     {
         $l = new Loan();
+        $s = new Sms();
 
         $l->refuse_loan($id);
+
+        $s->send($telephone, "Your loan request for GHC " . $amount . " has been refused.");
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Refused');
     }
@@ -427,6 +429,7 @@ class AdminController extends Controller
 
         $p = new Payment();
         $d = new Debt();
+        $s = new Sms();
 
         $rules = [
             'amount_transferred' => 'required|same:amount_to_transfer',
@@ -439,6 +442,8 @@ class AdminController extends Controller
 
         //insert to debt
         $d->insert($input['user_id'], $input['id'], $input['telephone'], $input['amount_transferred']);
+
+        $s->send($input['telephone'], "Your loan request for GHC " . $input['amount_transferred'] . "has been transferred to your mobile money account.");
 
         return redirect('eswift/admin/pending-transfers')->with('status', 'Transaction Recorded');
     }

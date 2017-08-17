@@ -91,7 +91,7 @@
 
                     <label>Carthograph</label>
                     <div>
-                        <input type="file" class="form-control" name="carthograph" required
+                        <input type="file" class="form-control" name="carthograph"
                                value="{{old('carthograph')}}">
                     </div>
                     <br>

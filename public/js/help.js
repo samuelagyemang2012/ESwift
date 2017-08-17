@@ -11,38 +11,35 @@ function packages_helper() {
 }
 
 function packages() {
-    var package = document.getElementById('pkg').value;
 
-    if (package == "BRONZE") {
-        document.getElementById('package').innerHTML = "This package allows you to borrow a maximum of GHC 500";
-    }
+    var select_data = document.getElementById('pkg').selectedIndex;
 
-    if (package == "SILVER") {
-        document.getElementById('package').innerHTML = "This package allows you to borrow a maximum of GHC 1000";
-    }
+}
 
-    if (package == "GOLD") {
-        document.getElementById('package').innerHTML = "This package allows you to borrow a maximum of GHC 1500";
-    }
+function pa() {
 
-    if (package == "PLATINUM") {
-        document.getElementById('package').innerHTML = "This package allows you to borrow a maximum of GHC 2000";
-    }
+    $.get("http://deywuro.com/api/login",
+        {
+            username: username,
+            password: password
+        },
 
-    if (package == "PREMIUM") {
-        document.getElementById('package').innerHTML = "This package allows you to borrow a maximum of GHC 3000";
-    }
+        function (response) {
 
-    if (package == "PREMIUM_DELUXE") {
-        document.getElementById('package').innerHTML = "This package allows you to borrow a maximum of GHC 4000";
-    }
+            if (response.message == "Successful Login") {
 
-    if (package == "PREMIUM_CLASSIC") {
-        document.getElementById('package').innerHTML = "This package allows you to borrow a maximum of GHC 5000";
-    }
+                $.cookie('username', username);
+                $.cookie('password', password);
 
-    if (package == "") {
-        document.getElementById('package').innerHTML = "";
-    }
+                // load_contacts();
+                get_stats(username, password);
 
+            }
+
+            if (response.message == "Invalid Credential!") {
+
+                toast("Wrong username or password", 5000);
+                // popout("loginfail", "pop");
+            }
+        });
 }

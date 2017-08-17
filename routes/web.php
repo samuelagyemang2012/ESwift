@@ -47,7 +47,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::post('add_client', 'AdminController@add_client')->name('add_client');
 
-    Route::get('delete_client/{id}', 'AdminController@delete_client')->name('delete_client');
+    Route::get('eswift/delete_client/{id}', 'AdminController@delete_client')->name('delete_client');
 
     Route::get('eswift/edit/client/{id}', 'AdminController@show_edit_client')->name('show_edit_client');
 
@@ -81,9 +81,9 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/loans/refused', 'AdminController@get_refused_loans')->name('admin_get_refused_loans');
 
-    Route::get('eswift/approve/{id}/{amount}/{user_id}/{loan_id}/{telephone}', 'AdminController@approve_loan')->name('admin_approve');
+    Route::get('eswift/approve/{amount}/{user_id}/{loan_id}/{telephone}', 'AdminController@approve_loan')->name('admin_approve');
 
-    Route::get('eswift/refuse/{id}', 'AdminController@refuse_loan')->name('admin_refuse');
+    Route::get('eswift/refuse/{id}/{amount}/{telephone}', 'AdminController@refuse_loan')->name('admin_refuse');
 
 
 //Payments
@@ -149,3 +149,4 @@ Route::group(['middleware' => 'payments'], function () {
 
 
 });
+
