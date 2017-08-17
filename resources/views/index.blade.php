@@ -5,7 +5,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>12</h3>
+                <h3>{{$processed}}</h3>
 
                 <p>Processed Loans</p>
             </div>
@@ -20,7 +20,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>12<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$amount_given}}<sup style="font-size: 20px"></sup></h3>
 
                 <p>Total Amount Given</p>
             </div>
@@ -35,7 +35,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>12<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$total_returns}}<sup style="font-size: 20px"></sup></h3>
 
                 <p>Total Returns Expected</p>
             </div>
@@ -50,7 +50,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>12<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$total_pending}}<sup style="font-size: 20px"></sup></h3>
 
                 <p>Pending Loans</p>
             </div>
@@ -65,7 +65,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>12<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$total_approved}}<sup style="font-size: 20px"></sup></h3>
 
                 <p>Approved Loans</p>
             </div>
@@ -80,7 +80,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>12<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$total_refused}}<sup style="font-size: 20px"></sup></h3>
 
                 <p>Refused Loans</p>
             </div>

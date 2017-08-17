@@ -23,6 +23,42 @@ class Loan extends Model
             ->get();
     }
 
+    public function get_processed_loans()
+    {
+        return DB::table('loans')->count();
+    }
+
+    public function get_total_amount_given()
+    {
+        return DB::table('payments')->sum('amount_transferred');
+    }
+
+    public function get_total_returns()
+    {
+        return DB::table('amount_left')->sum('amount_left');
+    }
+
+    public function get_num_pending()
+    {
+        return DB::table('loans')
+            ->where('status_id', '=', 1)
+            ->count();
+    }
+
+    public function get_num_approved()
+    {
+        return DB::table('loans')
+            ->where('status_id', '=', 2)
+            ->count();
+    }
+
+    public function get_num_refused()
+    {
+        return DB::table('loans')
+            ->where('status_id', '=', 3)
+            ->count();
+    }
+
     public function get_pending_loans()
     {
         return DB::table('loans')
@@ -72,4 +108,5 @@ class Loan extends Model
             ->where('id', $id)
             ->update(['status_id' => 3]);
     }
+
 }
