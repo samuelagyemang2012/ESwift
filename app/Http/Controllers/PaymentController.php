@@ -115,7 +115,7 @@ class PaymentController extends Controller
 
         $s->send($input['telephone'], "Your loan request for GHC " . $input['amount_transferred'] . "has been transferred to your mobile money account.");
 
-        $lg->insert($user['email'], $user['email'] . "transferred GHC " . $user['amount_transferred'] . " to " . $user['telephone'], $user['role_id']);
+        $lg->insert($user['email'], $user['email'] . " transferred GHC " . $input['amount_transferred'] . " to " . $user['telephone'], $user['role_id']);
 
         return redirect('eswift/payments/pending-transfers')->with('status', 'Transaction Recorded');
     }
