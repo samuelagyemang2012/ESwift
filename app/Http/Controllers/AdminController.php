@@ -364,7 +364,12 @@ class AdminController extends Controller
 
         $l->approve_loan($id);
         $p->insert($id, $amount, $user_id, $loan_id, $telephone);
-        $s->send($telephone, "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.");
+
+        $message = "Your loan for GHC " . $amount . " has been approved and will be transferred to you shortly.";
+
+        $umessage = urlencode($message);
+
+        $s->send(urlencode($telephone), $umessage);
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Approved');
     }
