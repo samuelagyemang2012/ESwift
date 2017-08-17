@@ -24,12 +24,12 @@ class HomeController extends Controller
         $total_refused = $l->get_refused_loans();
 
         return view('index')
-            ->with('processed', $processed_loans > 0 ? $processed_loans : 0)
-            ->with('amount_given', $amount_given > 0 ? $amount_given : 0)
-            ->with('total_returns', $total_returns > 0 ? $total_returns : 0)
-            ->with('total_pending', $total_pending > 0 ? $total_pending : 0)
-            ->with('total_approved', $total_approved > 0 ? $total_approved : 0)
-            ->with('total_refused', $total_refused > 0 ? $total_refused : 0);
+            ->with('processed', $processed_loans != null ? $processed_loans : 0)
+            ->with('amount_given', $amount_given != null ? $amount_given : 0)
+            ->with('total_returns', $total_returns != null ? $total_returns : 0)
+            ->with('total_pending', $total_pending != null ? $total_pending : 0)
+            ->with('total_approved', $total_approved != null ? $total_approved : 0)
+            ->with('total_refused', $total_refused != null ? $total_refused : 0);
     }
 
     public function view_all_clients()
