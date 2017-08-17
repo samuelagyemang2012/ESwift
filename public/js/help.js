@@ -19,7 +19,7 @@ function packages() {
     var e = document.getElementById("pkg");
     var strUser = e.options[e.selectedIndex].value;
 
-    alert(strUser);
+    //alert(strUser);
 
     $.get("http://eswift.npontu.com/api/get_packages/" + strUser,
 
@@ -32,7 +32,7 @@ function packages() {
                 console.log(response);
                 document.getElementById("package").innerHTML = "The maximum amount you can borrow is " + response.maximum;
             }else {
-                alert('dasdas');
+                //alert('dasdas');
             }
 
         });
