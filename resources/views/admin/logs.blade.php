@@ -14,6 +14,7 @@
         <script>
             $(function () {
                 $('#mytable').DataTable({
+                    order: [['created_at', "desc"]],
                     processing: true,
                     serverSide: true,
                     ajax: '{{route('show_admin_logs')}}',
@@ -23,7 +24,10 @@
                         {data: 'message', name: 'message'},
                         {data: 'created_at', name: 'created_at'}
                     ]
+
                 });
+
+
             });
         </script>
         @endpush
