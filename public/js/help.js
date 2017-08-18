@@ -14,26 +14,44 @@ function packages_helper() {
 //
 //}
 
-function packages() {
+function process_tel() {
 
-    var e = document.getElementById("pkg");
-    var strUser = e.options[e.selectedIndex].value;
+    var first, tel, substring;
 
-    //alert(strUser);
+    tel = $("#tel").val();
 
-    $.get("http://eswift.npontu.com/api/get_packages/" + strUser,
+    if (tel.length != 0) {
 
-        {},
+        first = tel.charAt(0);
 
-        function (response) {
+        if (first == '0') {
 
-            if (response.id == 1) {
+            first = '233';
+            substring = tel.substring(1, 10);
 
-                console.log(response);
-                document.getElementById("package").innerHTML = "The maximum amount you can borrow is " + response.maximum;
-            }else {
-                //alert('dasdas');
-            }
+            $("#tel").val(first + substring);
 
-        });
+        }
+    }
 }
+//var e = document.getElementById("pkg");
+//var strUser = e.options[e.selectedIndex].value;
+//
+////alert(strUser);
+//
+//$.get("http://eswift.npontu.com/api/get_packages/" + strUser,
+//
+//    {},
+//
+//    function (response) {
+//
+//        if (response.id == 1) {
+//
+//            console.log(response);
+//            document.getElementById("package").innerHTML = "The maximum amount you can borrow is " + response.maximum;
+//        }else {
+//            //alert('dasdas');
+//        }
+//
+//    });
+//}

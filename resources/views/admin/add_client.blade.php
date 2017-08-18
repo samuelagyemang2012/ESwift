@@ -17,11 +17,11 @@
                     </div>
                 @endif
 
-                    @if (session('status1'))
-                        <div class="alert alert-danger">
-                            <p>{{ session('status1') }}</p>
-                        </div>
-                    @endif
+                @if (session('status1'))
+                    <div class="alert alert-danger">
+                        <p>{{ session('status1') }}</p>
+                    </div>
+                @endif
 
             </div>
 
@@ -65,7 +65,8 @@
 
                     <label>Telephone</label>
                     <div>
-                        <input class="form-control" name="telephone" type="tel" required value="{{old('telephone')}}"
+                        <input id="tel" class="form-control" name="telephone" type="tel" onblur="process_tel()" required
+                               value="{{old('telephone')}}"
                                min="10">
                     </div>
                     <br>
@@ -112,7 +113,8 @@
                         <select class="form-control" name="package" id="pkg" onchange="" required>
                             <option></option>
                             @foreach($packages as $p)
-                                <option id="{{$p->id}}" value="{{$p->pname}}" onselect="packages(this)">{{$p->pname}}</option>
+                                <option id="{{$p->id}}" value="{{$p->pname}}"
+                                        onselect="packages(this)">{{$p->pname}}</option>
                             @endforeach
                         </select>
                     </div>

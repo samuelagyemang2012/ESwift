@@ -184,7 +184,7 @@ class AdminController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'email' => 'required|email',
-            'telephone' => 'unique:users|required|min:10',
+            'telephone' => 'unique:users|required|min:10|numeric',
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
             'residential_address' => 'required|min:2',
@@ -199,11 +199,11 @@ class AdminController extends Controller
         $this->validate($request, $rules);
         $ntelephone = $this->process_telephone($input['telephone']);
 
-        $data = $u->get_telephone($ntelephone);
+//        $data = $u->get_telephone($ntelephone);
 
-        if ($data[0]->telephone == $ntelephone) {
-            return redirect('/eswift/client/add')->with('status1', 'Telephone number already taken');
-        }
+//        if ($data[0]->telephone == $ntelephone) {
+//            return redirect('/eswift/client/add')->with('status1', 'Telephone number already taken');
+//        }
 
         $pass = '$2y$10$ATsAxLSLnSOelhwN91fr2eNJnRtbScR.ayIhzsdf0Z3RsEm6169yy';
         $method = 'aes128';
