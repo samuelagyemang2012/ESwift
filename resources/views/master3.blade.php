@@ -163,7 +163,7 @@
                 <li class="treeview">
                     <a href="{{route('packages')}}">
                         <i class="fa fa-cube"></i>
-                        <span>Add Package</span>
+                        <span>Packages</span>
                     </a>
                 </li>
 
