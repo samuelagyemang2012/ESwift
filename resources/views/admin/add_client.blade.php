@@ -71,6 +71,12 @@
                     </div>
                     <br>
 
+                    <label>Mobile Money Account</label>
+                    <div>
+                        <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly>
+                    </div>
+                    <br>
+
                     <label>Employer</label>
                     <div>
                         <input class="form-control" name="employer" type="text" required value="{{old('employer')}}"
@@ -119,18 +125,6 @@
                         </select>
                     </div>
                     <br>
-
-                    <label>Mobile Money Account</label>
-                    <div>
-                        <select class="form-control" name="mobile_money_account">
-                            <option value="MTN">MTN</option>
-                            <option value="TIGO">TIGO</option>
-                            <option value="AIRTEL">AIRTEL</option>
-                            <option value="VODAFONE">VODAFONE</option>
-                        </select>
-                    </div>
-                    <br>
-
 
                     <label>Password</label>
                     <div>
