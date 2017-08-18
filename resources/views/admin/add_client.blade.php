@@ -63,7 +63,8 @@
                     </div>
                     <br>
 
-                    <label>Telephone</label>
+                    <label>Telephone</label><br>
+                    <span style="color: cornflowerblue"><b id="telplus"></b></span>
                     <div>
                         <input id="tel" class="form-control" name="telephone" type="tel" onblur="process_tel()" required
                                value="{{old('telephone')}}"

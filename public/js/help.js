@@ -28,6 +28,7 @@ function process_tel() {
 
         if (first == '0') {
 
+            $("#telplus").html("");
             first = '233';
             substring = tel.substring(1, 10);
             prefix = tel.substring(0, 3);
@@ -56,6 +57,7 @@ function process_tel() {
 
     if (first == '2') {
 
+        $("#telplus").html("");
         prefix2 = tel.substring(0, 5);
 
         //alert(prefix2);
@@ -76,6 +78,14 @@ function process_tel() {
             $("#mobile_money_account").val("VODAFONE");
         }
     }
+
+    if (first == '+') {
+        //alert($("#telplus").val());
+
+        $("#telplus").html("Please take out the + sign");
+        $("#mobile_money_account").val("");
+    }
+
 }
 //var e = document.getElementById("pkg");
 //var strUser = e.options[e.selectedIndex].value;
