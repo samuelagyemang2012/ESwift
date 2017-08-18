@@ -14,7 +14,7 @@
         <script>
             $(function () {
                 $('#mytable').DataTable({
-                    order: [['created_at', "desc"]],
+//                    order: [['created_at', "desc"]],
                     processing: true,
                     serverSide: true,
                     ajax: '{{route('show_admin_logs')}}',
