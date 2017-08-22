@@ -16,8 +16,8 @@ class ApiController extends Controller
 
         $data = $p->get_maximum($name);
 
-        $registration_fee = $fee_percentage * $data;
-        $mobile_fee = $mobile_percentage * $data;
+        $registration_fee = $fee_percentage * $data[0]->maximum;
+        $mobile_fee = $mobile_percentage * $data[0]->maximum;
 
         $minimum = $registration_fee + $mobile_fee;
 
