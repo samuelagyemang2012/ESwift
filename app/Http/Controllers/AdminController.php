@@ -562,4 +562,23 @@ class AdminController extends Controller
 
         return view('admin.transactions');
     }
+
+    public function get_minimum_balance($name)
+    {
+        $fee_percentage = 0.42;
+        $mobile_percentage = 0.425;
+
+        $p = new Package();
+
+        $data = $p->get_maximum($name);
+
+        $registration_fee = $fee_percentage * $data;
+        $mobile_fee = $mobile_percentage * $data;
+
+        $minimum = $registration_fee + $mobile_fee;
+
+        return $minimum;
+    }
+
+
 }

@@ -91,7 +91,7 @@ function get_balance() {
 
         function (response) {
 
-            if (response != null) {
+            if (response.code == 1) {
                 alert(response.maximum);
             } else {
                 alert('fail');
