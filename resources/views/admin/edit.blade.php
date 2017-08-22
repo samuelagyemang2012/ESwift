@@ -24,17 +24,48 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="col-sm-4"></div>
 
-            <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <center><h3 style="color: #3C8DBC">Edit a Client</h3>
+                <hr>
+            </center>
 
-            <div class="col-sm-8">
-                <h3>Edit Client</h3>
-                <br>
+            {{--<hr>--}}
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
 
-                <form class="form-horizontal" action="{{route('edit_client',['id'=>$data->id])}}" method="post"
-                      enctype="multipart/form-data">
-                    {{csrf_field()}}
+    <div class="container">
+        <div id="modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body" id="modalbody">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <form class="form-horizontal" action="{{route('edit_client',['id'=>$data->id])}}" method="post"
+          enctype="multipart/form-data">
+        {{csrf_field()}}
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-4">
 
                     <label>First Name</label>
                     <div>
@@ -61,11 +92,15 @@
 
                     <label>Telephone</label>
                     <div>
-                        <input class="form-control" name="telephone" type="tel" required value="{{$data->telephone}}"
+                        <input onblur="process_tel()" class="form-control" name="telephone" type="tel" required value="{{$data->telephone}}"
                                value="{{old('telephone')}}"
-                               min="10">
+                               min="10" id="tel">
                     </div>
                     <br>
+
+                </div>
+
+                <div class="col-sm-4">
 
                     <label>Employer</label>
                     <div>
@@ -96,6 +131,10 @@
                     </div>
                     <br>
 
+                </div>
+
+                <div class="col-sm-4">
+
                     <label>Monthly Salary</label>
                     <div>
                         <input class="form-control" name="salary" type="number" required
@@ -105,61 +144,41 @@
                     </div>
                     <br>
 
+
                     <label>Mobile Money Account</label>
                     <div>
                         <input readonly class="form-control" name="mobile_money_account"
                                value="{{$data->mobile_money_account}}"
-                               value="{{old('mobile_money_account')}}" id="mma">
-                    </div>
-                    <br>
-                    <div>
-                        <select class="form-control" name="mobile_money_account" id="s_mma" onchange="helper()">
-                            <option value="MTN">MTN</option>
-                            <option value="TIGO">TIGO</option>
-                            <option value="AIRTEL">AIRTEL</option>
-                            <option value="VODAFONE">VODAFONE</option>
-                        </select>
+                               value="{{old('mobile_money_account')}}" id="mobile_money_account">
                     </div>
                     <br>
 
-                    <label>Package</label>
+
+                    <label>Current Package</label>
                     <div>
                         <input readonly class="form-control" name="package"
                                value="{{$data->package}}"
                                value="{{old('package')}}" id="pk">
                     </div>
                     <br>
-                    <div>
-                        <select class="form-control" name="packages" id="s_pkg" onchange="packages_helper()">
 
+                    <label>Select a New Package</label><br>
+                    <span style="color: cornflowerblue"><b id="package"></b></span>
+                    <div>
+                        <select class="form-control" name="packages" id="pkg" onchange="get_balance()">
+                            <option></option>
                             @foreach($packages as $p)
                                 <option value="{{$p->pname}}">{{$p->pname}}</option>
                             @endforeach
-                            {{--<option value="MTN">MTN</option>--}}
-                            {{--<option value="TIGO">TIGO</option>--}}
-                            {{--<option value="AIRTEL">AIRTEL</option>--}}
-                            {{--<option value="VODAFONE">VODAFONE</option>--}}
                         </select>
                     </div>
                     <br>
 
-                    {{--<label>Password</label>--}}
-                    {{--<div>--}}
-                    {{--<input class="form-control" name="password" type="password" required min="6">--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
-
-                    {{--<label>Confirm Password</label>--}}
-                    {{--<div>--}}
-                    {{--<input class="form-control" name="confirm_password" type="password" required>--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
-
                     <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-                </form>
-            </div>
+                </div>
 
-            <div class="col-sm-2"></div>
+            </div>
         </div>
-    </div>
+    </form>
+
 @stop

@@ -49,7 +49,7 @@
 
                 <thead>
                 <th>Salary</th>
-                <td style="color: #3c8dbc">{{$data->monthly_salary}}</td>
+                <td style="color: #3c8dbc">GHC {{$data->monthly_salary}}</td>
                 </thead>
 
                 <thead>
@@ -62,19 +62,26 @@
                 <td style="color: #3c8dbc">{{$data->package}}</td>
                 </thead>
 
-
             </table>
             <hr>
             <div>
                 <h3>Carthograph </h3>
                 <hr>
-                <img src="/uploads/{{$data->carthograph}}">
+                <img src="/uploads/{{$data->carthograph}}" width="100%">
             </div>
             <br>
 
             <div>
-                {{--<a class="btn  btn-primary" href="{{route('clients')}}">Back</a>--}}
+                <h2>Accounts Details</h2>
             </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <th>Account Balance</th>
+                <td style="color: #3c8dbc">GHC {{$data->balance}}</td>
+                </thead>
+            </table>
+            <br>
         </div>
 
         <div class="col-sm-2"></div>

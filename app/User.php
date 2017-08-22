@@ -27,11 +27,11 @@ class User extends Authenticatable
             ]);
     }
 
-    public function delete_client($id)
+    public function delete_client($id, $date)
     {
         DB::table('users')
-            ->where('id', $id)
-            ->delete();
+            ->where('id', '=', $id)
+            ->update(['deleted_at' => $date]);
     }
 
     public function update_client($id, $fname, $lastname, $email, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $package)
@@ -58,15 +58,18 @@ class User extends Authenticatable
         return DB::table('users')
 //            ->select('id', 'first_name', 'last_name', 'telephone', 'employer', 'employer_location', 'residential_address', 'monthly_salary', 'mobile_money_account')
             ->where('role_id', '=', 1)
+            ->whereNull('deleted_at')
             ->get();
     }
 
     public function get_client($id)
     {
         return DB::table('users')
+            ->join('accounts', 'accounts.telephone', '=', 'users.telephone')
 //            ->select('id', 'first_name', 'last_name', 'telephone', 'employer', 'employer_location', 'residential_address', 'monthly_salary', 'mobile_money_account')
-            ->where('role_id', '=', 1)
-            ->where('id', '=', $id)
+            ->where('users.role_id', '=', 1)
+            ->where('users.id', '=', $id)
+//            ->where('users.deleted_at')
             ->get();
     }
 

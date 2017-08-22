@@ -213,10 +213,15 @@ class AdminController extends Controller
             $file->move('uploads', $file->getClientOriginalName());
             $file_name = $file->getClientOriginalName();
         }
+//insertions
 
         $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
 
         $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Limited.");
+
+        $minimum = $this->get_minimum_balance($input['package']);
+
+        $a->create_account($ntelephone, $minimum);
 
         $lg->insert($auth['email'], $auth['email'] . " registered " . $input['email'] . " as a new client", $auth['role_id']);
 
@@ -228,7 +233,8 @@ class AdminController extends Controller
     {
         $u = new User;
 
-        $u->delete_client($id);
+        $date = date("Y-m-d H:i:s");
+        $u->delete_client($id, $date);
 
         return redirect('eswift/clients')->with('status', 'Client deleted');
     }
@@ -264,7 +270,7 @@ class AdminController extends Controller
 //            'carthograph' => '',
             'salary' => 'required',
             'mobile_money_account' => 'required',
-            'package' => 'required'
+            'packages' => 'required'
         ];
 
         $this->validate($request, $rules);
@@ -279,7 +285,8 @@ class AdminController extends Controller
             $file_name = $carthograph[0]->carthograph;
         }
 
-        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package']);
+        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['packages']);
+
         $lg->insert($auth['email'], $auth['email'] . " edited a client", $auth['role_id']);
 
         return redirect('eswift/clients')->with('status', 'Client updated successfully');
@@ -579,6 +586,5 @@ class AdminController extends Controller
 
         return $minimum;
     }
-
 
 }

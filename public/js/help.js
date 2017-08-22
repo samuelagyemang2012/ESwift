@@ -1,14 +1,14 @@
-function helper() {
-    var select_data = document.getElementById('s_mma').value;
+//function helper() {
+//    var select_data = document.getElementById('s_mma').value;
+//
+//    document.getElementById('mma').value = select_data;
+//}
 
-    document.getElementById('mma').value = select_data;
-}
-
-function packages_helper() {
-    var select_data = document.getElementById('s_pkg').value;
-
-    document.getElementById('pk').value = select_data;
-}
+//function packages_helper() {
+//    var select_data = document.getElementById('s_pkg').value;
+//
+//    document.getElementById('pk').value = select_data;
+//}
 
 function process_tel() {
 
@@ -85,19 +85,25 @@ function get_balance() {
 
     var package = $('#pkg').val();
 
-    $.get('http://eswift.npontu.com/api/get_packages/' + package,
+    if (package == '') {
+        //alert('dsas');
+        $('#package').html("");
+    } else {
 
-        {},
+        $.get('http://eswift.npontu.com/api/get_minimum/' + package,
 
-        function (response) {
+            {},
 
-            if (response.code == 1) {
-                alert(response.maximum);
-            } else {
-                alert('fail');
+            function (response) {
+
+                if (response.code == 1) {
+
+                    $('#modalbody').html('<center><p>A minimum balance of GHC <b style="color: crimson">' + response.minimum + '</b> is required for this package.</p></center>')
+                    $('#package').html("Minimum balance required is GHC <b style='color: crimson'>" + response.minimum + "</b>");
+                    $("#modal").modal();
+                }
             }
-        }
-    );
+        );
 
-
+    }
 }

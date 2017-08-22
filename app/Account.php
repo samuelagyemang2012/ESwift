@@ -7,12 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class Account extends Model
 {
-    public function create_account($user_id, $balance, $telephone)
+    public function create_account($telephone, $balance)
     {
         DB::table('accounts')->insert([
-            'user_id' => $user_id,
-            'balance' => $balance,
             'telephone' => $telephone,
+            'balance' => $balance,
         ]);
     }
 }

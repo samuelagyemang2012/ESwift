@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AccountTableMigration' => $baseDir . '/database/migrations/2017_06_28_122650_account_table_migration.php',
+    'App\\Account' => $baseDir . '/app/Account.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Debt' => $baseDir . '/app/Debt.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -3301,6 +3302,8 @@ return array(
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+    'UpdateAccounts2' => $baseDir . '/database/migrations/2017_08_22_193030_update_accounts2.php',
+    'UpdateAccountsTable' => $baseDir . '/database/migrations/2017_08_22_173911_update_accounts_table.php',
     'UpdateDebtTable' => $baseDir . '/database/migrations/2017_08_06_225557_update_debt_table.php',
     'UpdateDebtTable1' => $baseDir . '/database/migrations/2017_08_06_235207_update_debt_table1.php',
     'UpdateDebtTable2' => $baseDir . '/database/migrations/2017_08_07_000712_update_debt_table2.php',

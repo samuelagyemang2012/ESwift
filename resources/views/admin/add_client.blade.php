@@ -38,13 +38,34 @@
             <center><h3 style="color: #3C8DBC">Add a Client</h3>
                 <hr>
             </center>
-            <br>
+
+            {{--<hr>--}}
         </div>
         <div class="col-sm-4"></div>
     </div>
 
+    <div class="container">
+        <div id="modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body" id="modalbody">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </div>
+    
     <form class="form-horizontal" action="{{route('add_client')}}" method="post"
           enctype="multipart/form-data">
         {{csrf_field()}}
@@ -84,7 +105,7 @@
 
                     <label>Mobile Money Account</label>
                     <div>
-                        <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly>
+                        <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly value="{{old('mobile_money_account')}}">
                     </div>
                     <br>
 
@@ -127,20 +148,6 @@
                     </div>
                     <br>
 
-                    {{--<label>Select a Package</label><br>--}}
-                    {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
-
-                    {{--<div>--}}
-                    {{--<select class="form-control" name="package" id="pkg" onchange="" required>--}}
-                    {{--<option></option>--}}
-                    {{--@foreach($packages as $p)--}}
-                    {{--<option id="{{$p->id}}" value="{{$p->pname}}"--}}
-                    {{--onselect="packages(this)">{{$p->pname}}&nbsp;(GHC {{$p->maximum}})--}}
-                    {{--</option>--}}
-                    {{--@endforeach--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
                 </div>
 
                 <div class="col-sm-4">
