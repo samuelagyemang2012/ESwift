@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('get_packages/{name}', 'ApiController@get_minimum_balance');
+Route::get('get_minimum/{name}', 'ApiController@get_minimum_balance');
