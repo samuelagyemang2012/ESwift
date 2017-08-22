@@ -13,7 +13,7 @@ class ApiController extends Controller
 
         $data = $p->get_maximum($name);
 
-        return response()->json($data);
+        return response()->json($data[0]);
     }
 
 }

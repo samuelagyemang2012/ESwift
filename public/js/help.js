@@ -87,9 +87,11 @@ function get_balance() {
 
     $.get('http://eswift.npontu.com/api/get_packages/' + package,
 
+        {},
+
         function (response) {
 
-            if (response.maximum != null) {
+            if (response != null) {
                 alert(response.maximum);
             } else {
                 alert('fail');
