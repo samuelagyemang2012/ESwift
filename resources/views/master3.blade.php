@@ -178,9 +178,9 @@
                     <ul class="treeview-menu">
                         {{--<li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a></li>--}}
                         <li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>
-                        <li><a href="{{route('show_add_payment')}}"><i class="fa fa-circle-o"></i>Add Payments Personnel</a>
+                        <li><a href="{{route('payments_personnel')}}"><i class="fa fa-circle-o"></i>Payments Personnel</a>
                         </li>
-                        <li><a href="{{route('show_add_transaction')}}"><i class="fa fa-circle-o"></i>Add Transactions
+                        <li><a href="{{route('transactions_personnel')}}"><i class="fa fa-circle-o"></i>Transactions
                                 Personnel</a></li>
                         <li><a href="{{route('show_change_password')}}"><i class="fa fa-circle-o"></i>
                                 Change Password</a></li>

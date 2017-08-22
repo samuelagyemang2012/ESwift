@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    function get_packages($name)
+    public function get_minimum_balance($name)
     {
         $p = new Package();
 
-        $data = $p->get_package_by_name($name);
+        $data = $p->get_maximum($name);
 
         return response()->json($data);
     }
+
 }

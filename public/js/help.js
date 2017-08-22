@@ -10,15 +10,15 @@ function packages_helper() {
     document.getElementById('pk').value = select_data;
 }
 
-//function packages() {
-//
-//}
-
 function process_tel() {
 
     var first, tel, substring, prefix, prefix2;
 
     tel = $("#tel").val();
+
+    tel = tel.split("+");
+
+    tel = tel.join("");
 
     //mma = $("#mobile_money_account");
 
@@ -79,32 +79,13 @@ function process_tel() {
         }
     }
 
-    if (first == '+') {
-        //alert($("#telplus").val());
+}
 
-        $("#telplus").html("Please take out the + sign");
-        $("#mobile_money_account").val("");
-    }
+function get_balance() {
+
+    var package = $('#pkg').val();
+
+    //$.get('http:/get_packages/{name}')
+
 
 }
-//var e = document.getElementById("pkg");
-//var strUser = e.options[e.selectedIndex].value;
-//
-////alert(strUser);
-//
-//$.get("http://eswift.npontu.com/api/get_packages/" + strUser,
-//
-//    {},
-//
-//    function (response) {
-//
-//        if (response.id == 1) {
-//
-//            console.log(response);
-//            document.getElementById("package").innerHTML = "The maximum amount you can borrow is " + response.maximum;
-//        }else {
-//            //alert('dasdas');
-//        }
-//
-//    });
-//}

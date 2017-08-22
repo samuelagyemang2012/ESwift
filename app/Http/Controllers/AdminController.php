@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use App\Debt;
 use App\Loan;
 use App\Log;
@@ -174,6 +175,7 @@ class AdminController extends Controller
         $u = new User;
         $lg = new Log();
         $s = new Sms();
+        $a = new Account();
         $auth = Auth::user();
 
         $file_name = '';
@@ -183,13 +185,13 @@ class AdminController extends Controller
         $rules = [
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
-            'email' => 'required|email',
-            'telephone' => 'unique:users|required|min:10|numeric',
+            'email' => 'required|email|unique:users',
+            'telephone' => 'required|min:12|max:12|unique:users',
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
             'residential_address' => 'required|min:2',
             'carthograph' => 'required',
-            'salary' => 'required',
+            'salary' => 'required|numeric',
             'mobile_money_account' => 'required',
             'password' => 'required|min:4',
             'package' => 'required',
@@ -197,13 +199,6 @@ class AdminController extends Controller
         ];
 
         $this->validate($request, $rules);
-        $ntelephone = $this->process_telephone($input['telephone']);
-
-//        $data = $u->get_telephone($ntelephone);
-
-//        if ($data[0]->telephone == $ntelephone) {
-//            return redirect('/eswift/client/add')->with('status1', 'Telephone number already taken');
-//        }
 
         $pass = '$2y$10$ATsAxLSLnSOelhwN91fr2eNJnRtbScR.ayIhzsdf0Z3RsEm6169yy';
         $method = 'aes128';
@@ -212,9 +207,6 @@ class AdminController extends Controller
 
         $npass = openssl_encrypt($input['password'], $method, $pass, $options, $iv);
         $ntelephone = $this->process_telephone($input['telephone']);
-
-
-//        return $en;
 
         if (Input::hasFile('carthograph')) {
             $file = Input::file('carthograph');
@@ -490,7 +482,7 @@ class AdminController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
-            'telephone' => 'required|min:10|unique:users',
+            'telephone' => 'required|max:12|min:12|unique:users|numeric',
             'residential_address' => 'required|min:2',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password'
@@ -524,7 +516,7 @@ class AdminController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
-            'telephone' => 'required|min:10|unique:users',
+            'telephone' => 'required|max:12|min:12|unique:users|numeric',
             'residential_address' => 'required|min:2',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password'
@@ -539,5 +531,35 @@ class AdminController extends Controller
         $lg->insert($auth['email'], $auth['email'] . " added " . $input['email'] . " as a transactions personnel", $auth['role_id']);
 
         return redirect('eswift/admin/add/transaction-personnel')->with('status', 'Transactions Personnel Added');
+    }
+
+    public function get_payemts_personnel()
+    {
+        $u = new User();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $u->all_payments_personnel();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.payments');
+    }
+
+    public function get_transactions_personnel()
+    {
+        $u = new User();
+///
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $u->all_transactions_personnel();
+
+//        return $data;
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.transactions');
     }
 }

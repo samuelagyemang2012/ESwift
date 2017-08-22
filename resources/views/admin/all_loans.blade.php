@@ -1,6 +1,7 @@
 @extends('master3')
 
 @section('content')
+
     <div class="col-2">
         <center><h2 style="color: #3D8DBB">All Loans</h2></center>
         <hr>

@@ -4,6 +4,7 @@
 
     <div class="container">
         <div class="row">
+            {{--dsdfdssd--}}
             <div class="col-sm-4"></div>
 
             <div class="col-sm-4">
@@ -31,18 +32,27 @@
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="col-sm-4"></div>
 
-            <div class="col-sm-3"></div>
+        <div class="col-sm-4">
+            <center><h3 style="color: #3C8DBC">Add a Client</h3>
+                <hr>
+            </center>
+            <br>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
 
-            <div class="col-sm-6">
-                <h3>Add Client</h3>
-                <br>
 
-                <form class="form-horizontal" action="{{route('add_client')}}" method="post"
-                      enctype="multipart/form-data">
-                    {{csrf_field()}}
 
+    <form class="form-horizontal" action="{{route('add_client')}}" method="post"
+          enctype="multipart/form-data">
+        {{csrf_field()}}
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-4">
                     <label>First Name</label>
                     <div>
                         <input class="form-control" name="first_name" type="text" required value="{{old('first_name')}}"
@@ -68,7 +78,7 @@
                     <div>
                         <input id="tel" class="form-control" name="telephone" type="tel" onblur="process_tel()" required
                                value="{{old('telephone')}}"
-                               min="10">
+                               min="12">
                     </div>
                     <br>
 
@@ -77,6 +87,10 @@
                         <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly>
                     </div>
                     <br>
+
+                </div>
+
+                <div class="col-sm-4">
 
                     <label>Employer</label>
                     <div>
@@ -113,15 +127,34 @@
                     </div>
                     <br>
 
+                    {{--<label>Select a Package</label><br>--}}
+                    {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
+
+                    {{--<div>--}}
+                    {{--<select class="form-control" name="package" id="pkg" onchange="" required>--}}
+                    {{--<option></option>--}}
+                    {{--@foreach($packages as $p)--}}
+                    {{--<option id="{{$p->id}}" value="{{$p->pname}}"--}}
+                    {{--onselect="packages(this)">{{$p->pname}}&nbsp;(GHC {{$p->maximum}})--}}
+                    {{--</option>--}}
+                    {{--@endforeach--}}
+                    {{--</select>--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
+                </div>
+
+                <div class="col-sm-4">
+                    {{--<br>--}}
                     <label>Select a Package</label><br>
-                    <span style="color: cornflowerblue"><b id="package"></b></span><br>
+                    <span style="color: cornflowerblue"><b id="package"></b></span>
 
                     <div>
-                        <select class="form-control" name="package" id="pkg" onchange="" required>
+                        <select class="form-control" name="package" id="pkg" onchange="get_balance()" required>
                             <option></option>
                             @foreach($packages as $p)
                                 <option id="{{$p->id}}" value="{{$p->pname}}"
-                                        onselect="packages(this)">{{$p->pname}}</option>
+                                        onselect="packages(this)">{{$p->pname}}&nbsp;(GHC {{$p->maximum}})
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -140,10 +173,9 @@
                     <br>
 
                     <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-                </form>
+                </div>
             </div>
-
-            <div class="col-sm-3"></div>
         </div>
-    </div>
+    </form>
+    {{--</div>--}}
 @stop

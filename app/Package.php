@@ -37,6 +37,14 @@ class Package extends Model
             ->get();
     }
 
+    public function get_maximum($name)
+    {
+        return DB::table('packages')
+            ->where('pname', '=', $name)
+            ->select('maximum')
+            ->get();
+    }
+
     public function update_package($id, $name, $desc, $max)
     {
         DB::table('packages')

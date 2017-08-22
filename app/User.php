@@ -121,11 +121,18 @@ class User extends Authenticatable
             ->get();
     }
 
-//    public function get_telephone($msisdn)
-//    {
-//        return DB::table('users')
-//            ->select('telephone')
-//            ->where('telephone', '=', $msisdn)
-//            ->get();
-//    }
+    public function all_payments_personnel()
+    {
+        return DB::table('users')
+            ->where('role_id', '=', 4)
+            ->get();
+    }
+
+    public function all_transactions_personnel()
+    {
+        return DB::table('users')
+            ->where('role_id', '=', 3)
+            ->get();
+    }
+
 }

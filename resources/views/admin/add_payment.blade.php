@@ -43,62 +43,76 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-3"></div>
-
-            <div class="col-sm-6">
-                <h3>Add Payments Personnel</h3>
+            <div class="col-sm-12">
+                <center><h3 style="color: #3C8DBC">Add Payments Personnel</h3></center>
+                <hr>
                 <br>
 
                 <form class="form-horizontal" action="{{route('add_payment')}}" method="post">
                     {{csrf_field()}}
 
-                    <label>First Name</label>
-                    <div>
-                        <input class="form-control" name="first_name" type="text" required value="{{old('first_name')}}"
-                               min="2">
-                    </div>
-                    <br>
+                    <div class="container">
 
-                    <label>Last Name</label>
-                    <div>
-                        <input class="form-control" name="last_name" type="text" required value="{{old('last_name')}}"
-                               min="2">
-                    </div>
-                    <br>
+                        <div class="row">
 
-                    <label>Email</label>
-                    <div>
-                        <input class="form-control" name="email" type="email" required value="{{old('email')}}">
-                    </div>
-                    <br>
+                            <div class="col-sm-4">
 
-                    <label>Telephone</label>
-                    <div>
-                        <input class="form-control" name="telephone" type="tel" required value="{{old('telephone')}}"
-                               min="10">
-                    </div>
-                    <br>
+                                <label>First Name</label>
+                                <div>
+                                    <input class="form-control" name="first_name" type="text" required
+                                           value="{{old('first_name')}}"
+                                           min="2">
+                                </div>
+                                <br>
 
-                    <label>Residential Address</label>
-                    <div>
-                        <input class="form-control" name="residential_address" type="text" required
-                               value="{{old('residential_address')}}" min="2">
-                    </div>
-                    <br>
+                                <label>Last Name</label>
+                                <div>
+                                    <input class="form-control" name="last_name" type="text" required
+                                           value="{{old('last_name')}}"
+                                           min="2">
+                                </div>
+                                <br>
 
-                    <label>Password</label>
-                    <div>
-                        <input class="form-control" name="password" type="password" required min="6">
-                    </div>
-                    <br>
+                                <label>Email</label>
+                                <div>
+                                    <input class="form-control" name="email" type="email" required
+                                           value="{{old('email')}}">
+                                </div>
+                                <br>
 
-                    <label>Confirm Password</label>
-                    <div>
-                        <input class="form-control" name="confirm_password" type="password" required>
-                    </div>
-                    <br>
+                                <label>Telephone</label>
+                                <div>
+                                    <input id="tel" class="form-control" name="telephone" type="tel" required
+                                           value="{{old('telephone')}}" onblur="process_tel()"
+                                           min="10">
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-sm-4">
+                                <label>Residential Address</label>
+                                <div>
+                                    <input class="form-control" name="residential_address" type="text" required
+                                           value="{{old('residential_address')}}" min="2">
+                                </div>
+                                <br>
 
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                                <label>Password</label>
+                                <div>
+                                    <input class="form-control" name="password" type="password" required min="6">
+                                </div>
+                                <br>
+
+                                <label>Confirm Password</label>
+                                <div>
+                                    <input class="form-control" name="confirm_password" type="password" required>
+                                </div>
+                                <br>
+
+                                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
 
