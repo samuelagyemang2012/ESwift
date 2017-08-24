@@ -14,4 +14,19 @@ class Account extends Model
             'balance' => $balance,
         ]);
     }
+
+    public function update_account($telephone, $balance)
+    {
+        DB::table('accounts')
+            ->where('telephone', '=', $telephone)
+            ->update(['balance' => $balance]);
+    }
+
+    public function get_balance($telephone)
+    {
+        return DB::table('accounts')
+            ->where('telephone', '=', $telephone)
+            ->select('balance')
+            ->get();
+    }
 }

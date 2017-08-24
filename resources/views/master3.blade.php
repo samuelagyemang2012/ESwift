@@ -97,16 +97,6 @@
                 </div>
             </div>
 
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
-
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
@@ -181,7 +171,8 @@
                     <ul class="treeview-menu">
                         {{--<li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a></li>--}}
                         <li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>
-                        <li><a href="{{route('payments_personnel')}}"><i class="fa fa-circle-o"></i>Payments Personnel</a>
+                        <li><a href="{{route('payments_personnel')}}"><i class="fa fa-circle-o"></i>Payments
+                                Personnel</a>
                         </li>
                         <li><a href="{{route('transactions_personnel')}}"><i class="fa fa-circle-o"></i>Transactions
                                 Personnel</a></li>

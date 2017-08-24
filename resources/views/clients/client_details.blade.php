@@ -6,7 +6,19 @@
 
         <div class="col-sm-8">
             <div>
-                <h2>Client Details</h2>
+                <center><h2 style="color: #3C8DBC">Accounts Details</h2></center>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <th>Account Balance</th>
+                <td style="color: #3c8dbc">GHC {{$data->balance}}</td>
+                </thead>
+            </table>
+            <br>
+
+            <div>
+                <center><h2 style="color: #3C8DBC">Client Details</h2></center>
             </div>
             <br>
 
@@ -69,18 +81,6 @@
                 <hr>
                 <img src="/uploads/{{$data->carthograph}}" width="100%">
             </div>
-            <br>
-
-            <div>
-                <h2>Accounts Details</h2>
-            </div>
-
-            <table class="table table-bordered">
-                <thead>
-                <th>Account Balance</th>
-                <td style="color: #3c8dbc">GHC {{$data->balance}}</td>
-                </thead>
-            </table>
             <br>
         </div>
 

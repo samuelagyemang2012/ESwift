@@ -27,7 +27,7 @@ class User extends Authenticatable
             ]);
     }
 
-    public function delete_client($id, $date)
+    public function remove($id, $date)
     {
         DB::table('users')
             ->where('id', '=', $id)
@@ -53,6 +53,22 @@ class User extends Authenticatable
             ]);
     }
 
+    public function update_personnel($id, $firstname, $lastname, $email, $telephone, $employer, $employer_loc, $r_address)
+    {
+        DB::table('users')
+            ->where('id', '=', $id)
+            ->update([
+                'first_name' => $firstname,
+                'last_name' => $lastname,
+                'email' => $email,
+                'telephone' => $telephone,
+                'employer' => $employer,
+                'employer_location' => $employer_loc,
+                'residential_address' => $r_address
+            ]);
+    }
+
+
     public function get_clients()
     {
         return DB::table('users')
@@ -69,9 +85,26 @@ class User extends Authenticatable
 //            ->select('id', 'first_name', 'last_name', 'telephone', 'employer', 'employer_location', 'residential_address', 'monthly_salary', 'mobile_money_account')
             ->where('users.role_id', '=', 1)
             ->where('users.id', '=', $id)
-//            ->where('users.deleted_at')
+//            ->whereNull('users.deleted_at')
             ->get();
     }
+
+    public function get_payments_personnel($id)
+    {
+        return DB::table('users')
+            ->where('users.role_id', '=', 4)
+            ->where('users.id', '=', $id)
+            ->get();
+    }
+
+    public function get_transactions_personnel($id)
+    {
+        return DB::table('users')
+            ->where('users.role_id', '=', 3)
+            ->where('users.id', '=', $id)
+            ->get();
+    }
+
 
     public function change_password($email, $password)
     {
@@ -128,6 +161,7 @@ class User extends Authenticatable
     {
         return DB::table('users')
             ->where('role_id', '=', 4)
+            ->whereNull('deleted_at')
             ->get();
     }
 
@@ -135,6 +169,7 @@ class User extends Authenticatable
     {
         return DB::table('users')
             ->where('role_id', '=', 3)
+            ->whereNull('deleted_at')
             ->get();
     }
 

@@ -3,6 +3,22 @@
 @section('content')
 
     <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+
+            <div class="col-sm-4">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        <p>{{ session('status') }}</p>
+                    </div>
+                @endif
+            </div>
+
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+
+    <div class="container">
         <a href="{{route('show_add_transaction')}}" class="btn btn-primary">Add Transactions Personnel</a>
     </div>
     <br>
@@ -38,7 +54,7 @@
                         {
                             data: '6', name: 'action', render: function (data, type, full, meta) {
 
-                            return '<div class="btn-group"><a class="btn btn-sm btn-primary" href="edit/client/' + full['id'] + '"><i class="fa fa-pencil"></i></a><a class="btn btn-sm btn-danger"href="delete_client/' + full['id'] + '"><i class="fa fa-trash"></i></a></div>';
+                            return '<div class="btn-group"><a class="btn btn-sm btn-primary" href="edit/transactions/' + full['id'] + '"><i class="fa fa-pencil"></i></a><a class="btn btn-sm btn-danger"href="delete_transactions/' + full['id'] + '"><i class="fa fa-trash"></i></a></div>';
 
                         }
                         }

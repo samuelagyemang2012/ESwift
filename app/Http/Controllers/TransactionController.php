@@ -30,9 +30,6 @@ class TransactionController extends Controller
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
 
-//            $user_data = Auth::user();
-
-//            $this->get_all_loans();
             return redirect('eswift/transactions/pending-loans');
 
         } else {

@@ -9,7 +9,7 @@ class ApiController extends Controller
 {
     public function get_minimum_balance($name)
     {
-        $fee_percentage = 0.42;
+        $fee_percentage = 0.20;
         $mobile_percentage = 0.425;
 
         $p = new Package();

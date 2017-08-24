@@ -27,7 +27,7 @@
         <div class="col-sm-4"></div>
 
         <div class="col-sm-4">
-            <center><h3 style="color: #3C8DBC">Edit a Client</h3>
+            <center><h3 style="color: #3C8DBC">Edit Payments Personnel</h3>
                 <hr>
             </center>
 
@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <form class="form-horizontal" action="{{route('edit_client',['id'=>$data->id])}}" method="post"
+    <form class="form-horizontal" action="{{route('edit_transactions_personnel',['id'=>$data->id])}}" method="post"
           enctype="multipart/form-data">
         {{csrf_field()}}
 
@@ -98,7 +98,6 @@
                                min="10" id="tel">
                     </div>
                     <br>
-
                 </div>
 
                 <div class="col-sm-4">
@@ -125,59 +124,11 @@
                     </div>
                     <br>
 
-                    <label>Carthograph</label>
                     <div>
-                        <input type="file" class="form-control" name="carthograph"
-                               value="{{old('carthograph')}}">
+                        <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                     </div>
-                    <br>
 
                 </div>
-
-                <div class="col-sm-4">
-
-                    <label>Monthly Salary</label>
-                    <div>
-                        <input class="form-control" name="salary" type="number" required
-                               value="{{$data->monthly_salary}}"
-                               value="{{old('salary')}}"
-                               min="1">
-                    </div>
-                    <br>
-
-
-                    <label>Mobile Money Account</label>
-                    <div>
-                        <input readonly class="form-control" name="mobile_money_account"
-                               value="{{$data->mobile_money_account}}"
-                               value="{{old('mobile_money_account')}}" id="mobile_money_account">
-                    </div>
-                    <br>
-
-
-                    <label>Current Package</label>
-                    <div>
-                        <input readonly class="form-control" name="package"
-                               value="{{$data->package}}"
-                               value="{{old('package')}}" id="pk">
-                    </div>
-                    <br>
-
-                    {{--<label>Select a New Package</label><br>--}}
-                    {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
-                    {{--<div>--}}
-                    {{--<select class="form-control" name="packages" id="pkg" onchange="get_balance()">--}}
-                    {{--<option></option>--}}
-                    {{--@foreach($packages as $p)--}}
-                    {{--<option value="{{$p->pname}}">{{$p->pname}}</option>--}}
-                    {{--@endforeach--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
-
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-                </div>
-
             </div>
         </div>
     </form>

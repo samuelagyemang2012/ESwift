@@ -25,14 +25,12 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
-        $l = new Log();
+        $lg = new Log();
 
         $data = $request->all();
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
 
-            $user_data = Auth::user();
-//            return $user_data;
             return redirect('eswift/home');
         } else {
 
@@ -217,7 +215,7 @@ class AdminController extends Controller
 
         $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
 
-        $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Limited.");
+        $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited.");
 
         $minimum = $this->get_minimum_balance($input['package']);
 
@@ -234,9 +232,30 @@ class AdminController extends Controller
         $u = new User;
 
         $date = date("Y-m-d H:i:s");
-        $u->delete_client($id, $date);
+        $u->remove($id, $date);
 
         return redirect('eswift/clients')->with('status', 'Client deleted');
+    }
+
+    public function delete_payments($id)
+    {
+        $u = new User();
+
+        $date = date("Y-m-d H:i:s");
+        $u->remove($id, $date);
+
+        return redirect('eswift/payments_personnel')->with('status', 'Payment Personnel deleted');
+
+    }
+
+    public function delete_transactions($id)
+    {
+        $u = new User();
+
+        $date = date("Y-m-d H:i:s");
+        $u->remove($id, $date);
+
+        return redirect('eswift/transactions_personnel')->with('status', 'Transactions Payment deleted');
     }
 
     public function show_edit_client($id)
@@ -247,7 +266,83 @@ class AdminController extends Controller
         $data = $u->get_client($id);
         $packages = $p->get_packages();
 
-        return view('admin.edit')->with('data', $data[0])->with('packages', $packages);
+        return view('admin.edit')
+            ->with('data', $data[0])
+            ->with('packages', $packages);
+    }
+
+    public function show_edit_payment($id)
+    {
+        $u = new User();
+
+        $data = $u->get_payments_personnel($id);
+
+        return view('admin.edit_payment')->with('data', $data[0]);
+    }
+
+    public function edit_payments_personnel(Request $request, $id)
+    {
+        $u = new User;
+        $lg = new Log();
+        $auth = Auth::user();
+
+        $input = $request->all();
+
+//        return $input;
+
+        $rules = [
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'telephone' => 'required|min:12|max:12|unique:users,telephone,' . $id,
+            'employer' => 'required|min:2',
+            'employer_location' => 'required|min:2',
+            'residential_address' => 'required|min:2'
+        ];
+
+        $this->validate($request, $rules);
+
+        $u->update_personnel($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address']);
+
+        $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
+
+        return redirect('eswift/payments_personnel')->with('status', 'Personnel updated successfully');
+    }
+
+    public function edit_transactions_personnel(Request $request, $id)
+    {
+        $u = new User;
+        $lg = new Log();
+        $auth = Auth::user();
+
+        $input = $request->all();
+
+        $rules = [
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'telephone' => 'required|min:12|max:12|unique:users,telephone,' . $id,
+            'employer' => 'required|min:2',
+            'employer_location' => 'required|min:2',
+            'residential_address' => 'required|min:2'
+        ];
+
+        $this->validate($request, $rules);
+
+        $u->update_personnel($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address']);
+
+        $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
+
+        return redirect('eswift/transactions_personnel')->with('status', 'Personnel updated successfully');
+    }
+
+    public function show_edit_transaction($id)
+    {
+        $u = new User();
+
+        $data = $u->get_transactions_personnel($id);
+
+        return view('admin.edit_transaction')->with('data', $data[0]);
     }
 
     public function edit_client(Request $request, $id)
@@ -258,19 +353,21 @@ class AdminController extends Controller
 
         $input = $request->all();
 
+//        return $input;
+
         $file_name = '';
 
         $rules = [
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
-            'email' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
             'residential_address' => 'required|min:2',
-//            'carthograph' => '',
+            'telephone' => 'required|min:12|max:12|unique:users,telephone,' . $id,
             'salary' => 'required',
             'mobile_money_account' => 'required',
-            'packages' => 'required'
+//            'packages' => 'required'
         ];
 
         $this->validate($request, $rules);
@@ -285,11 +382,26 @@ class AdminController extends Controller
             $file_name = $carthograph[0]->carthograph;
         }
 
-        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['packages']);
+        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package']);
 
-        $lg->insert($auth['email'], $auth['email'] . " edited a client", $auth['role_id']);
+        $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
 
         return redirect('eswift/clients')->with('status', 'Client updated successfully');
+//        } else {
+//
+////            return 'package upgrade';
+//            $new_balance = $this->get_upgrade_balance($telephone, $input['packages']);
+//
+//            $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['packages']);
+//
+//            $a->update_account($telephone, $new_balance);
+//
+//            $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
+//            $lg->insert($auth['email'], "Client with id=" . $id . " upgraded his package from " . $package . " to " . $input['packages'], $auth['role_id']);
+//
+//            return redirect('eswift/clients')->with('status', 'Client data and account updated successfully');
+//
+//        }
 
     }
 
@@ -334,8 +446,6 @@ class AdminController extends Controller
     public function get_pending_loans()
     {
         $l = new Loan();
-//        $data = $l->get_pending_loans();
-//        return $data;
 
         if (request()->isXmlHttpRequest()) {
 
@@ -489,7 +599,7 @@ class AdminController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
-            'telephone' => 'required|max:12|min:12|unique:users|numeric',
+            'telephone' => 'required|max:12|min:12|unique:users',
             'residential_address' => 'required|min:2',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password'
@@ -503,7 +613,7 @@ class AdminController extends Controller
 
         $lg->insert($auth['email'], $auth['email'] . " added " . $input['email'] . " as a payments personnel", $auth['role_id']);
 
-        return redirect('eswift/admin/add/payment-personnel')->with('status', 'Payments Personnel Added');
+        return redirect('eswift/payments_personnel')->with('status', 'Payments Personnel Added');
     }
 
     public function show_add_transaction()
@@ -523,7 +633,7 @@ class AdminController extends Controller
             'first_name' => 'required|min:2',
             'last_name' => 'required|min:2',
             'email' => 'required|email|unique:users',
-            'telephone' => 'required|max:12|min:12|unique:users|numeric',
+            'telephone' => 'required|max:12|min:12|unique:users',
             'residential_address' => 'required|min:2',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password'
@@ -537,12 +647,14 @@ class AdminController extends Controller
 
         $lg->insert($auth['email'], $auth['email'] . " added " . $input['email'] . " as a transactions personnel", $auth['role_id']);
 
-        return redirect('eswift/admin/add/transaction-personnel')->with('status', 'Transactions Personnel Added');
+        return redirect('eswift/transactions_personnel')->with('status', 'Transactions Personnel Added');
     }
 
-    public function get_payemts_personnel()
+    public function get_payements_personnel()
     {
         $u = new User();
+//        $data = $u->all_payments_personnel();
+//        return $data;
 
         if (request()->isXmlHttpRequest()) {
 
@@ -572,7 +684,7 @@ class AdminController extends Controller
 
     public function get_minimum_balance($name)
     {
-        $fee_percentage = 0.42;
+        $fee_percentage = 0.20;
         $mobile_percentage = 0.425;
 
         $p = new Package();
@@ -585,6 +697,19 @@ class AdminController extends Controller
         $minimum = $registration_fee + $mobile_fee;
 
         return $minimum;
+    }
+
+    public function get_upgrade_balance($tel, $package)
+    {
+        $a = new Account();
+
+        $cur_balance = $a->get_balance($tel);
+
+        $minimum = $this->get_minimum_balance($package);
+
+        $new_balance = $minimum + $cur_balance;
+
+        return $new_balance;
     }
 
 }

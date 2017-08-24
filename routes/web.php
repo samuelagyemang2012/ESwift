@@ -56,7 +56,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/client/details/{id}', 'AdminController@get_client_details')->name('client_details');
 
-    Route::get('eswift/payments_personnel', 'AdminController@get_payemts_personnel')->name('payments_personnel');
+    Route::get('eswift/payments_personnel', 'AdminController@get_payements_personnel')->name('payments_personnel');
 
     Route::get('eswift/transactions_personnel', 'AdminController@get_transactions_personnel')->name('transactions_personnel');
 
@@ -108,6 +108,18 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('eswift/admin/add/transaction-personnel', 'AdminController@show_add_transaction')->name('show_add_transaction');
 
     Route::post('eswift/add_transaction', 'AdminController@add_transaction')->name('add_transaction');
+
+    Route::get('eswift/delete_payments/{id}', 'AdminController@delete_payments')->name('delete_payments');
+
+    Route::get('eswift/delete_transactions/{id}', 'AdminController@delete_transactions')->name('delete_transactions');
+
+    Route::get('eswift/edit/payments/{id}', 'AdminController@show_edit_payment')->name('show_edit_payment');
+
+    Route::get('eswift/edit/transactions/{id}', 'AdminController@show_edit_transaction')->name('show_edit_transaction');
+
+    Route::post('edit_payments/{id}', 'AdminController@edit_payments_personnel')->name('edit_payments_personnel');
+
+    Route::post('edit_transactions/{id}', 'AdminController@edit_transactions_personnel')->name('edit_transactions_personnel');
 
 });
 
