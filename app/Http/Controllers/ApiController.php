@@ -17,6 +17,8 @@ class ApiController extends Controller
 
         $registration_fee = $fee_percentage * $data;
 
+        $registration_fee ="sdadsa";
+
 //        $minimum = $registration_fee;// + $mobile_fee;
 
 //        return $minimum;
