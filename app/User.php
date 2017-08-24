@@ -68,7 +68,6 @@ class User extends Authenticatable
             ]);
     }
 
-
     public function get_clients()
     {
         return DB::table('users')
@@ -104,7 +103,6 @@ class User extends Authenticatable
             ->where('users.id', '=', $id)
             ->get();
     }
-
 
     public function change_password($email, $password)
     {

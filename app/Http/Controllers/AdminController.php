@@ -229,13 +229,12 @@ class AdminController extends Controller
 
     public function delete_client($id, $telephone)
     {
-        $u = new User;
+        $u = new User();
         $a = new Account();
         $date = date("Y-m-d H:i:s");
 
-        $date = date("Y-m-d H:i:s");
         $u->remove($id, $date);
-        $a->delete_account($date);
+        $a->delete_account($telephone, $date);
 
         return redirect('eswift/clients')->with('status', 'Client deleted');
     }
@@ -694,9 +693,7 @@ class AdminController extends Controller
 
         $data = $p->get_maximum($name);
 
-        $registration_fee = $fee_percentage * $data;
-
-//        $minimum = $registration_fee;// + $mobile_fee;
+        $registration_fee = $fee_percentage * $data[0]->maximum;
 
         return $registration_fee;
     }

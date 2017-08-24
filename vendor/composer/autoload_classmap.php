@@ -3302,6 +3302,7 @@ return array(
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+    'UpdateAccounts' => $baseDir . '/database/migrations/2017_08_24_183603_update_Accounts.php',
     'UpdateAccounts2' => $baseDir . '/database/migrations/2017_08_22_193030_update_accounts2.php',
     'UpdateAccountsTable' => $baseDir . '/database/migrations/2017_08_22_173911_update_accounts_table.php',
     'UpdateDebtTable' => $baseDir . '/database/migrations/2017_08_06_225557_update_debt_table.php',
