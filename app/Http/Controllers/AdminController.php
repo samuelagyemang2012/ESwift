@@ -696,9 +696,9 @@ class AdminController extends Controller
 
         $registration_fee = $fee_percentage * $data;
 
-        $minimum = $registration_fee;// + $mobile_fee;
+//        $minimum = $registration_fee;// + $mobile_fee;
 
-        return $minimum;
+        return $registration_fee;
     }
 
     public function get_upgrade_balance($tel, $package)

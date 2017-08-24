@@ -17,11 +17,11 @@ class ApiController extends Controller
 
         $registration_fee = $fee_percentage * $data;
 
-        $minimum = $registration_fee;// + $mobile_fee;
+//        $minimum = $registration_fee;// + $mobile_fee;
 
 //        return $minimum;
 
-        return response()->json(['code' => 1, 'minimum' => $minimum]);
+        return response()->json(['code' => 1, 'minimum' => $registration_fee]);
     }
 
 }
