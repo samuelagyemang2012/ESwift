@@ -227,12 +227,15 @@ class AdminController extends Controller
 
     }
 
-    public function delete_client($id)
+    public function delete_client($id, $telephone)
     {
         $u = new User;
+        $a = new Account();
+        $date = date("Y-m-d H:i:s");
 
         $date = date("Y-m-d H:i:s");
         $u->remove($id, $date);
+        $a->delete_account($date);
 
         return redirect('eswift/clients')->with('status', 'Client deleted');
     }
@@ -684,17 +687,16 @@ class AdminController extends Controller
 
     public function get_minimum_balance($name)
     {
-        $fee_percentage = 0.20;
-        $mobile_percentage = 0.425;
+
+        $fee_percentage = 0.80;
 
         $p = new Package();
 
         $data = $p->get_maximum($name);
 
-        $registration_fee = $fee_percentage * $data[0]->maximum;
-        $mobile_fee = $mobile_percentage * $data[0]->maximum;
+        $registration_fee = $fee_percentage * $data;
 
-        $minimum = $registration_fee + $mobile_fee;
+        $minimum = $registration_fee;// + $mobile_fee;
 
         return $minimum;
     }

@@ -15,6 +15,13 @@ class Account extends Model
         ]);
     }
 
+    public function delete_account($telephone, $date)
+    {
+        DB::table('accounts')
+            ->where('telephone', '=', $telephone)
+            ->update(['deleted_at' => $date]);
+    }
+
     public function update_account($telephone, $balance)
     {
         DB::table('accounts')

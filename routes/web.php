@@ -16,7 +16,6 @@ Route::get('', function () {
     return view('welcome');
 });
 
-
 Route::get('ewsift/logout', 'HomeController@logout')->name('logout');
 
 //Admin
@@ -48,7 +47,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::post('add_client', 'AdminController@add_client')->name('add_client');
 
-    Route::get('eswift/delete_client/{id}', 'AdminController@delete_client')->name('delete_client');
+    Route::get('eswift/delete_client/{id}/{telephone}', 'AdminController@delete_client')->name('delete_client');
 
     Route::get('eswift/edit/client/{id}', 'AdminController@show_edit_client')->name('show_edit_client');
 

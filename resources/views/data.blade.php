@@ -56,7 +56,7 @@
                             data: '6', name: 'action', render: function (data, type, full, meta) {
                             console.log(full);
 //                            var  s = full['0'];
-                            return '<div class="btn-group"><a class="btn btn-sm btn-success" href="client/details/' + full['id'] + '"><i class="fa fa-question"></i></a><a class="btn btn-sm btn-primary" href="edit/client/' + full['id'] + '"><i class="fa fa-pencil"></i></a><a class="btn btn-sm btn-danger"href="delete_client/' + full['id'] + '"><i class="fa fa-trash"></i></a></div>';
+                            return '<div class="btn-group"><a class="btn btn-sm btn-success" href="client/details/' + full['id'] + '"><i class="fa fa-question"></i></a><a class="btn btn-sm btn-primary" href="edit/client/' + full['id'] + '"><i class="fa fa-pencil"></i></a><a class="btn btn-sm btn-danger"href="delete_client/' + full['id'] + '/' + full['telephone'] +'"><i class="fa fa-trash"></i></a></div>';
                         }
                         }
                     ]
