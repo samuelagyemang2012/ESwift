@@ -9,15 +9,15 @@ class ApiController extends Controller
 {
     public function get_minimum_balance($name)
     {
-        $fee_percentage = 0.80;
+//        $fee_percentage = 0.80;
+//
+//        $p = new Package();
+//
+//        $data = $p->get_maximum($name);
 
-        $p = new Package();
+//        $registration_fee = $fee_percentage * $data;
 
-        $data = $p->get_maximum($name);
-
-        $registration_fee = $fee_percentage * $data;
-
-        $registration_fee ="sdadsa";
+        $registration_fee = "sdadsa";
 
 //        $minimum = $registration_fee;// + $mobile_fee;
 
