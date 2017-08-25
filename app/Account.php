@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class Account extends Model
 {
-    public function create_account($telephone, $balance)
+    public function create_account($id, $telephone, $balance)
     {
         DB::table('accounts')->insert([
+            'user_id' => $id,
             'telephone' => $telephone,
             'balance' => $balance,
         ]);

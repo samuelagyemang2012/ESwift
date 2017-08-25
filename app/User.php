@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     public function insert($fname, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package)
     {
-        DB::table('users')->insert(
+        $id = DB::table('users')->insertGetId(
             ['first_name' => $fname,
                 'last_name' => $lastname,
                 'email' => $email,
@@ -25,6 +25,8 @@ class User extends Authenticatable
                 'role_id' => $role,
                 'package' => $package
             ]);
+
+        return $id;
     }
 
     public function remove($id, $date)

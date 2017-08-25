@@ -213,13 +213,13 @@ class AdminController extends Controller
         }
 //insertions
 
-        $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
+        $insert_id = $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
 
         $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited.");
 
         $minimum = $this->get_minimum_balance($input['package']);
 
-        $a->create_account($ntelephone, $minimum);
+        $a->create_account($insert_id, $ntelephone, $minimum);
 
         $lg->insert($auth['email'], $auth['email'] . " registered " . $input['email'] . " as a new client", $auth['role_id']);
 
