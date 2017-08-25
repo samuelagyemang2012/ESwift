@@ -215,7 +215,7 @@ class AdminController extends Controller
 
         $insert_id = $u->insert($input['first_name'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
 
-        $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited.");
+        $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited. Your Eswift password is " . $input['password']);
 
         $minimum = $this->get_minimum_balance($input['package']);
 
