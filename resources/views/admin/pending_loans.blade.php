@@ -14,8 +14,8 @@
             {{--<th>Package</th>--}}
             <th>Amount</th>
             <th>Mobile Network</th>
-            <th>Date</th>
             <th>Loan Period (Months)</th>
+            <th>Date</th>
             <th>Actions</th>
             </thead>
         </table>
