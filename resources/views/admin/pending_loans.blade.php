@@ -15,6 +15,7 @@
             <th>Amount</th>
             <th>Mobile Network</th>
             <th>Date</th>
+            <th>Loan Period (Months)</th>
             <th>Actions</th>
             </thead>
         </table>
@@ -35,6 +36,7 @@
                         {data: 'telephone', name: 'telephone'},
                         {data: 'amount', name: 'amount'},
                         {data: 'mobile_money_account', name: 'mobile_money_account'},
+                        {data: 'loan_period', name: 'loan_period'},
                         {data: 'created_at', name: 'created_at'},
                         {
                             data: '6', name: 'action', render: function (data, type, full, meta) {

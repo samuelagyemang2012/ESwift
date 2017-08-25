@@ -61,7 +61,7 @@ class Loan extends Model
             ->join('users', 'loans.user_id', '=', 'users.id')
 //            ->join('packages', 'packages.id', '=', 'loans.package_id')
 //            ->join('statuses', 'loans.status_id', '=', 'statuses.id')
-            ->select('loans.id', 'loans.user_id', 'users.first_name', 'users.last_name', 'loans.amount', 'loans.created_at', 'users.mobile_money_account', 'users.telephone')
+            ->select('loans.id', 'loans.user_id', 'users.first_name', 'users.last_name', 'loans.amount', 'loans.created_at', 'users.mobile_money_account', 'users.telephone', 'loans.loan_period')
             ->where('loans.status_id', '=', 1)
             ->orderby('loans.created_at', 'asc')
             ->get();
