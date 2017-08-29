@@ -120,6 +120,12 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::post('edit_transactions/{id}', 'AdminController@edit_transactions_personnel')->name('edit_transactions_personnel');
 
+    Route::get('eswift/accounts', 'AdminController@show_accounts')->name('show_accounts');
+
+    Route::get('eswift/accounts/{id}', 'AdminController@show_edit_account')->name('edit_account');
+
+    Route::post('update_accounts/{id}', 'AdminController@update_accounts')->name('update_account');
+
 });
 
 //--------------------------------------------------------------------------------------------------------

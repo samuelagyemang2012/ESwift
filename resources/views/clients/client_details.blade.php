@@ -6,23 +6,60 @@
 
         <div class="col-sm-8">
             <div>
-                <center><h2 style="color: #3C8DBC">Accounts Details</h2></center>
+                <center><h3 style="color: #3C8DBC">Eswift Account Details</h3></center>
             </div>
 
             <table class="table table-bordered">
                 <thead>
-                <th>Account Balance</th>
-                <td style="color: #3c8dbc">GHC {{$data->balance}}</td>
+                <th> Account Name</th>
+                <td style="color: #3c8dbc">{{$edata->name}}</td>
+                </thead>
+
+                <thead>
+                <th> Account Number</th>
+                <td style="color: #3c8dbc">{{$edata->eaccount_number}}</td>
+                </thead>
+
+                <thead>
+                <th> Balance</th>
+                <td style="color: #3c8dbc">{{$edata->balance}}</td>
                 </thead>
             </table>
             <br>
 
             <div>
-                <center><h2 style="color: #3C8DBC">Client Details</h2></center>
+                <center><h3 style="color: #3C8DBC">Mobile Set-Up Fee Account</h3></center>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <th> Account Name</th>
+                <td style="color: #3c8dbc">{{$mdata->name}}</td>
+                </thead>
+
+                <thead>
+                <th> Account Number</th>
+                <td style="color: #3c8dbc">{{$mdata->maccount_number}}</td>
+                </thead>
+
+                <thead>
+                <th> Balance</th>
+                <td style="color: #3c8dbc">{{$mdata->balance}}</td>
+                </thead>
+            </table>
+            <br>
+
+            <div>
+                <center><h3 style="color: #3C8DBC">Client Details</h3></center>
             </div>
             <br>
 
             <table class="table table-bordered">
+
+                <thead>
+                <th>Multi Money Savings Account Number</th>
+                <td style="color: #3c8dbc">{{$data->multimoney_account_number}}</td>
+                </thead>
 
                 <thead>
                 <th>First Name</th>

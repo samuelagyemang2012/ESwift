@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
-    public function insert($fname, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package)
+    public function insert($fname, $mman, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package)
     {
         $id = DB::table('users')->insertGetId(
-            ['first_name' => $fname,
+            ['multimoney_account_number' => $mman,
+                'first_name' => $fname,
                 'last_name' => $lastname,
                 'email' => $email,
                 'password' => $password,
@@ -82,7 +83,7 @@ class User extends Authenticatable
     public function get_client($id)
     {
         return DB::table('users')
-            ->join('accounts', 'accounts.telephone', '=', 'users.telephone')
+//            ->join('accounts', 'accounts.telephone', '=', 'users.telephone')
 //            ->select('id', 'first_name', 'last_name', 'telephone', 'employer', 'employer_location', 'residential_address', 'monthly_salary', 'mobile_money_account')
             ->where('users.role_id', '=', 1)
             ->where('users.id', '=', $id)
@@ -116,6 +117,7 @@ class User extends Authenticatable
     public function add_payment($firstname, $lastname, $email, $password, $telephone, $residential)
     {
         DB::table('users')->insert([
+            'multimoney_account_number' => 'n/a',
             'first_name' => $firstname,
             'last_name' => $lastname,
             'email' => $email,
@@ -134,6 +136,7 @@ class User extends Authenticatable
     public function add_transaction($firstname, $lastname, $email, $password, $telephone, $residential)
     {
         DB::table('users')->insert([
+            'multimoney_account_number' => 'n/a',
             'first_name' => $firstname,
             'last_name' => $lastname,
             'email' => $email,
@@ -172,5 +175,12 @@ class User extends Authenticatable
             ->whereNull('deleted_at')
             ->get();
     }
+
+//    public function is_deleted_account($telephone)
+//    {
+//        return DB::table('users')
+//            ->where('telephone','=',$telephone)
+//            ->whereNotNull()
+//    }
 
 }

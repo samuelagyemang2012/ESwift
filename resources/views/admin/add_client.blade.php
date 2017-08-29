@@ -45,6 +45,7 @@
     </div>
 
     <div class="container">
+        {{--Modal--}}
         <div id="modal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -65,7 +66,7 @@
             </div>
         </div>
     </div>
-    
+
     <form class="form-horizontal" action="{{route('add_client')}}" method="post"
           enctype="multipart/form-data">
         {{csrf_field()}}
@@ -73,7 +74,9 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-4">
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-3">
                     <label>First Name</label>
                     <div>
                         <input class="form-control" name="first_name" type="text" required value="{{old('first_name')}}"
@@ -105,13 +108,14 @@
 
                     <label>Mobile Money Account</label>
                     <div>
-                        <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly value="{{old('mobile_money_account')}}">
+                        <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly
+                               value="{{old('mobile_money_account')}}">
                     </div>
                     <br>
 
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
 
                     <label>Employer</label>
                     <div>
@@ -148,10 +152,24 @@
                     </div>
                     <br>
 
+                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+
                 </div>
 
-                <div class="col-sm-4">
-                    {{--<br>--}}
+                <div class="col-sm-3">
+
+                    <label>Multi-Money Savings Acount Number</label><br>
+                    <div>
+                        <input class="form-control" name="multimoney_account_number" type="text" required>
+                    </div>
+                    <br>
+
+                    <label>20% of Multi-Money Savings Account</label><br>
+                    <div>
+                        <input class="form-control" name="percentage" type="text" required>
+                    </div>
+                    <br>
+
                     <label>Select a Package</label><br>
                     <span style="color: cornflowerblue"><b id="package"></b></span>
 
@@ -167,20 +185,21 @@
                     </div>
                     <br>
 
-                    <label>Password</label>
+                    <label>Eswift Password</label>
                     <div>
                         <input class="form-control" name="password" type="password" required min="6">
                     </div>
                     <br>
 
-                    <label>Confirm Password</label>
+                    <label>Confirm Eswift Password</label>
                     <div>
                         <input class="form-control" name="confirm_password" type="password" required>
                     </div>
                     <br>
 
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </div>
+
+                <div class="col-sm-1"></div>
             </div>
         </div>
     </form>

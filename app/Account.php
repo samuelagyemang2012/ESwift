@@ -7,34 +7,72 @@ use Illuminate\Support\Facades\DB;
 
 class Account extends Model
 {
-    public function create_account($id, $telephone, $balance)
+    public function create_accounts($id, $name, $account_number, $ebalance, $mbalance)
     {
-        DB::table('accounts')->insert([
+        DB::table('eswift_accounts')->insert([
             'user_id' => $id,
-            'telephone' => $telephone,
-            'balance' => $balance,
+            'name' => $name,
+            'eaccount_number' => 'ESWIFT-' . $account_number,
+            'balance' => $ebalance
+        ]);
+
+        DB::table('mmf_accounts')->insert([
+            'user_id' => $id,
+            'name' => $name,
+            'maccount_number' => 'MMF-' . $account_number,
+            'balance' => $mbalance
         ]);
     }
 
-    public function delete_account($telephone, $date)
+    public function delete_account($id, $date)
     {
-        DB::table('accounts')
-            ->where('telephone', '=', $telephone)
+        DB::table('eswift_accounts')
+            ->where('user_id', '=', $id)
+            ->update(['deleted_at' => $date]);
+
+        DB::table('mmf_accounts')
+            ->where('user_id', '=', $id)
             ->update(['deleted_at' => $date]);
     }
 
-    public function update_account($telephone, $balance)
+    public function update_accounts($id, $ebalance, $mbalance)
     {
-        DB::table('accounts')
-            ->where('telephone', '=', $telephone)
-            ->update(['balance' => $balance]);
+        DB::table('eswift_accounts')
+            ->where('user_id', '=', $id)
+//            ->whereNull('deleted_at')
+            ->update(['balance' => $ebalance]);
+
+        DB::table('mmf_accounts')
+            ->where('user_id', '=', $id)
+//            ->whereNull('deleted_at')
+            ->update(['balance' => $mbalance]);
     }
 
-    public function get_balance($telephone)
+    public function update_account_name($id, $telephone)
     {
-        return DB::table('accounts')
-            ->where('telephone', '=', $telephone)
-            ->select('balance')
+        DB::table('eswift_accounts')
+            ->where('user_id', $id)
+            ->update(['name' => $telephone]);
+
+        DB::table('mmf_accounts')
+            ->where('user_id', $id)
+            ->update(['name' => $telephone]);
+    }
+
+    public function get_eswift_account($id)
+    {
+        return DB::table('eswift_accounts')
+            ->where('user_id', '=', $id)
+            ->whereNull('deleted_at')
             ->get();
     }
+
+    public function get_mmf_account($id)
+    {
+        return DB::table('mmf_accounts')
+            ->where('user_id', '=', $id)
+            ->whereNull('deleted_at')
+            ->get();
+    }
+
 }

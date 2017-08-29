@@ -153,6 +153,17 @@
                     {{--</ul>--}}
                 </li>
 
+                <li class="active treeview">
+                    <a href="{{route('show_accounts')}}">
+                        <i class="fa fa-dollar"></i>
+                        <span>Accounts</span>
+                    </a>
+                    {{--<ul class="treeview-menu">--}}
+                    {{--<li><a href="{{route('clients')}}"><i class="fa fa-circle-o"></i>Manage Clients</a></li>--}}
+                    {{--<li><a href="{{route('clients')}}"><i class ="fa fa-cirle-o"></i></a></li>--}}
+                    {{--</ul>--}}
+                </li>
+
                 <li class="treeview">
                     <a href="{{route('packages')}}">
                         <i class="fa fa-cube"></i>

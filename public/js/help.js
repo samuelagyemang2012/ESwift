@@ -98,8 +98,8 @@ function get_balance() {
 
                 if (response.code == 1) {
 
-                    $('#modalbody').html('<center><p>A minimum balance of GHC <b style="color: crimson">' + response.minimum + '</b> is required for this package.</p></center>')
-                    $('#package').html("Minimum balance required is GHC <b style='color: crimson'>" + response.minimum + "</b>");
+                    $('#modalbody').html('<center><p>A minimum balance of GHC <b style="color: crimson">' + response.minimum + '</b> is required for the registration fee account.</p></center>')
+                    $('#package').html("Registration Fee: GHC <b style='color: crimson'>" + response.minimum + "</b>");
                     $("#modal").modal();
                 }
             }
