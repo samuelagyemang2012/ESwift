@@ -30,7 +30,7 @@
                             console.log(full);
 //                            var  s = full['0'];
                             return '<div class="btn-group">' +
-                                    '<a title="approve" class="btn btn-sm btn-primary" href="/eswift/payments/make-payment/' + full['id'] + '/' + full['amount_to_transfer'] + '/' + full['user_id'] + '/'+ full['telephone']+'">Details' +
+                                    '<a title="approve" class="btn btn-sm btn-primary" href="/eswift/payments/make-payment/' + full['id'] + '/' + full['amount_to_transfer'] + '/' + full['user_id'] + '/'+ full['telephone']+'/'+ full['loan_id'] +  '">Details' +
                                     '</a>' +
                                     '</div>';
                         }

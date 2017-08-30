@@ -575,13 +575,14 @@ class AdminController extends Controller
         return view('admin.completed-transfers');
     }
 
-    public function show_make_payments($id, $amount, $user_id, $telephone)
+    public function show_make_payments($id, $amount, $user_id, $telephone, $loan_id)
     {
         return view('admin.make_payment')
             ->with('amount', $amount)
             ->with('id', $id)
             ->with('user_id', $user_id)
-            ->with('telephone', $telephone);
+            ->with('telephone', $telephone)
+            ->with('loan_id', $loan_id);
     }
 
     public function make_payment(Request $request)
@@ -589,6 +590,9 @@ class AdminController extends Controller
         $user = Auth::user();
         $input = $request->all();
 
+//        return $input;
+
+        $l = new Loan();
         $p = new Payment();
         $d = new Debt();
         $s = new Sms();
@@ -603,8 +607,13 @@ class AdminController extends Controller
 
         $p->make_payment($input['id'], $input['transaction_id'], $user['email'], $input['amount_transferred'], $input['comments'], $input['telephone']);
 
+        $data = $l->get_loan_period($input['loan_id']);
+
+        $total_debt = $this->calculate_total_debt($input['amount_transferred'], $data[0]->loan_period);
+        $half_debt = $total_debt / 2;
+
         //insert to debt
-        $d->insert($input['user_id'], $input['id'], $input['telephone'], $input['amount_transferred']);
+        $d->insert($input['user_id'], $input['loan_id'], $input['telephone'], $input['amount_transferred'], $half_debt, $total_debt);
 
         $s->send($input['telephone'], "Your loan request for GHC " . $input['amount_transferred'] . "has been transferred to your mobile money account.");
 
@@ -766,6 +775,19 @@ class AdminController extends Controller
         $registration_fee = $fee_percentage * $data[0]->maximum;
 
         return $registration_fee;
+    }
+
+    private function calculate_total_debt($amount, $loan_period)
+    {
+        $interest = 0.03;
+
+        $total_interest_percentage = $interest * $loan_period;
+
+        $total_interest = $total_interest_percentage * $amount;
+
+        $total_debt = $total_interest + $amount;
+
+        return $total_debt;
     }
 
     public function get_upgrade_balance($tel, $package)

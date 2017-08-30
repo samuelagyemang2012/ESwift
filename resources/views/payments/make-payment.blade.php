@@ -60,6 +60,7 @@
                         <label>Amount To Transfer</label>
                         <input hidden value="{{$id}}" name="id">
                         <input hidden value="{{$user_id}}" name="user_id">
+                        <input hidden value="{{$loan_id}}" name="loan_id">
 
                         <input class="form-control" readonly name="amount_to_transfer" value="{{$amount}}">
                         {{--<br>--}}

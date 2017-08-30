@@ -105,4 +105,13 @@ class Loan extends Model
             ->update(['status_id' => 3]);
     }
 
+    public function get_loan_period($id)
+    {
+        return DB::table('loans')
+            ->where('id', '=', $id)
+            ->select('loans.loan_period')
+            ->get();
+
+    }
+
 }

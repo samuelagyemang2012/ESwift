@@ -81,13 +81,14 @@ class PaymentController extends Controller
         return view('payments.completed');
     }
 
-    public function show_make_payment($id, $amount, $user_id, $telephone)
+    public function show_make_payment($id, $amount, $user_id, $telephone, $loan_id)
     {
         return view('payments.make-payment')
             ->with('amount', $amount)
             ->with('id', $id)
             ->with('user_id', $user_id)
-            ->with('telephone', $telephone);
+            ->with('telephone', $telephone)
+            ->with('loan_id', $loan_id);
     }
 
     public function make_payment(Request $request)
@@ -97,6 +98,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $input = $request->all();
 
+        return $input;
 
         $p = new Payment();
         $d = new Debt();

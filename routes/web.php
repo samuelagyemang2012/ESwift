@@ -95,7 +95,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/admin/completed-transfers', 'AdminController@get_completed_payments')->name('admin_completed_payments');
 
-    Route::get('eswift/admin/make-payment/{id}/{amount}/{user_id}/{telephone}', 'AdminController@show_make_payments')->name('admin_show_make_payments');
+    Route::get('eswift/admin/make-payment/{id}/{amount}/{user_id}/{telephone}/{loan_id}', 'AdminController@show_make_payments')->name('admin_show_make_payments');
 
     Route::post('eswift/admin/make_payment', 'AdminController@make_payment')->name('admin_make_payment');
 
@@ -166,7 +166,7 @@ Route::group(['middleware' => 'payments'], function () {
 
     Route::get('eswift/payments/completed-transfers', 'PaymentController@get_completed_transfers')->name('completed_transfers');
 
-    Route::get('eswift/payments/make-payment/{id}/{amount}/{user_id}/{telephone}', 'PaymentController@show_make_payment')->name('show_make_payment');
+    Route::get('eswift/payments/make-payment/{id}/{amount}/{user_id}/{telephone}/{loan_id}', 'PaymentController@show_make_payment')->name('show_make_payment');
 
     Route::post('payments/make-payment', 'PaymentController@make_payment')->name('make_payment');
 

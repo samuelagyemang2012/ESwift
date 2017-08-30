@@ -22,7 +22,7 @@ class Payment extends Model
     {
         return DB::table('payments')
             ->join('users', 'users.id', '=', 'payments.user_id')
-            ->select('payments.id', 'users.telephone', 'amount_to_transfer', 'payments.user_id')
+            ->select('payments.id', 'users.telephone', 'amount_to_transfer', 'payments.user_id','payments.loan_id')
             ->where('is_transferred', '=', 0)
             ->get();
     }

@@ -7,14 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class Debt extends Model
 {
-    public function insert($user_id, $loan_id, $telephone, $amount_borrowed)
+    public function insert($user_id, $loan_id, $telephone, $amount_borrowed, $half_debt, $total_debt)
     {
         DB::table('debts')->insert([
             'user_id' => $user_id,
             'loan_id' => $loan_id,
             'telephone' => $telephone,
             'amount_borrowed' => $amount_borrowed,
-            'amount_left' => $amount_borrowed
+            'half_debt' => $half_debt,
+            'total_debt' => $total_debt
         ]);
     }
 

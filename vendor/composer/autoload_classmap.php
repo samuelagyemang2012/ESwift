@@ -436,6 +436,8 @@ return array(
     'Dotenv\\Exception\\ValidationException' => $vendorDir . '/vlucas/phpdotenv/src/Exception/ValidationException.php',
     'Dotenv\\Loader' => $vendorDir . '/vlucas/phpdotenv/src/Loader.php',
     'Dotenv\\Validator' => $vendorDir . '/vlucas/phpdotenv/src/Validator.php',
+    'EditDebtTable' => $baseDir . '/database/migrations/2017_08_30_131811_edit_debt_table.php',
+    'EditDebtTable2' => $baseDir . '/database/migrations/2017_08_30_165305_edit_debt_table2.php',
     'EditLoans' => $baseDir . '/database/migrations/2017_08_14_160150_edit_loans.php',
     'EditLog2Table' => $baseDir . '/database/migrations/2017_06_29_174111_edit_log2_table.php',
     'EditLogTable' => $baseDir . '/database/migrations/2017_06_29_170851_edit_log_table.php',
