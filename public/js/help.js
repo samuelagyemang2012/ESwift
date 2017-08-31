@@ -39,18 +39,18 @@ function process_tel() {
 
             if (prefix == '024' || prefix == '054' || prefix == '055') {
                 $("#mobile_money_account").val("MTN");
+            }
 
-            } else if (prefix == '027' || prefix == '057') {
+            if (prefix == '027' || prefix == '057') {
                 $("#mobile_money_account").val("TIGO");
+            }
 
-            } else if (prefix == '020' || prefix == '050') {
+            if (prefix == '020' || prefix == '050') {
                 $("#mobile_money_account").val("VODAFONE");
+            }
 
-            } else if (prefix == '026' || prefix == '056') {
+            if (prefix == '026' || prefix == '056') {
                 $("#mobile_money_account").val("AIRTEL");
-
-            } else {
-                $("#mobile_money_account").val("");
             }
         }
     }
