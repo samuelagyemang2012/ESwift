@@ -12,7 +12,7 @@ class Sms extends Model
         $destination = urlencode($msisdn);
 
 //        $url = "https://deywuro.com/api/sms?username=multimoney&password=multimoney123&source=MultiMoney&destination=233542688902&message=jkldas";
-        $url = "https://deywuro.com/api/sms/?username=multimoney&password=multimoney123&destination=" . $destination . "&source=MultiMoney&message=" . $msg;
+        $url = "https://deywuro.com/api/sms/?username=sammy&password=password&destination=" . $destination . "&source=MultiMoney&message=" . $msg;
 
         $curl = curl_init($url);
         $v = curl_exec($curl);
