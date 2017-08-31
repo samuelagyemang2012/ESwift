@@ -34,7 +34,7 @@ class AdminMiddleware
             return redirect('eswift/admin/login')->with('error', 'Access Denied. Please use the Payments Portal');
         }
 
-        if ($user['role_id'] == null) {
+        if ($user['role_id'] === null) {
             return redirect('eswift/admin/login')->with('error', 'Session cleared. Please login again');
         }
 

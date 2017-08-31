@@ -13,9 +13,13 @@
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Telephone</th>
-        <th>Amount</th>
+        <th>Amount Borrowed</th>
         <th>Amount Paid</th>
+        {{--<th>Half Loan Due</th>--}}
+        {{--<th>Half Loan Due Date</th>--}}
+        {{--<th>Full Loan Due</th>--}}
         <th>Date</th>
+        <th></th>
         </thead>
     </table>
 
@@ -34,7 +38,16 @@
                     {data: 'telephone', name: 'telephone'},
                     {data: 'amount_borrowed', name: 'amount_borrowed'},
                     {data: 'amount_paid', name: 'amount_paid'},
-                    {data: 'created_at', name: 'created_at'}
+//                    {data: 'half_debt', name: 'half_debt'},
+//                    {data: 'created_at', name: 'created_at'},
+//                    {data: 'total_debt', name: 'total_debt'},
+                    {data: 'created_at', name: 'created_at'},
+                    {
+                        data: 6, name: 'action', render: function (data, type, full, meta) {
+
+                        return '<a class="btn btn-sm btn-primary" href="debt/' + full['loan_id'] + '">Details</a>';
+                    }
+                    }
                 ]
             });
         })

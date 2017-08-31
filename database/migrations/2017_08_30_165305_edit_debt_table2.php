@@ -13,11 +13,11 @@ class EditDebtTable2 extends Migration
      */
     public function up()
     {
-//        Schema::table('debts', function (Blueprint $table) {
-//            $table->dropColumn('total_debt')->default(0.00);
-//            $table->decimal('half_debt')->default(0.00);
+        Schema::table('debts', function (Blueprint $table) {
+            $table->string('half_loan_date');
+            $table->string('full_loan_date');
 //            $table->dropColumn('amount_left');
-//        });
+        });
     }
 
     /**
