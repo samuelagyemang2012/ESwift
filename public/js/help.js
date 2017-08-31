@@ -41,7 +41,7 @@ function process_tel() {
                 $("#mobile_money_account").val("MTN");
             }
 
-            if (prefix == '027' || prefix == '057' || prefix == '029') {
+            if (prefix == '027' || prefix == '057') {
                 $("#mobile_money_account").val("TIGO");
             }
 
@@ -50,7 +50,7 @@ function process_tel() {
             }
 
             if (prefix == '026' || prefix == '056') {
-                $("#mobile_money_account").val("VODAFONE");
+                $("#mobile_money_account").val("AIRTEL");
             }
         }
     }
