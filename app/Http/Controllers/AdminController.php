@@ -847,9 +847,16 @@ class AdminController extends Controller
 
         $data = $d->get_debt_details($loan_id);
 
-//        return $data[0];
+        $half_date = strtotime($data[0]->half_loan_date);
+        $half_date_words = date('jS F Y', $half_date);
 
-        return view('admin.debt_details')->with('data', $data[0]);
+        $full_date = strtotime($data[0]->full_loan_date);
+        $full_loan_words = date('js F Y', $full_date);
+
+        return view('admin.debt_details')
+            ->with('data', $data[0])
+            ->with('half', $half_date_words)
+            ->with('full', $full_loan_words);
 
     }
 
