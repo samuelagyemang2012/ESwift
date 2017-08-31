@@ -176,6 +176,14 @@ class User extends Authenticatable
             ->get();
     }
 
+    public function get_user_package($user_id)
+    {
+        return DB::table('users')
+            ->where('id', '=', $user_id)
+            ->select('package')
+            ->get();
+    }
+
 //    public function is_deleted_account($telephone)
 //    {
 //        return DB::table('users')

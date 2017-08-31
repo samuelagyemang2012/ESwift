@@ -7,6 +7,7 @@ use App\Loan;
 use App\Log;
 use App\Payment;
 use App\Sms;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Facades\Datatables;
@@ -124,11 +125,30 @@ class PaymentController extends Controller
         //insert to debt
         $d->insert($input['user_id'], $input['loan_id'], $input['telephone'], $input['amount_transferred'], $half_debt, $dates[0], $total_debt, $dates[1]);
 
+        $msg = $this->prepare_msg($input['amount_transferred'], $data[0]->loan_period, $input['user_id'], $total_debt);
+
+        $s->send($input['telephone'], $msg);
+
         $s->send($input['telephone'], "Your loan request for GHC " . $input['amount_transferred'] . "has been transferred to your mobile money account.");
 
         $lg->insert($user['email'], $user['email'] . " transferred GHC " . $input['amount_transferred'] . " to " . $input['telephone'], $user['role_id']);
 
         return redirect('eswift/payments/pending-transfers')->with('status', 'Transaction Recorded');
+    }
+
+    private function prepare_msg($amount, $period, $user_id, $total_debt)
+    {
+
+        $u = new User();
+        $data = $u->get_user_package($user_id);
+        $package = $data[0]->package;
+        $monthly = $total_debt / 2;
+        $monthly_installment = round($monthly, 1);
+        $next_month = date('jS F Y', strtotime('+ 1 month'));
+
+        $message = 'Your request for an amount of GHC ' . $amount . ' as loan for ' . $period . ' months from your ' . $package . ' package has been successful. Your debt is now GHC ' . $total_debt . '. You are required to pay an amount of GHC ' . $monthly_installment . 'each month starting from ' . $next_month;
+
+        return $message;
     }
 
     public function logs()
