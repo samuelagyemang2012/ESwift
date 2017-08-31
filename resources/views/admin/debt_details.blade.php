@@ -43,7 +43,7 @@
                 </thead>
 
                 <thead>
-                <th> Half Loan Due Date (Y-m-d)</th>
+                <th> Half Loan Due Date</th>
                 <td style="color: #3c8dbc">{{$half}}</td>
                 </thead>
                 {{----}}
@@ -53,7 +53,7 @@
                 </thead>
                 {{----}}
                 <thead>
-                <th> Full Loan Due Date (Y-m-d)</th>
+                <th> Full Loan Due Date</th>
                 <td style="color: #3c8dbc">{{$full}}</td>
                 </thead>
             </table>
