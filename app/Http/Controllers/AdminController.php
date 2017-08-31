@@ -634,7 +634,7 @@ class AdminController extends Controller
         $monthly_installment = round($monthly, 1);
         $next_month = date('jS F Y', strtotime('+ 1 month'));
 
-        $message = 'Your request for an amount of GHC ' . $amount . ' as loan for ' . $period . ' months from your ' . $package . ' package has been successful. Your debt is now GHC ' . $total_debt . '. You are required to pay an amount of GHC ' . $monthly_installment . 'each month starting from ' . $next_month;
+        $message = 'Your request for an amount of GHC ' . $amount . ' as loan for ' . $period . ' months from your ' . $package . ' package has been successful. Your debt is now GHC ' . $total_debt . '. You are required to pay an amount of GHC ' . $monthly_installment . ' each month starting from ' . $next_month;
 
         return $message;
     }
