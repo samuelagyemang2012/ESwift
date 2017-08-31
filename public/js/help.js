@@ -33,7 +33,7 @@ function process_tel() {
             substring = tel.substring(1, 10);
             prefix = tel.substring(0, 3);
 
-            //alert(prefix2);
+            //alert(prefixh2);
 
             $("#tel").val(first + substring);
 
