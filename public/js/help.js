@@ -16,6 +16,8 @@ function process_tel() {
 
     tel = $("#tel").val();
 
+    tel = tel.trim();
+
     tel = tel.split("+");
 
     tel = tel.join("");
@@ -41,17 +43,22 @@ function process_tel() {
                 $("#mobile_money_account").val("MTN");
             }
 
-            if (prefix == '027' || prefix == '057') {
+            else if (prefix == '027' || prefix == '057') {
                 $("#mobile_money_account").val("TIGO");
             }
 
-            if (prefix == '020' || prefix == '050') {
+            else if (prefix == '020' || prefix == '050') {
                 $("#mobile_money_account").val("VODAFONE");
             }
 
-            if (prefix == '026' || prefix == '056') {
+            else if (prefix == '026' || prefix == '056') {
                 $("#mobile_money_account").val("AIRTEL");
             }
+
+            else {
+                $("#mobile_money_account").val("");
+            }
+
         }
     }
 
@@ -66,16 +73,20 @@ function process_tel() {
             $("#mobile_money_account").val("MTN");
         }
 
-        if (prefix2 == '23327' || prefix2 == '23357' || prefix2 == '23329') {
+        else if (prefix2 == '23327' || prefix2 == '23357') {
             $("#mobile_money_account").val("TIGO");
         }
 
-        if (prefix2 == '23320' || prefix2 == '23350') {
+        else if (prefix2 == '23320' || prefix2 == '23350') {
             $("#mobile_money_account").val("VODAFONE");
         }
 
-        if (prefix2 == '23326' || prefix2 == '23356') {
-            $("#mobile_money_account").val("VODAFONE");
+        else if (prefix2 == '23326' || prefix2 == '23356') {
+            $("#mobile_money_account").val("AIRTEL");
+        }
+
+        else {
+            $("#mobile_money_account").val("");
         }
     }
 
