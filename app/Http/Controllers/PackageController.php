@@ -93,7 +93,7 @@ class PackageController extends Controller
 
         $rules = [
             'name' => 'required|min:2',
-            'description' => 'required|min:5',
+//            'description' => 'required|min:5',
             'amount' => 'required'
         ];
 
