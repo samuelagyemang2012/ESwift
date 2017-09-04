@@ -88,7 +88,6 @@ function process_tel() {
             $("#mobile_money_account").val("");
         }
     }
-
 }
 
 function get_balance() {
