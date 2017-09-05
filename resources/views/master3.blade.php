@@ -215,10 +215,10 @@
                 {{--</span>--}}
                 {{--</a>--}}
                 {{--<ul class="treeview-menu" style="display: none;">--}}
-                {{--<li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>--}}
-                {{--<li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>--}}
-                {{--<li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>--}}
-                {{--<li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>--}}
+                {{--<li><a href=""><i class="fa fa-circle-o"></i> ChartJS</a></li>--}}
+                {{--<li><a href=""><i class="fa fa-circle-o"></i> Morris</a></li>--}}
+                {{--<li><a href=""><i class="fa fa-circle-o"></i> Flot</a></li>--}}
+                {{--<li><a href=""><i class="fa fa-circle-o"></i> Inline charts</a></li>--}}
                 {{--</ul>--}}
                 {{--</li>--}}
 
@@ -270,9 +270,13 @@
             <!-- /.row -->
             <!-- Main row -->
             <div class="row">
-                @yield('content')
+                {{--<div class="col-sm-1"></div>--}}
 
+                <div class="col-sm-12">
+                    @yield('content')
+                </div>
 
+                {{--<div class="col-sm-1"></div>--}}
 
 
                 {{--<div class="box-footer clearfix">--}}

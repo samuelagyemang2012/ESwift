@@ -351,7 +351,8 @@
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
-                <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a></li>
+                <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-television"></i>
+                        <span>Dashboard</span></a></li>
 
                 <li class="active treeview">
                     <a href="#">
@@ -362,11 +363,14 @@
                     </a>
                     <ul class="treeview-menu" style="display: none">
                         {{--<li class="active"><a href="{{route('transactions_all_loans')}}"><i class="fa fa-circle-o"></i>--}}
-                                {{--All Loans</a>--}}
+                        {{--All Loans</a>--}}
                         {{--</li>--}}
-                        <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-circle-o"></i> Pending Loans</a></li>
-                        <li><a href="{{route('transactions_approved_loans')}}"><i class="fa fa-circle-o"></i> Approved Loans</a></li>
-                        <li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused Loans</a></li>
+                        <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-circle-o"></i> Pending
+                                Loans</a></li>
+                        <li><a href="{{route('transactions_approved_loans')}}"><i class="fa fa-circle-o"></i> Approved
+                                Loans</a></li>
+                        <li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused
+                                Loans</a></li>
                         <li></li>
                     </ul>
                 </li>
@@ -410,9 +414,10 @@
             <!-- /.row -->
             <!-- Main row -->
             <div class="row">
-                @yield('content')
 
-
+                <div class="col-sm-12">
+                    @yield('content')
+                </div>
 
 
                 {{--<div class="box-footer clearfix">--}}
