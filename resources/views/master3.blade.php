@@ -273,7 +273,11 @@
                 {{--<div class="col-sm-1"></div>--}}
 
                 <div class="col-sm-12">
-                    @yield('content')
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            @yield('content')
+                        </div>
+                    </div>
                 </div>
 
                 {{--<div class="col-sm-1"></div>--}}
