@@ -27,7 +27,8 @@ class Loan extends Model
     {
         return DB::table('loans')
             ->where('status_id', '=', 2)
-            ->orWhere('status_id', '=', 3);
+            ->orWhere('status_id', '=', 3)
+            ->count();
     }
 
     public function get_total_amount_given()
@@ -37,22 +38,22 @@ class Loan extends Model
 
     public function get_total_returns()
     {
-        return DB::table('debts')->sum('amount_left');
+        return DB::table('debts')->sum('total_debt');
     }
 
     public function get_num_pending()
     {
-        return DB::table('loans')->where('status_id', '=', 1);
+        return DB::table('loans')->where('status_id', '=', 1)->count();
     }
 
     public function get_num_approved()
     {
-        return DB::table('loans')->where('status_id', '=', 2);
+        return DB::table('loans')->where('status_id', '=', 2)->count();
     }
 
     public function get_num_refused()
     {
-        return DB::table('loans')->where('status_id', '=', 3);
+        return DB::table('loans')->where('status_id', '=', 3)->count();
     }
 
     public function get_pending_loans()
