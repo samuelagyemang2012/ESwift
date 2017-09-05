@@ -30,6 +30,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css')}}css">
 
+    {{--    <link rel="stylesheet" href="{{asset('css/.css')}}">--}}
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.css"/>
 
     <script src="//code.jquery.com/jquery.js"></script>
@@ -109,8 +111,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{route('admin_get_all_loans')}}"><i class="fa fa-circle-o"></i> All
+                    <ul class="treeview-menu" style="display: none">
+                        <li class=""><a href="{{route('admin_get_all_loans')}}"><i class="fa fa-circle-o"></i> All
                                 Loans</a>
                         </li>
                         <li><a href="{{route('admin_get_pending_loans')}}"><i class="fa fa-circle-o"></i> Pending Loans</a>
@@ -131,7 +133,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
-                    <ul class="treeview-menu">
+                    <ul class="treeview-menu" style="display: none">
                         <li><a href="{{route('admin_pending_payments')}}"><i class="fa fa-circle-o"></i> Pending
                                 Transfers</a></li>
                         <li><a href="{{route('admin_completed_payments')}}"><i class="fa fa-circle-o"></i> Completed
@@ -140,7 +142,6 @@
                         <li></li>
                     </ul>
                 </li>
-
 
                 <li class="active treeview">
                     <a href="{{route('clients')}}">
@@ -171,7 +172,6 @@
                     </a>
                 </li>
 
-
                 <li class="active treeview">
                     <a href="#">
                         <i class="fa fa-user"></i> <span>Manage Personnel</span>
@@ -179,7 +179,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
-                    <ul class="treeview-menu">
+                    <ul class="treeview-menu" style="display: none">
                         {{--<li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a></li>--}}
                         <li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>
                         <li><a href="{{route('payments_personnel')}}"><i class="fa fa-circle-o"></i>Payments
@@ -205,6 +205,22 @@
                         <span>Systems Logs</span>
                     </a>
                 </li>
+
+                {{--<li class="treeview">--}}
+                {{--<a href="#">--}}
+                {{--<i class="fa fa-pie-chart"></i>--}}
+                {{--<span>Charts</span>--}}
+                {{--<span class="pull-right-container">--}}
+                {{--<i class="fa fa-angle-left pull-right"></i>--}}
+                {{--</span>--}}
+                {{--</a>--}}
+                {{--<ul class="treeview-menu" style="display: none;">--}}
+                {{--<li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>--}}
+                {{--<li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>--}}
+                {{--<li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>--}}
+                {{--<li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>--}}
+                {{--</ul>--}}
+                {{--</li>--}}
 
 
                 {{--<li class="active treeview">--}}

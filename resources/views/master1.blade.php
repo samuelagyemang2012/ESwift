@@ -338,16 +338,6 @@
                 </div>
             </div>
 
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
-
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
@@ -361,7 +351,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
-                    <ul class="treeview-menu">
+                    <ul class="treeview-menu" style="display: none">
                         {{--<li class="active"><a href="{{route('transactions_all_loans')}}"><i class="fa fa-circle-o"></i>--}}
                         {{--All Loans</a>--}}
                         {{--</li>--}}
