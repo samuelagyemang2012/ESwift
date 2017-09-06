@@ -42,7 +42,7 @@
                     <label> Account Number</label>
                     <input class="form-control" value="{{$edata->eaccount_number}}" readonly><br>
 
-                    <label> Balance</label>
+                    <label>Eswift Account Balance</label>
                     <input name="eswift_balance" class="form-control" value="{{$edata->balance}}" required><br>
                     <br>
                 </div>
@@ -66,7 +66,7 @@
                     <label> Account Number</label>
                     <input class="form-control" value="{{$mdata->maccount_number}}" readonly><br>
 
-                    <label> Balance</label>
+                    <label> Mobile Set-Up Fee Account Balance</label>
                     <input name="mobile_registration_balance" class="form-control" value="{{$mdata->balance}}" required><br>
                     <br>
                 </div>
