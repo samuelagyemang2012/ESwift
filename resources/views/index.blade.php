@@ -82,7 +82,7 @@
             <div class="inner">
                 <h3>{{$total_refused}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Refused Loans</p>
+                <p>Rejected Loans</p>
             </div>
             <div class="icon">
                 {{--<i class="ion ion-stats-bars"></i>--}}
