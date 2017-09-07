@@ -119,7 +119,7 @@
                         </li>
                         <li><a href="{{route('admin_get_approved_loans')}}"><i class="fa fa-circle-o"></i> Approved
                                 Loans</a></li>
-                        <li><a href="{{route('admin_get_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused Loans</a>
+                        <li><a href="{{route('admin_get_refused_loans')}}"><i class="fa fa-circle-o"></i> Rejected Loans</a>
                         </li>
                         {{--<li><a href=""><i class="fa fa-circle-o"></i>Elapsed Loans</a></li>--}}
                     </ul>
