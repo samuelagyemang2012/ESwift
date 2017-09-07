@@ -541,7 +541,7 @@ class AdminController extends Controller
 
         $l->refuse_loan($id);
 
-        $s->send($telephone, "Your loan request for GHC " . $amount . " has been refused.");
+        $s->send($telephone, "Your loan request for GHC " . $amount . " has been rejected.");
         $lg->insert($auth['email'], $auth['email'] . " refused a loan", $auth['role_id']);
 
         return redirect('eswift/loans/pending')->with('status', 'Loan Refused');
