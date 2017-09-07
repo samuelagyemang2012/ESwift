@@ -142,7 +142,7 @@ class PaymentController extends Controller
         $u = new User();
         $data = $u->get_user_package($user_id);
         $package = $data[0]->package;
-        $monthly = $total_debt / 2;
+        $monthly = $total_debt / $period;
         $monthly_installment = round($monthly, 1);
         $next_month = date('jS F Y', strtotime('+ 1 month'));
 
