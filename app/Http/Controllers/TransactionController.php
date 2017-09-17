@@ -110,11 +110,11 @@ class TransactionController extends Controller
         $auth = Auth::user();
 
         $l->refuse_loan($id);
-        $s->send($telephone, "Your loan request for GHC " . $amount . " has been refused.");
+        $s->send($telephone, "Your loan request for GHC " . $amount . " has been rejected.");
 
-        $lg->insert($auth['email'], $auth['email'] . " refused a loan", $auth['role_id']);
+        $lg->insert($auth['email'], $auth['email'] . " rejected a loan", $auth['role_id']);
 
-        return redirect('eswift/transactions/pending-loans')->with('status', 'Loan Refused');
+        return redirect('eswift/transactions/pending-loans')->with('status', 'Loan Rejected');
     }
 
     public function logs()

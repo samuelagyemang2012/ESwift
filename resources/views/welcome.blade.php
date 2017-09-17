@@ -83,6 +83,7 @@
 
         {{--<br><br><br><br>--}}
         <div class="links">
+            <a href="{{route('show_super_login')}}">Super Admin Login</a>
             <a href="{{route('show_admin_login')}}">Admin Login</a>
             <a href="{{route('show_transactions_login')}}">Transactions Login</a>
             <a href="{{route('show_payments_login')}}">Payments Login</a>

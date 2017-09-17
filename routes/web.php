@@ -18,6 +18,27 @@ Route::get('', function () {
 
 Route::get('ewsift/logout', 'HomeController@logout')->name('logout');
 
+//Super Admin
+Route::get('eswift/super_admin/login', 'SuperAdminController@show_login')->name('show_super_login');
+
+Route::post('super_admin_login', 'SuperAdminController@login')->name('super_admin_login');
+
+Route::group(['middleware' => 'superadmin'], function () {
+
+    Route::get('eswift/superadmin', 'SuperAdminController@index')->name('super_admin_home');
+
+    Route::get('eswift/rate/{id}', 'SuperAdminController@show_edit_rate')->name('show_edit_rate');
+
+    Route::get('eswift/admins', 'SuperAdminController@get_admins')->name('get_admins');
+
+    Route::post('edit_rate', 'SuperAdminController@edit_rate')->name('edit_rate');
+
+    Route::get('eswift/add_admin', 'SuperAdminController@show_admin')->name('show_add_admins');
+
+    Route::post('add_admin', 'SuperAdminController@add_admin')->name('add_admin');
+});
+
+//------------------------------------------------------------------------------------------------------
 //Admin
 Route::get('eswift/admin/login', 'AdminController@show_login')->name('show_admin_login');
 
@@ -60,9 +81,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('eswift/transactions_personnel', 'AdminController@get_transactions_personnel')->name('transactions_personnel');
 
 //Admin
-    Route::get('eswift/admin/add-admin', 'AdminController@show_add_admin')->name('show_add_admin');
-
-    Route::post('eswift/add_admin', 'AdminController@add_admin')->name('add_admin');
+//    Route::get('eswift/admin/add-admin', 'AdminController@show_add_admin')->name('show_add_admin');
+//
+//    Route::post('eswift/add_admin', 'AdminController@add_admin')->name('add_admin');
 
     Route::get('eswift/admin/change_password', 'AdminController@show_change_password')->name('show_change_password');
 

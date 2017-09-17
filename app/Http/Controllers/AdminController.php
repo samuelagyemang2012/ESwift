@@ -8,6 +8,7 @@ use App\Loan;
 use App\Log;
 use App\Package;
 use App\Payment;
+use App\Rate;
 use App\Sms;
 use App\User;
 use Illuminate\Http\Request;
@@ -542,9 +543,9 @@ class AdminController extends Controller
         $l->refuse_loan($id);
 
         $s->send($telephone, "Your loan request for GHC " . $amount . " has been rejected.");
-        $lg->insert($auth['email'], $auth['email'] . " refused a loan", $auth['role_id']);
+        $lg->insert($auth['email'], $auth['email'] . " rejected a loan", $auth['role_id']);
 
-        return redirect('eswift/loans/pending')->with('status', 'Loan Refused');
+        return redirect('eswift/loans/pending')->with('status', 'Loan Rejected');
     }
 
     public function get_pending_payments()
@@ -589,8 +590,6 @@ class AdminController extends Controller
     {
         $user = Auth::user();
         $input = $request->all();
-
-//        return $input;
 
         $l = new Loan();
         $p = new Payment();
@@ -710,8 +709,6 @@ class AdminController extends Controller
     public function get_payements_personnel()
     {
         $u = new User();
-//        $data = $u->all_payments_personnel();
-//        return $data;
 
         if (request()->isXmlHttpRequest()) {
 
@@ -726,12 +723,10 @@ class AdminController extends Controller
     public function get_transactions_personnel()
     {
         $u = new User();
-///
+
         if (request()->isXmlHttpRequest()) {
 
             $data = $u->all_transactions_personnel();
-
-//        return $data;
 
             return Datatables::of($data)->make(true);
         }
@@ -765,8 +760,6 @@ class AdminController extends Controller
 
         $input = $request->all();
 
-//        return $id;
-
         $rules = [
             'eswift_balance' => 'required|numeric',
             'mobile_registration_balance' => 'required|numeric'
@@ -783,23 +776,26 @@ class AdminController extends Controller
 
     public function get_minimum_balance($name)
     {
+        $r = new Rate();
 
-        $fee_percentage = 0.80;
+        $fee_percentage = $r->get_rate(3);
 
         $p = new Package();
 
         $data = $p->get_maximum($name);
 
-        $registration_fee = $fee_percentage * $data[0]->maximum;
+        $registration_fee = ($fee_percentage[0] / 100) * $data[0]->maximum;
 
         return $registration_fee;
     }
 
     private function calculate_total_debt($amount, $loan_period)
     {
-        $interest = 0.03;
+        $r = new Rate();
 
-        $total_interest_percentage = $interest * $loan_period;
+        $interest = $r->get_rate(1);
+
+        $total_interest_percentage = ($interest[0] / 100) * $loan_period;
 
         $total_interest = $total_interest_percentage * $amount;
 

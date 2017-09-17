@@ -181,7 +181,7 @@
                     </a>
                     <ul class="treeview-menu" style="display: none">
                         {{--<li class="active"><a href=""><i class="fa fa-circle-o"></i> All Loans</a></li>--}}
-                        <li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>
+                        {{--<li><a href="{{route('show_add_admin')}}"><i class="fa fa-circle-o"></i> Add New Admin</a></li>--}}
                         <li><a href="{{route('payments_personnel')}}"><i class="fa fa-circle-o"></i>Payments
                                 Personnel</a>
                         </li>

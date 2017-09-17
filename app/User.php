@@ -176,6 +176,13 @@ class User extends Authenticatable
             ->get();
     }
 
+    public function get_all_admins(){
+        return DB::table('users')
+            ->where('role_id', '=', 2)
+            ->whereNull('deleted_at')
+            ->get();
+    }
+
     public function get_user_package($user_id)
     {
         return DB::table('users')
