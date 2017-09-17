@@ -6,6 +6,7 @@ use App\Debt;
 use App\Loan;
 use App\Log;
 use App\Payment;
+use App\Rate;
 use App\Sms;
 use App\User;
 use Illuminate\Http\Request;
@@ -165,9 +166,11 @@ class PaymentController extends Controller
 
     private function calculate_total_debt($amount, $loan_period)
     {
-        $interest = 0.03;
+        $r = new Rate();
 
-        $total_interest_percentage = $interest * $loan_period;
+        $interest = $r->get_rate(1);
+
+        $total_interest_percentage = ($interest[0]->rate / 100) * $loan_period;
 
         $total_interest = $total_interest_percentage * $amount;
 

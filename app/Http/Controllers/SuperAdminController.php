@@ -20,6 +20,10 @@ class SuperAdminController extends Controller
     {
 //        $lg = new Log();
 
+//        $r = new Rate();
+//        $a = $r->get_rate(3);
+//        return ($a[0]->rate / 100);
+
         $data = $request->all();
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {

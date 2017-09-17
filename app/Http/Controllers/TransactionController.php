@@ -130,9 +130,4 @@ class TransactionController extends Controller
 
         return view('transactions.logs');
     }
-
-//    public function get_client_details($id)
-//    {
-//
-//    }
 }

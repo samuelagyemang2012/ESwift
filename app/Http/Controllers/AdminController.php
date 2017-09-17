@@ -784,7 +784,7 @@ class AdminController extends Controller
 
         $data = $p->get_maximum($name);
 
-        $registration_fee = ($fee_percentage[0] / 100) * $data[0]->maximum;
+        $registration_fee = ($fee_percentage[0]->rate / 100) * $data[0]->maximum;
 
         return $registration_fee;
     }
@@ -795,7 +795,7 @@ class AdminController extends Controller
 
         $interest = $r->get_rate(1);
 
-        $total_interest_percentage = ($interest[0] / 100) * $loan_period;
+        $total_interest_percentage = ($interest[0]->rate / 100) * $loan_period;
 
         $total_interest = $total_interest_percentage * $amount;
 
