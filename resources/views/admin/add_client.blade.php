@@ -41,6 +41,7 @@
 
             {{--<hr>--}}
         </div>
+
         <div class="col-sm-4"></div>
     </div>
 
@@ -74,9 +75,9 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-1"></div>
+                {{--<div class="col-sm-1"></div>--}}
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <label>First Name</label>
                     <div>
                         <input class="form-control" name="first_name" type="text" required value="{{old('first_name')}}"
@@ -115,7 +116,7 @@
 
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
 
                     <label>Employer</label>
                     <div>
@@ -199,7 +200,34 @@
 
                 </div>
 
-                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <label>Secret Question</label><br>
+                    <div>
+                        <select class="form-control" name="secret_question" required>
+                            <option></option>
+                            <option value="What time of the day were you born">What time of the day were you born?
+                            </option>
+                            <option value="What primary school did you attend">What primary school did you attend?
+                            </option>
+                            <option value="In what town or city did you meet your spouse">In what town or city did you
+                                meet your spouse?
+                            </option>
+                            <option value="What is your mother's maiden name">What is your mother's maiden name?
+                            </option>
+                            <option value="What was the street name you lived on as a child">What was the street name
+                                you lived on as a child?
+                            </option>
+
+                        </select>
+                    </div>
+                    <br>
+
+                    <label>Secret Answer</label><br>
+                    <div>
+                        <input class="form-control" name="secret_answer" type="text" required>
+                    </div>
+                    <br>
+                </div>
             </div>
         </div>
     </form>

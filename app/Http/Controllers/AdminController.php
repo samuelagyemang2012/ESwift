@@ -9,6 +9,7 @@ use App\Log;
 use App\Package;
 use App\Payment;
 use App\Rate;
+use App\Secret;
 use App\Sms;
 use App\User;
 use Illuminate\Http\Request;
@@ -178,6 +179,7 @@ class AdminController extends Controller
         $lg = new Log();
         $s = new Sms();
         $a = new Account();
+        $sc = new Secret();
         $auth = Auth::user();
 
         $file_name = '';
@@ -199,7 +201,9 @@ class AdminController extends Controller
             'mobile_money_account' => 'required',
             'password' => 'required|min:4',
             'package' => 'required',
-            'confirm_password' => 'required|same:password'
+            'confirm_password' => 'required|same:password',
+            'secret_question' => 'required',
+            'secret_answer' => 'required|min:2'
         ];
 
         $this->validate($request, $rules);
@@ -229,6 +233,8 @@ class AdminController extends Controller
         $a->create_accounts($insert_id, $ntelephone, $account_number, $input['percentage'], $mbalance);
 
         $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited. Your Eswift password is " . $input['password']);
+
+        $sc->add($ntelephone, $input['secret_question'], $input['secret_answer']);
 
         $lg->insert($auth['email'], $auth['email'] . " registered " . $input['email'] . " as a new client", $auth['role_id']);
 
