@@ -867,7 +867,7 @@ class AdminController extends Controller
     {
         $n = new Notification();
 
-        return $data = $n->unread();
+//        return $data = $n->unread();
 
         if (request()->isXmlHttpRequest()) {
             $data = $n->unread();
@@ -882,7 +882,7 @@ class AdminController extends Controller
     {
         $n = new Notification();
 
-        return $data = $n->read();
+//        return $data = $n->read();
 
         if (request()->isXmlHttpRequest()) {
             $data = $n->read();
@@ -899,7 +899,7 @@ class AdminController extends Controller
 
         $n->mark_as_read($id);
 
-        return redirect('eswift/notifications/unread');
+        return redirect('eswift/notifications/unread')->with('status','Marked as read');
     }
 
 }
