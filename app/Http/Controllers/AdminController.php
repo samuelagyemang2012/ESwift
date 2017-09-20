@@ -6,6 +6,7 @@ use App\Account;
 use App\Debt;
 use App\Loan;
 use App\Log;
+use App\Notification;
 use App\Package;
 use App\Payment;
 use App\Rate;
@@ -862,17 +863,43 @@ class AdminController extends Controller
 
     }
 
-    public function get_upgrade_balance($tel, $package)
+    public function get_unread()
     {
-//        $a = new Account();
-//
-//        $cur_balance = $a->get_balance($tel);
-//
-//        $minimum = $this->get_minimum_balance($package);
-//
-//        $new_balance = $minimum + $cur_balance;
-//
-//        return $new_balance;
+        $n = new Notification();
+
+        return $data = $n->unread();
+
+        if (request()->isXmlHttpRequest()) {
+            $data = $n->unread();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.unread');
+    }
+
+    public function get_read()
+    {
+        $n = new Notification();
+
+        return $data = $n->read();
+
+        if (request()->isXmlHttpRequest()) {
+            $data = $n->read();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.read');
+    }
+
+    public function mark_as_read($id)
+    {
+        $n = new Notification();
+
+        $n->mark_as_read($id);
+
+        return redirect('eswift/notifications/unread');
     }
 
 }

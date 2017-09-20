@@ -149,6 +149,13 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/debt/{loan_id}', 'AdminController@get_debt_details')->name("get_debt_details");
 
+//    Notifications
+    Route::get('eswift/notifications/unread', 'AdminController@get_unread')->name("get_unread");
+
+    Route::get('eswift/notifications/read', 'AdminController@get_read')->name("get_read");
+
+    Route::get('eswift/mark/{id}', 'AdminController@mark_as_read')->name('mark');
+
 });
 
 //--------------------------------------------------------------------------------------------------------

@@ -199,6 +199,19 @@
                     </a>
                 </li>
 
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-exclamation"></i> <span>Notifications</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu" style="display: none">
+                        <li><a href="{{route('get_unread')}}"><i class="fa fa-circle-o"></i>Unread Notifications</a></li>
+                        <li><a href="{{route('get_read')}}"><i class="fa fa-circle-o"></i>Read Notifications</a></li>
+                    </ul>
+                </li>
+
                 <li class="treeview">
                     <a href="{{route('show_admin_logs')}}">
                         <i class="fa fa-archive"></i>
