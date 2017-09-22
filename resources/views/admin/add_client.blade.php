@@ -161,13 +161,13 @@
 
                     <label>Multi-Money Savings Acount Number</label><br>
                     <div>
-                        <input class="form-control" name="multimoney_account_number" type="text" required>
+                        <input class="form-control" name="multimoney_account_number" value="{{old('multimoney_account_number')}}" type="text" required>
                     </div>
                     <br>
 
                     <label>20% of Multi-Money Savings Account</label><br>
                     <div>
-                        <input class="form-control" name="percentage" type="text" required>
+                        <input class="form-control" name="percentage" value="{{old('percentage')}}" type="text" required>
                     </div>
                     <br>
 
