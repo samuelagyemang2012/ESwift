@@ -899,7 +899,63 @@ class AdminController extends Controller
 
         $n->mark_as_read($id);
 
-        return redirect('eswift/notifications/unread')->with('status','Marked as read');
+        return redirect('eswift/notifications/unread')->with('status', 'Marked as read');
+    }
+
+    public function get_half_loans_due()
+    {
+        $l = new Loan();
+
+//        return $l->get_half_loans_due();
+
+        if (request()->isXmlHttpRequest()) {
+            $data = $l->get_half_loans_due();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.half_loans');
+
+    }
+
+    public function show_edit_account_hld($id)
+    {
+        $account = new Account();
+
+        $ea = $account->get_eswift_account_hld($id);
+        $ma = $account->get_mmf_account_hld($id);
+
+        return view('admin.hld_account')
+            ->with('edata', $ea[0])
+            ->with('mdata', $ma[0])
+            ->with('id', $id);
+    }
+
+    public function update_accounts_hld(Request $request, $id)
+    {
+//        return $request . 'user_id =' . $id;
+        $a = new Account();
+        $ln = new Loan();
+        $l = new Log();
+        $auth = Auth::user();
+
+        $input = $request->all();
+
+        $rules = [
+            'eswift_balance' => 'required|numeric',
+            'mobile_registration_balance' => 'required|numeric',
+            'debt_id' => 'required'
+        ];
+///
+        $this->validate($request, $rules);
+
+        $a->update_accounts($id, $input['eswift_balance'], $input['mobile_registration_balance']);
+        $ln->update_hld($input['debt_id']);
+//
+        $l->insert($auth['email'], $auth['email'] . ' updated client with id ' . $id . ' accounts', $auth['role_id']);
+//
+        return redirect('eswift/loans/half_loans_due')->with('status', 'Account Updated Successfully');
+
     }
 
 }

@@ -121,6 +121,8 @@
                                 Loans</a></li>
                         <li><a href="{{route('admin_get_refused_loans')}}"><i class="fa fa-circle-o"></i> Rejected Loans</a>
                         </li>
+                        <li><a href="{{route('half_loans_due')}}"><i class="fa fa-circle-o"></i> Half Loans Due</a>
+                        </li>
                         {{--<li><a href=""><i class="fa fa-circle-o"></i>Elapsed Loans</a></li>--}}
                     </ul>
                 </li>

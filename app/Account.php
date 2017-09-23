@@ -75,4 +75,24 @@ class Account extends Model
             ->get();
     }
 
+    public function get_eswift_account_hld($id)
+    {
+        return DB::table('eswift_accounts')
+            ->join('debts', 'debts.user_id', '=', 'eswift_accounts.user_id')
+            ->where('eswift_accounts.user_id', '=', $id)
+            ->select('debts.id', 'eswift_accounts.name', 'eswift_accounts.eaccount_number', 'eswift_accounts.balance')
+            ->whereNull('deleted_at')
+            ->get();
+    }
+
+    public function get_mmf_account_hld($id)
+    {
+        return DB::table('mmf_accounts')
+            ->join('debts', 'debts.user_id', '=', 'mmf_accounts.user_id')
+            ->where('mmf_accounts.user_id', '=', $id)
+            ->select('debts.id', 'mmf_accounts.name', 'mmf_accounts.maccount_number', 'mmf_accounts.balance')
+            ->whereNull('deleted_at')
+            ->get();
+    }
+
 }

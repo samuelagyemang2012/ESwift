@@ -156,6 +156,12 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/mark/{id}', 'AdminController@mark_as_read')->name('mark');
 
+    Route::get('eswift/loans/half_loans_due', 'AdminController@get_half_loans_due')->name('half_loans_due');
+
+    Route::get('eswift/account_deductions/{id}', 'AdminController@show_edit_account_hld')->name('edit_account_hld');
+
+    Route::post('update_account_hld/{id}', 'AdminController@update_accounts_hld')->name('update_account_hld');
+
 });
 
 //--------------------------------------------------------------------------------------------------------

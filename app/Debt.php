@@ -39,4 +39,5 @@ class Debt extends Model
             ->where('loan_id', '=', $loan_id)
             ->get();
     }
+
 }
