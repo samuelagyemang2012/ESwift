@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="col-2">
+        <center><h2 style="color: #3D8DBB">Rejected Loans</h2></center>
+        <hr>
         <table class="table" id="mytable">
             <thead>
             <th>ID</th>

@@ -18,16 +18,17 @@
     </div>
 
     <div class="col-2">
-        <center><h2 style="color: #3D8DBB">Elapsed Half Loans</h2></center>
+        <center><h2 style="color: #3D8DBB">Elapsed Loans</h2></center>
         <hr>
+
         <table class="table" id="mytable">
             <thead>
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Telephone</th>
             <th>Debt (GHC)</th>
-            <th>Half Loan Date</th>
-            <th></th>
+            <th>Full Loan Date</th>
+            {{--<th></th>--}}
             </thead>
         </table>
 
@@ -37,21 +38,21 @@
                 $('#mytable').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{{route('half_loans_due')}}',
+                    ajax: '{{route('elapsed_loans')}}',
 
                     columns: [
                         {data: 'first_name', name: 'first_name'},
                         {data: 'last_name', name: 'last_name'},
                         {data: 'telephone', name: 'telephone'},
-                        {data: 'half_debt', name: 'half_debt'},
-                        {data: 'half_loan_date', name: 'half_loan_date'},
-                        {
-                            data: '6', name: 'action', render: function (data, type, full, meta) {
-//                            console.log(full);
-//                            var  s = full['0'];
-                            return '<div><a class="btn btn-sm btn-primary" href="/eswift/account_deductions/' + full['user_id'] + '">Go To Account</a></div>';
-                        }
-                        }
+                        {data: 'total_debt', name: 'total_debt'},
+                        {data: 'full_loan_date', name: 'full_loan_date'}
+//                        {
+//                            data: '6', name: 'action', render: function (data, type, full, meta) {
+////                            console.log(full);
+////                            var  s = full['0'];
+//                            return '<div><a class="btn btn-sm btn-primary" href="/eswift/account_deductions/' + full['user_id'] + '">Go To Account</a></div>';
+//                        }
+//                        }
                     ]
                 });
             })

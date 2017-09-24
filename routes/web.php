@@ -104,7 +104,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/loans/approved', 'AdminController@get_approved_loans')->name('admin_get_approved_loans');
 
-    Route::get('eswift/loans/refused', 'AdminController@get_refused_loans')->name('admin_get_refused_loans');
+    Route::get('eswift/loans/rejected', 'AdminController@get_refused_loans')->name('admin_get_refused_loans');
 
     Route::get('eswift/approve/{amount}/{user_id}/{loan_id}/{telephone}', 'AdminController@approve_loan')->name('admin_approve');
 
@@ -158,6 +158,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/loans/half_loans_due', 'AdminController@get_half_loans_due')->name('half_loans_due');
 
+    Route::get('eswift/loans/elapsed_loans', 'AdminController@get_elapsed_loans')->name('elapsed_loans');
+
     Route::get('eswift/account_deductions/{id}', 'AdminController@show_edit_account_hld')->name('edit_account_hld');
 
     Route::post('update_account_hld/{id}', 'AdminController@update_accounts_hld')->name('update_account_hld');
@@ -178,7 +180,7 @@ Route::group(['middleware' => 'transactions'], function () {
 
     Route::get('eswift/transactions/approved-loans', 'TransactionController@get_approved_loans')->name('transactions_approved_loans');
 
-    Route::get('eswift/transactions/refused-loans', 'TransactionController@get_refused_loans')->name('transactions_refused_loans');
+    Route::get('eswift/transactions/rejected-loans', 'TransactionController@get_refused_loans')->name('transactions_refused_loans');
 
     Route::get('eswift/transactions/approve/{amount}/{user_id}/{loan_id}/{telephone}', 'TransactionController@approve_loan')->name('transactions_approve');
 

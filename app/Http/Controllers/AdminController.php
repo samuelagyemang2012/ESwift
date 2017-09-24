@@ -918,6 +918,20 @@ class AdminController extends Controller
 
     }
 
+    public function get_elapsed_loans()
+    {
+        $l = new Loan();
+//        return $l->get_elapsed_loans();
+        if (request()->isXmlHttpRequest()) {
+            $data = $l->get_elapsed_loans();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.full_loan');
+
+    }
+
     public function show_edit_account_hld($id)
     {
         $account = new Account();

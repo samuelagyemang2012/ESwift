@@ -57,10 +57,10 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-2"></div>
+            <div class="col-sm-4"></div>
 
-            <div class="col-sm-8">
-                <h3>Change Password</h3>
+            <div class="col-sm-4">
+                <h2 style="color: #3D8DBB">Change Password</h2>
                 <br>
 
                 <form class="form-horizontal" action="{{route('change_password')}}" method="post">
@@ -95,6 +95,8 @@
 
                 </form>
             </div>
+
+            <div class="col-sm-4"></div>
         </div>
     </div>
 

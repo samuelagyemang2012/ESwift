@@ -121,7 +121,9 @@
                                 Loans</a></li>
                         <li><a href="{{route('admin_get_refused_loans')}}"><i class="fa fa-circle-o"></i> Rejected Loans</a>
                         </li>
-                        <li><a href="{{route('half_loans_due')}}"><i class="fa fa-circle-o"></i> Half Loans Due</a>
+                        <li><a href="{{route('half_loans_due')}}"><i class="fa fa-circle-o"></i> Elapsed Half Loan</a>
+                        </li>
+                        <li><a href="{{route('elapsed_loans')}}"><i class="fa fa-circle-o"></i> Elapsed Loans</a>
                         </li>
                         {{--<li><a href=""><i class="fa fa-circle-o"></i>Elapsed Loans</a></li>--}}
                     </ul>
@@ -209,7 +211,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu" style="display: none">
-                        <li><a href="{{route('get_unread')}}"><i class="fa fa-circle-o"></i>Unread Notifications</a></li>
+                        <li><a href="{{route('get_unread')}}"><i class="fa fa-circle-o"></i>Unread Notifications</a>
+                        </li>
                         <li><a href="{{route('get_read')}}"><i class="fa fa-circle-o"></i>Read Notifications</a></li>
                     </ul>
                 </li>

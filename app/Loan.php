@@ -117,7 +117,12 @@ class Loan extends Model
 
     public function get_half_loans_due()
     {
-        return DB::select(DB::raw("SELECT debts.id,debts.user_id,users.first_name, users.last_name,users.telephone,debts.half_debt FROM `debts` inner join users on debts.user_id = users.id where CURDATE() > debts.half_loan_date and debts.amount_paid = 0 and debts.hld = 0"));
+        return DB::select(DB::raw("SELECT debts.id,debts.user_id,users.first_name,debts.half_loan_date, users.last_name,users.telephone,debts.half_debt FROM `debts` inner join users on debts.user_id = users.id where CURDATE() > debts.half_loan_date and debts.amount_paid = 0 and debts.hld = 0"));
+    }
+
+    public function get_elapsed_loans()
+    {
+        return DB::select(DB::raw("SELECT users.first_name, users.last_name,users.telephone, debts.total_debt,debts.full_loan_date FROM `debts` INNER JOIN users on debts.user_id = users.id where CURDATE() > full_loan_date and amount_paid < amount_borrowed"));
     }
 
     public function update_hld($id)

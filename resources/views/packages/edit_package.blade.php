@@ -26,10 +26,10 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-2"></div>
+            <div class="col-sm-4"></div>
 
-            <div class="col-sm-8">
-                <h3>Edit Packages</h3>
+            <div class="col-sm-4">
+                <h2 style="color: #3D8DBB">Edit Packages</h2>
                 <br>
 
                 <form class="form-horizontal" action="{{route('edit_package')}}" method="post">
@@ -63,7 +63,7 @@
                 </form>
             </div>
 
-            <div class="col-sm-2"></div>
+            <div class="col-sm-4"></div>
         </div>
     </div>
 @stop
