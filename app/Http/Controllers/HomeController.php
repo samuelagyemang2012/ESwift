@@ -39,6 +39,8 @@ class HomeController extends Controller
     {
         $user = new User;
 
+//        return $user->get_clients();
+
         if (request()->isXmlHttpRequest()) {
 
             $data = $user->get_clients();
