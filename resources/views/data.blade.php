@@ -34,7 +34,7 @@
             <th>Residential Address</th>
             <th>Salary</th>
 
-            <th>Mobile Money Account</th>
+            {{--<th>Mobile Money Account</th>--}}
             <th></th>
 
             </thead>
@@ -56,7 +56,7 @@
                         {data: 'telephone', name: 'telephone'},
                         {data: 'residential_address', name: 'residential_address'},
                         {data: 'monthly_salary', name: 'monthly_salary'},
-                        {data: 'mobile_money_account', name: 'mobile_money_account'},
+//                        {data: 'mobile_money_account', name: 'mobile_money_account'},
                         {
                             data: '6', name: 'action', render: function (data, type, full, meta) {
                             console.log(full);
