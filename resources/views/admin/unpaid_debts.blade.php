@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-2">
         {{--<div class="container">--}}
-        <center><h2 style="color: #3D8DBB">Debts</h2></center>
+        <center><h2 style="color: #3D8DBB">Unpaid Debts</h2></center>
         <hr>
     </div>
 

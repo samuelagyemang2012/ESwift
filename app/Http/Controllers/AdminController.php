@@ -477,7 +477,7 @@ class AdminController extends Controller
             return Datatables::of($data)->make(true);
         }
 
-        return view('admin.unpaid_debts');
+        return view('admin.paid_debts');
     }
 
     public function get_all_loans()

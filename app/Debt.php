@@ -34,7 +34,7 @@ class Debt extends Model
     {
         return DB::table('debts')
             ->join('users', 'users.id', '=', 'debts.user_id')
-            ->select('debts.id', 'debts.loan_id', 'users.first_name', 'users.last_name', 'users.telephone', 'debts.amount_borrowed', 'debts.amount_paid', 'debts.half_debt', 'debts.total_debt', 'debts.created_at')
+            ->select('debts.id', 'debts.loan_id', 'users.first_name', 'users.last_name', 'users.telephone', 'debts.amount_borrowed', 'debts.amount_paid', 'debts.half_debt', 'debts.total_debt', 'debts.updated_at')
             ->where('is_paid', '=', 1)
             ->get();
     }
