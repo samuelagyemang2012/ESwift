@@ -29,7 +29,7 @@
             $('#mytable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{route('get_debts')}}',
+                ajax: '{{route('get_paid_debts')}}',
 
                 columns: [
                     {data: 'id', name: 'id'},
@@ -41,7 +41,7 @@
 //                    {data: 'half_debt', name: 'half_debt'},
 //                    {data: 'created_at', name: 'created_at'},
 //                    {data: 'total_debt', name: 'total_debt'},
-                    {data: 'created_at', name: 'created_at'},
+                    {data: 'updated_at', name: 'updated_at'},
                     {
                         data: 6, name: 'action', render: function (data, type, full, meta) {
 

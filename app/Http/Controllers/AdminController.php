@@ -452,18 +452,32 @@ class AdminController extends Controller
             ->with('mdata', $mdata[0]);
     }
 
-    public function get_debts()
+    public function get_unpaid_debts()
     {
         $d = new Debt();
 
         if (request()->isXmlHttpRequest()) {
 
-            $data = $d->get_debts();
+            $data = $d->get_unpaid_debts();
 
             return Datatables::of($data)->make(true);
         }
 
-        return view('admin.debts');
+        return view('admin.unpaid_debts');
+    }
+
+    public function get_paid_debts()
+    {
+        $d = new Debt();
+//        return $d->get_paid_debts();
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $d->get_paid_debts();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.unpaid_debts');
     }
 
     public function get_all_loans()

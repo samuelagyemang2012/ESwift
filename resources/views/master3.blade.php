@@ -196,11 +196,27 @@
                     </ul>
                 </li>
 
-                <li class="treeview">
-                    <a href="{{route('get_debts')}}">
-                        <i class="fa fa-bank"></i>
-                        <span>Debts</span>
+                {{--<li class="treeview">--}}
+                {{--<a href="{{route('get_debts')}}">--}}
+                {{--<i class="fa fa-bank"></i>--}}
+                {{--<span>Debts</span>--}}
+                {{--</a>--}}
+                {{--</li>--}}
+
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-bank"></i> <span>Debts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
                     </a>
+                    <ul class="treeview-menu" style="display: none">
+                        <li><a href="{{route('get_unpaid_debts')}}"><i class="fa fa-circle-o"></i>Unpaid
+                                Debts</a>
+                        </li>
+                        <li><a href="{{route('get_paid_debts')}}"><i class="fa fa-circle-o"></i>Paid Debts</a>
+                        </li>
+                    </ul>
                 </li>
 
 

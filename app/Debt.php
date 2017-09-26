@@ -21,12 +21,21 @@ class Debt extends Model
         ]);
     }
 
-    public function get_debts()
+    public function get_unpaid_debts()
     {
         return DB::table('debts')
             ->join('users', 'users.id', '=', 'debts.user_id')
             ->select('debts.id', 'debts.loan_id', 'users.first_name', 'users.last_name', 'users.telephone', 'debts.amount_borrowed', 'debts.amount_paid', 'debts.half_debt', 'debts.total_debt', 'debts.created_at')
             ->where('is_paid', '=', 0)
+            ->get();
+    }
+
+    public function get_paid_debts()
+    {
+        return DB::table('debts')
+            ->join('users', 'users.id', '=', 'debts.user_id')
+            ->select('debts.id', 'debts.loan_id', 'users.first_name', 'users.last_name', 'users.telephone', 'debts.amount_borrowed', 'debts.amount_paid', 'debts.half_debt', 'debts.total_debt', 'debts.created_at')
+            ->where('is_paid', '=', 1)
             ->get();
     }
 

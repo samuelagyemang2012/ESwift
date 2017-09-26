@@ -95,7 +95,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('eswift/client/logs', 'AdminController@show_client_logs')->name('show_client_logs');
 
 //Debts
-    Route::get('eswift/debts', 'AdminController@get_debts')->name('get_debts');
+    Route::get('eswift/debts/unpaid', 'AdminController@get_unpaid_debts')->name('get_unpaid_debts');
+
+    Route::get('eswift/debts/paid', 'AdminController@get_paid_debts')->name('get_paid_debts');
 
 //Loans
     Route::get('eswift/loans', 'AdminController@get_all_loans')->name('admin_get_all_loans');
