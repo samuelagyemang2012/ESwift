@@ -19,7 +19,7 @@
         {{--<th>Half Loan Due Date</th>--}}
         {{--<th>Full Loan Due</th>--}}
         <th>Date</th>
-        <th></th>
+        {{--<th></th>--}}
         </thead>
     </table>
 
@@ -42,12 +42,12 @@
 //                    {data: 'created_at', name: 'created_at'},
 //                    {data: 'total_debt', name: 'total_debt'},
                     {data: 'updated_at', name: 'updated_at'},
-                    {
-                        data: 6, name: 'action', render: function (data, type, full, meta) {
-
-                        return '<a class="btn btn-sm btn-primary" href="debt/' + full['loan_id'] + '">Details</a>';
-                    }
-                    }
+//                    {
+//                        data: 6, name: 'action', render: function (data, type, full, meta) {
+//
+//                        return '<a class="btn btn-sm btn-primary" href="debt/' + full['loan_id'] + '">Details</a>';
+//                    }
+//                    }
                 ]
             });
         })
