@@ -149,7 +149,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::post('update_accounts/{id}', 'AdminController@update_accounts')->name('update_account');
 
-    Route::get('eswift/debt/{loan_id}', 'AdminController@get_debt_details')->name("get_debt_details");
+    Route::get('debts/{loan_id}', 'AdminController@get_debt_details')->name("get_debt_details");
 
 //    Notifications
     Route::get('eswift/notifications/unread', 'AdminController@get_unread')->name("get_unread");
