@@ -195,7 +195,7 @@ class AdminController extends Controller
             'residential_address' => 'required|min:2',
             'carthograph' => 'required',
             'multimoney_account_number' => 'required',
-            'percentage' => 'required|numeric',
+//            'percentage' => 'required|numeric',
             'salary' => 'required|numeric',
             'mobile_money_account' => 'required',
             'password' => 'required|min:4',
@@ -229,7 +229,7 @@ class AdminController extends Controller
 
         $account_number = uniqid();
 
-        $a->create_accounts($insert_id, $ntelephone, $account_number, $input['percentage'], $mbalance);
+        $a->create_accounts($insert_id, $ntelephone, $account_number, $mbalance[0], $mbalance[1]);
 
         $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited. Your Eswift password is " . $input['password']);
 
@@ -805,8 +805,14 @@ class AdminController extends Controller
 
         $registration_fee = ($fee_percentage[0]->rate / 100) * $data[0]->maximum;
 
-        return $registration_fee;
+        $twenty = $data[0]->maximum - $registration_fee;
+
+        $array = array($twenty, $registration_fee);
+
+        return $array;
+
     }
+
 
     private function calculate_total_debt($amount, $loan_period)
     {
