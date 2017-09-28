@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
-    public function insert($fname, $mman, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package)
+    public function insert($fname, $mman, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package, $pic)
     {
         $id = DB::table('users')->insertGetId(
             ['multimoney_account_number' => $mman,
@@ -24,7 +24,8 @@ class User extends Authenticatable
                 'monthly_salary' => $salary,
                 'mobile_money_account' => $mmacount,
                 'role_id' => $role,
-                'package' => $package
+                'package' => $package,
+                'picture' => $pic
             ]);
 
         return $id;
@@ -176,7 +177,8 @@ class User extends Authenticatable
             ->get();
     }
 
-    public function get_all_admins(){
+    public function get_all_admins()
+    {
         return DB::table('users')
             ->where('role_id', '=', 2)
             ->whereNull('deleted_at')

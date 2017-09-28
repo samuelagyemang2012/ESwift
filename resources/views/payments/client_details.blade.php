@@ -9,6 +9,13 @@
                 <center><h3 style="color: #3C8DBC">Eswift Account Details</h3></center>
             </div>
 
+            <div>
+                {{--<h3>Carthograph </h3>--}}
+                <hr>
+                <img src="/uploads/{{$data->picture}}" width="200px" height="200px"><hr>
+            </div>
+            <br>
+
             <table class="table table-bordered">
                 <thead>
                 <th> Account Name</th>

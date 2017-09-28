@@ -192,6 +192,13 @@
                 </div>
 
                 <div class="col-sm-3">
+                    <label>Picture</label>
+                    <div>
+                        <input class="form-control" name="picture" type="file" required
+                               value="{{old('picture')}}">
+                    </div>
+                    <br>
+
                     <label>Monthly Salary</label>
                     <div>
                         <input class="form-control" name="salary" type="number" required value="{{old('salary')}}"

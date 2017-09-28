@@ -57,6 +57,7 @@ class PaymentController extends Controller
         $auth = Auth::user();
 
         $file_name = '';
+        $picture = '';
 
         $input = $request->all();
 
@@ -77,7 +78,8 @@ class PaymentController extends Controller
             'package' => 'required',
             'confirm_password' => 'required|same:password',
             'secret_question' => 'required',
-            'secret_answer' => 'required|min:2'
+            'secret_answer' => 'required|min:2',
+            'picture' => 'required'
         ];
 
         $this->validate($request, $rules);
@@ -98,7 +100,13 @@ class PaymentController extends Controller
             $file_name = $file->getClientOriginalName();
         }
 
-        $insert_id = $u->insert($input['first_name'], $input['multimoney_account_number'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package']);
+        if (Input::hasFile('picture')) {
+            $file = Input::file('picture');
+            $file->move('uploads', $file->getClientOriginalName());
+            $picture = $file->getClientOriginalName();
+        }
+
+        $insert_id = $u->insert($input['first_name'], $input['multimoney_account_number'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package'], $picture);
 
         $mbalance = $this->get_minimum_balance($input['package']);
 
