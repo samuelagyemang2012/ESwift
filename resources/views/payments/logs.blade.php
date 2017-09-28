@@ -1,4 +1,4 @@
-@extends('master2')
+@extends('master1')
 
 @section('content')
     <div class="col-2">

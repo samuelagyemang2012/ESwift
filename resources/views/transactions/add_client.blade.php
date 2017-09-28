@@ -146,15 +146,6 @@
                     </div>
                     <br>
 
-                    <label>Monthly Salary</label>
-                    <div>
-                        <input class="form-control" name="salary" type="number" required value="{{old('salary')}}"
-                               min="1">
-                    </div>
-                    <br>
-
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-
                 </div>
 
                 <div class="col-sm-3">
@@ -165,11 +156,11 @@
                     </div>
                     <br>
 
-                    <label>20% of Multi-Money Savings Account</label><br>
-                    <div>
-                        <input class="form-control" name="percentage" value="{{old('percentage')}}" type="text" required>
-                    </div>
-                    <br>
+                    {{--<label>20% of Multi-Money Savings Account</label><br>--}}
+                    {{--<div>--}}
+                    {{--<input class="form-control" name="percentage" value="{{old('percentage')}}" type="text" required>--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
 
                     <label>Select a Package</label><br>
                     <span style="color: cornflowerblue"><b id="package"></b></span>
@@ -201,6 +192,13 @@
                 </div>
 
                 <div class="col-sm-3">
+                    <label>Monthly Salary</label>
+                    <div>
+                        <input class="form-control" name="salary" type="number" required value="{{old('salary')}}"
+                               min="1">
+                    </div>
+                    <br>
+
                     <label>Secret Question</label><br>
                     <div>
                         <select class="form-control" name="secret_question" required>
@@ -227,6 +225,7 @@
                         <input class="form-control" name="secret_answer" type="text" required>
                     </div>
                     <br>
+                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </div>
             </div>
         </div>

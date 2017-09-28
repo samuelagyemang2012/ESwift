@@ -112,7 +112,7 @@ class PaymentController extends Controller
 
         $lg->insert($auth['email'], $auth['email'] . " registered " . $input['email'] . " as a new client", $auth['role_id']);
 
-        return redirect('eswift/clients')->with('status', 'Client added successfully');
+        return redirect('eswift/payments/clients')->with('status', 'Client added successfully');
 
     }
 
