@@ -343,8 +343,8 @@
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
-                <li><a href="{{route('payments_home')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a>
-                </li>
+                {{--<li><a href="{{route('payments_home')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a>--}}
+                {{--</li>--}}
 
                 <li><a href="{{route('pay_clients')}}"><i class="fa fa-users"></i>
                         <span>Clients</span></a></li>

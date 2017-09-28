@@ -53,7 +53,7 @@ class TransactionController extends Controller
 
     public function add_client(Request $request)
     {
-        $u = new User();
+        $u = new User;
         $lg = new Log();
         $s = new Sms();
         $a = new Account();
@@ -74,7 +74,7 @@ class TransactionController extends Controller
             'residential_address' => 'required|min:2',
             'carthograph' => 'required',
             'multimoney_account_number' => 'required',
-            'percentage' => 'required|numeric',
+//            'percentage' => 'required|numeric',
             'salary' => 'required|numeric',
             'mobile_money_account' => 'required',
             'password' => 'required|min:4',
@@ -108,7 +108,7 @@ class TransactionController extends Controller
 
         $account_number = uniqid();
 
-        $a->create_accounts($insert_id, $ntelephone, $account_number, $input['percentage'], $mbalance);
+        $a->create_accounts($insert_id, $ntelephone, $account_number, $mbalance[0], $mbalance[1]);
 
         $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited. Your Eswift password is " . $input['password']);
 
@@ -116,7 +116,7 @@ class TransactionController extends Controller
 
         $lg->insert($auth['email'], $auth['email'] . " registered " . $input['email'] . " as a new client", $auth['role_id']);
 
-        return redirect('eswift/transactions/clients')->with('status', 'Client added successfully');
+        return redirect('eswift/clients')->with('status', 'Client added successfully');
 
     }
 
@@ -341,7 +341,12 @@ class TransactionController extends Controller
 
         $registration_fee = ($fee_percentage[0]->rate / 100) * $data[0]->maximum;
 
-        return $registration_fee;
+        $twenty = $data[0]->maximum - $registration_fee;
+
+        $array = array($twenty, $registration_fee);
+
+        return $array;
+
     }
 
     public function logs()

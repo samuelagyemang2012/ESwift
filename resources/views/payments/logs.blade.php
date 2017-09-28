@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="col-2">
+        <center><h3 style="color:#3C8DBC">System Logs</h3><hr></center>
         <table class="table" id="mytable">
             <thead>
             <th>Done by</th>

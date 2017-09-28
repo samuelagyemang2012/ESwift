@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="col-2">
+        <center><h3 style="color:#3C8DBC">Completed Transfers</h3><hr></center>
         <table class="table" id="mytable">
             <thead>
             {{--<th>ID</th>--}}

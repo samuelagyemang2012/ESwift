@@ -70,7 +70,7 @@ class PaymentController extends Controller
             'residential_address' => 'required|min:2',
             'carthograph' => 'required',
             'multimoney_account_number' => 'required',
-            'percentage' => 'required|numeric',
+//            'percentage' => 'required|numeric',
             'salary' => 'required|numeric',
             'mobile_money_account' => 'required',
             'password' => 'required|min:4',
@@ -104,7 +104,7 @@ class PaymentController extends Controller
 
         $account_number = uniqid();
 
-        $a->create_accounts($insert_id, $ntelephone, $account_number, $input['percentage'], $mbalance);
+        $a->create_accounts($insert_id, $ntelephone, $account_number, $mbalance[0], $mbalance[1]);
 
         $s->send($input['telephone'], "You have successfully created an account with Multi Money Microfinance Company Limited. Your Eswift password is " . $input['password']);
 
@@ -112,7 +112,7 @@ class PaymentController extends Controller
 
         $lg->insert($auth['email'], $auth['email'] . " registered " . $input['email'] . " as a new client", $auth['role_id']);
 
-        return redirect('eswift/payments/clients')->with('status', 'Client added successfully');
+        return redirect('eswift/clients')->with('status', 'Client added successfully');
 
     }
 
@@ -234,17 +234,19 @@ class PaymentController extends Controller
     {
         $p = new Payment();
 
-        $total_transfers = $p->get_transfers();
-        $total_amount = $p->get_total_amount_transferred();
-        $total_transfers_today = $p->get_today_transfers();
+        return redirect('eswift/payments/pending-transfers');
+
+//        $total_transfers = $p->get_transfers();
+//        $total_amount = $p->get_total_amount_transferred();
+//        $total_transfers_today = $p->get_today_transfers();
 //        $total_amount_today = $p->get_total_amount_today();
 
 //        return $total_amount_today;
 
-        return view('payments.dashboard')
-            ->with('total_transfers', $total_transfers)
-            ->with('total_amount', $total_amount)
-            ->with('total_transfers_today', count($total_transfers_today));
+//        return view('payments.dashboard')
+//            ->with('total_transfers', $total_transfers)
+//            ->with('total_amount', $total_amount)
+//            ->with('total_transfers_today', count($total_transfers_today));
 //            ->with('total_amount_today', $total_amount_today);
 
     }
@@ -419,7 +421,12 @@ class PaymentController extends Controller
 
         $registration_fee = ($fee_percentage[0]->rate / 100) * $data[0]->maximum;
 
-        return $registration_fee;
+        $twenty = $data[0]->maximum - $registration_fee;
+
+        $array = array($twenty, $registration_fee);
+
+        return $array;
+
     }
 
     private function process_telephone($telephone)

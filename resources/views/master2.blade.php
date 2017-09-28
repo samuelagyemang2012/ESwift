@@ -340,21 +340,21 @@
                 </div>
             </div>
 
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
+            {{--<form action="#" method="get" class="sidebar-form">--}}
+            {{--<div class="input-group">--}}
+            {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+            {{--<span class="input-group-btn">--}}
+            {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+            {{--</button>--}}
+            {{--</span>--}}
+            {{--</div>--}}
+            {{--</form>--}}
 
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
-                <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-television"></i>
-                        <span>Dashboard</span></a></li>
+                {{--                <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-television"></i>--}}
+                {{--<span>Dashboard</span></a></li>--}}
 
                 <li><a href="{{route('trans_clients')}}"><i class="fa fa-users"></i>
                         <span>Clients</span></a></li>
