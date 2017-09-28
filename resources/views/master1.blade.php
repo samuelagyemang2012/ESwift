@@ -33,6 +33,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.css"/>
 
     <script src="//code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
 
@@ -343,6 +345,9 @@
                 <li class="header"></li>
                 <li><a href="{{route('payments_home')}}"><i class="fa fa-television"></i> <span>Dashboard</span></a>
                 </li>
+
+                <li><a href="{{route('pay_clients')}}"><i class="fa fa-users"></i>
+                        <span>Clients</span></a></li>
 
                 <li class="active treeview">
                     <a href="#">

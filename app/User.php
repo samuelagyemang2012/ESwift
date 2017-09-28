@@ -37,7 +37,7 @@ class User extends Authenticatable
             ->update(['deleted_at' => $date]);
     }
 
-    public function update_client($id, $fname, $lastname, $email, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $package)
+    public function update_client($id, $fname, $lastname, $email, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $package)
     {
         DB::table('users')
             ->where('id', '=', $id)
@@ -45,7 +45,7 @@ class User extends Authenticatable
                 'first_name' => $fname,
                 'last_name' => $lastname,
                 'email' => $email,
-                'telephone' => $telephone,
+//                'telephone' => $telephone,
                 'employer' => $employer,
                 'employer_location' => $e_loc,
                 'residential_address' => $r_add,

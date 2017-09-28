@@ -39,7 +39,7 @@
 
                     <label>Name</label>
                     <div>
-                        <input style="" class="form-control" name="name" type="text" required value="{{$data->pname}}"
+                        <input style="" class="form-control" name="pname" type="text" required value="{{$data->pname}}"
                                value="{{old('name')}}">
                     </div>
                     <br>
@@ -53,8 +53,8 @@
 
                     <label>Maximum Amount</label>
                     <div>
-                        <input class="form-control" name="amount" type="number" required value="{{$data->maximum}}"
-                               value="{{old('amount')}}"
+                        <input class="form-control" name="maximum" type="number" required value="{{$data->maximum}}"
+                               value="{{old('maximum')}}"
                                min="100">
                     </div>
                     <br>

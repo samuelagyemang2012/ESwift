@@ -18,6 +18,7 @@ Route::get('', function () {
 
 Route::get('ewsift/logout', 'HomeController@logout')->name('logout');
 
+
 //Super Admin
 Route::get('eswift/super_admin/login', 'SuperAdminController@show_login')->name('show_super_login');
 
@@ -176,7 +177,21 @@ Route::post('transactions_login', 'TransactionController@login')->name('transact
 
 Route::group(['middleware' => 'transactions'], function () {
 
+    Route::get('eswift/transactions/clients', 'HomeController@view_all_clients_trans')->name('trans_clients');
+
     Route::get('eswift/transactions/', 'TransactionController@index')->name('transactions_home');
+
+    Route::get('eswift/transactions/clients/add', 'TransactionController@t_show_add_client')->name('t_show_add_client');
+
+    Route::get('eswift/transactions/client/details/{id}', 'TransactionController@get_client_details')->name('t_client_details');
+
+    Route::get('eswift/transactions/edit/client/{id}', 'TransactionController@show_edit_client')->name('t_show_edit_client');
+
+    Route::post('t_edit_client/{id}', 'TransactionController@edit_client')->name('t_edit_client');
+
+    Route::get('eswift/transactions/delete_client/{id}/{telephone}', 'TransactionController@delete_client')->name('t_delete_client');
+
+    Route::post('t_add_client', 'TransactionController@add_client')->name('t_add_client');
 
     Route::get('eswift/transactions/pending-loans', 'TransactionController@get_pending_loans')->name('transactions_pending_loans');
 
@@ -200,7 +215,21 @@ Route::post('payments_login', 'PaymentController@login')->name('payments_login')
 
 Route::group(['middleware' => 'payments'], function () {
 
+    Route::get('eswift/payments/clients', 'HomeController@view_all_clients_pay')->name('pay_clients');
+
     Route::get('eswift/payments/', 'PaymentController@index')->name('payments_home');
+
+    Route::get('eswift/payments/clients/add', 'PaymentController@p_show_add_client')->name('p_show_add_client');
+
+    Route::get('eswift/payments/edit/client/{id}', 'PaymentController@show_edit_client')->name('p_show_edit_client');
+
+    Route::post('p_edit_client/{id}', 'PaymentController@edit_client')->name('p_edit_client');
+
+    Route::get('eswift/payments/delete_client/{id}/{telephone}', 'PaymentController@delete_client')->name('p_delete_client');
+
+    Route::post('p_add_client', 'PaymentController@add_client')->name('p_add_client');
+
+    Route::get('eswift/payments/client/details/{id}', 'PaymentController@get_client_details')->name('p_client_details');
 
     Route::get('eswift/payments/pending-transfers', 'PaymentController@get_pending_transfers')->name('pending_transfers');
 
@@ -213,4 +242,5 @@ Route::group(['middleware' => 'payments'], function () {
     Route::get('eswift/payments/logs', 'PaymentController@logs')->name('payments_log');
 
 });
+
 

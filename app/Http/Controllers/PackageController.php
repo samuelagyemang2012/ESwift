@@ -30,6 +30,14 @@ class PackageController extends Controller
         return view('packages.add_package');
     }
 
+    public function p_show_add_client()
+    {
+        $p = new Package();
+        $packages = $p->get_packages();
+
+        return view('admin.add_client')->with('packages', $packages);
+    }
+
     public function add_package(Request $request)
     {
 //        return $request;
@@ -39,22 +47,53 @@ class PackageController extends Controller
         $input = $request->all();
 
         $rules = [
-            'name' => 'required|min:2',
+            'pname' => 'required|min:2|unique:packages',
 //            'description' => 'min:5',
-            'amount' => 'required|numeric|max:999999'
+            'maximum' => 'required|numeric|unique:packages|max:999999'
+        ];
+
+        $messages = [
+            'pname.unique' => 'This package already exist',
+            'maximum.unique' => 'There is an existing package with this maximum amount',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $p = new Package;
+
+        $p->insert($input['pname'], $input['description'], $input['maximum']);
+
+//        Logs
+        $msg = $done_by['email'] . ' created a new package called ' . $input['pname'];
+        $l->insert($done_by['email'], $msg, '2');
+
+        return redirect('/eswift/packages')->with('status', 'Package added successfully');
+    }
+
+    public function edit_package(Request $request)
+    {
+        $l = new Log;
+        $done_by = Auth::user();
+
+        $input = $request->all();
+
+        $rules = [
+            'pname' => 'required|min:2',
+//            'description' => 'required|min:5',
+            'maximum' => 'required|numeric|max:999999'
         ];
 
         $this->validate($request, $rules);
 
         $p = new Package;
 
-        $p->insert($input['name'], $input['description'], $input['amount']);
+        $p->update_package($input['id'], $input['pname'], $input['description'], $input['maximum']);
 
-//        Logs
-        $msg = $done_by['email'] . ' created a new package called ' . $input['name'];
-        $l->insert($done_by['email'], $msg, '2');
+//        Log
+        $msg = $done_by['email'] . ' edited a package with id ' . $input['id'];
+        $l->insert($done_by['email'], $msg, 2);
 
-        return redirect('/eswift/packages')->with('status', 'Package added successfully');
+        return redirect('/eswift/packages')->with('status', 'Package updated successfully');
     }
 
     public function delete_package($id)
@@ -84,29 +123,4 @@ class PackageController extends Controller
             ->with('data', $data[0]);
     }
 
-    public function edit_package(Request $request)
-    {
-        $l = new Log;
-        $done_by = Auth::user();
-
-        $input = $request->all();
-
-        $rules = [
-            'name' => 'required|min:2',
-//            'description' => 'required|min:5',
-            'amount' => 'required|numeric|max:999999'
-        ];
-
-        $this->validate($request, $rules);
-
-        $p = new Package;
-
-        $p->update_package($input['id'], $input['name'], $input['description'], $input['amount']);
-
-//        Log
-        $msg = $done_by['email'] . ' edited a package with id ' . $input['id'];
-        $l->insert($done_by['email'], $msg, 2);
-
-        return redirect('/eswift/packages')->with('status', 'Package updated successfully');
-    }
 }

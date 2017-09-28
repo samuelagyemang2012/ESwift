@@ -65,6 +65,22 @@
         <div class="container">
             <div class="row">
 
+                <div class="col-sm-2">
+                    {{----}}
+                    {{----}}
+                    {{--<label>Select a New Package</label><br>--}}
+                    {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
+                    {{--<div>--}}
+                    {{--<select class="form-control" name="packages" id="pkg" onchange="get_balance()">--}}
+                    {{--<option></option>--}}
+                    {{--@foreach($packages as $p)--}}
+                    {{--<option value="{{$p->pname}}">{{$p->pname}}</option>--}}
+                    {{--@endforeach--}}
+                    {{--</select>--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
+                </div>
+
                 <div class="col-sm-4">
 
                     <label>First Name</label>
@@ -90,14 +106,33 @@
                     </div>
                     <br>
 
-                    <label>Telephone</label>
+                    <label>Monthly Salary</label>
                     <div>
-                        <input onblur="process_tel()" class="form-control" name="telephone" type="tel" required
-                               value="{{$data->telephone}}"
-                               value="{{old('telephone')}}"
-                               min="10" id="tel">
+                        <input class="form-control" name="salary" type="number" required
+                               value="{{$data->monthly_salary}}"
+                               value="{{old('salary')}}"
+                               min="1">
                     </div>
                     <br>
+
+                    <label>Mobile Money Account</label>
+                    <div>
+                        <input readonly class="form-control" name="mobile_money_account"
+                               value="{{$data->mobile_money_account}}"
+                               value="{{old('mobile_money_account')}}" id="mobile_money_account">
+                    </div>
+                    <br>
+
+                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+
+                    {{--<label>Telephone</label>--}}
+                    {{--<div>--}}
+                    {{--<input onblur="process_tel()" class="form-control" name="telephone" type="tel" required--}}
+                    {{--value="{{$data->telephone}}"--}}
+                    {{--value="{{old('telephone')}}"--}}
+                    {{--min="10" id="tel">--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
 
                 </div>
 
@@ -132,29 +167,6 @@
                     </div>
                     <br>
 
-                </div>
-
-                <div class="col-sm-4">
-
-                    <label>Monthly Salary</label>
-                    <div>
-                        <input class="form-control" name="salary" type="number" required
-                               value="{{$data->monthly_salary}}"
-                               value="{{old('salary')}}"
-                               min="1">
-                    </div>
-                    <br>
-
-
-                    <label>Mobile Money Account</label>
-                    <div>
-                        <input readonly class="form-control" name="mobile_money_account"
-                               value="{{$data->mobile_money_account}}"
-                               value="{{old('mobile_money_account')}}" id="mobile_money_account">
-                    </div>
-                    <br>
-
-
                     <label>Current Package</label>
                     <div>
                         <input readonly class="form-control" name="package"
@@ -163,20 +175,26 @@
                     </div>
                     <br>
 
-                    {{--<label>Select a New Package</label><br>--}}
-                    {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
-                    {{--<div>--}}
-                    {{--<select class="form-control" name="packages" id="pkg" onchange="get_balance()">--}}
-                    {{--<option></option>--}}
-                    {{--@foreach($packages as $p)--}}
-                    {{--<option value="{{$p->pname}}">{{$p->pname}}</option>--}}
-                    {{--@endforeach--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
 
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </div>
+
+                {{--<div class="col-sm-2">--}}
+
+
+                {{--<label>Select a New Package</label><br>--}}
+                {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
+                {{--<div>--}}
+                {{--<select class="form-control" name="packages" id="pkg" onchange="get_balance()">--}}
+                {{--<option></option>--}}
+                {{--@foreach($packages as $p)--}}
+                {{--<option value="{{$p->pname}}">{{$p->pname}}</option>--}}
+                {{--@endforeach--}}
+                {{--</select>--}}
+                {{--</div>--}}
+                {{--<br>--}}
+
+
+                {{--</div>--}}
 
             </div>
         </div>

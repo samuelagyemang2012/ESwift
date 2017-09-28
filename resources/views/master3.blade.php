@@ -30,8 +30,6 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('css/bootstrap3-wysihtml5.min.css')}}css">
 
-    {{--    <link rel="stylesheet" href="{{asset('css/.css')}}">--}}
-
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.css"/>
 
     <script src="//code.jquery.com/jquery.js"></script>

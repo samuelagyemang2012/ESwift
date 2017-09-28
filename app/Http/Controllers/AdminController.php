@@ -154,8 +154,6 @@ class AdminController extends Controller
         $p = new Package();
         $packages = $p->get_packages();
 
-//        return $packages;
-
         return view('admin.add_client')->with('packages', $packages);
     }
 
@@ -381,7 +379,7 @@ class AdminController extends Controller
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
             'residential_address' => 'required|min:2',
-            'telephone' => 'required|min:12|max:12|unique:users,telephone,' . $id,
+//            'telephone' => 'required|min:12|max:12|unique:users,telephone,' . $id,
             'salary' => 'required',
             'mobile_money_account' => 'required',
         ];
@@ -411,10 +409,10 @@ class AdminController extends Controller
             $file_name = $carthograph[0]->carthograph;
         }
 
-        $ntelephone = $this->process_telephone($input['telephone']);
+//        $ntelephone = $this->process_telephone($input['telephone']);
 
-        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package']);
-        $a->update_account_name($id, $ntelephone);
+        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package']);
+//        $a->update_account_name($id, $ntelephone);
         $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
 
         return redirect('eswift/clients')->with('status', 'Client updated successfully');

@@ -51,6 +51,38 @@ class HomeController extends Controller
         return view('data');
     }
 
+    public function view_all_clients_trans()
+    {
+        $user = new User;
+
+//        return $user->get_clients();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $user->get_clients();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('transactions.clients');
+    }
+
+    public function view_all_clients_pay()
+    {
+        $user = new User;
+
+//        return $user->get_clients();
+
+        if (request()->isXmlHttpRequest()) {
+
+            $data = $user->get_clients();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('payments.clients');
+    }
+
     public function logout()
     {
         Auth::logout();
