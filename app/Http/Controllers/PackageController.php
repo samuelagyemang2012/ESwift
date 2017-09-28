@@ -41,7 +41,7 @@ class PackageController extends Controller
         $rules = [
             'name' => 'required|min:2',
 //            'description' => 'min:5',
-            'amount' => 'required|numeric'
+            'amount' => 'required|numeric|max:999999'
         ];
 
         $this->validate($request, $rules);
@@ -94,7 +94,7 @@ class PackageController extends Controller
         $rules = [
             'name' => 'required|min:2',
 //            'description' => 'required|min:5',
-            'amount' => 'required'
+            'amount' => 'required|numeric|max:999999'
         ];
 
         $this->validate($request, $rules);
