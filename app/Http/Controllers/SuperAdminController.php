@@ -125,5 +125,18 @@ class SuperAdminController extends Controller
         return redirect('eswift/admins')->with('status', 'New Administrator added successfully');
     }
 
+    public function logs()
+    {
+        $l = new Log;
+
+        if (request()->isXmlHttpRequest()) {
+            $data = $l->get_super_admin_logs();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('super_admin.logs');
+    }
+
 
 }

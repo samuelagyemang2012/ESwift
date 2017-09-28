@@ -32,6 +32,8 @@ Route::group(['middleware' => 'superadmin'], function () {
 
     Route::get('eswift/admins', 'SuperAdminController@get_admins')->name('get_admins');
 
+    Route::get('eswift/super_admin/logs', 'SuperAdminController@logs')->name('superadmin_logs');
+
     Route::post('edit_rate', 'SuperAdminController@edit_rate')->name('edit_rate');
 
     Route::get('eswift/add_admin', 'SuperAdminController@show_admin')->name('show_add_admins');

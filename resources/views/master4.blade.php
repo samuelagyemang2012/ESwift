@@ -351,8 +351,8 @@
             <ul class="sidebar-menu">
 
                 <li class="header"></li>
-{{--                <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-television"></i>--}}
-                        {{--<span>Dashboard</span></a></li>--}}
+                {{--                <li><a href="{{route('transactions_pending_loans')}}"><i class="fa fa-television"></i>--}}
+                {{--<span>Dashboard</span></a></li>--}}
 
                 <li class="active treeview">
                     <a href="{{route('super_admin_home')}}">
@@ -373,7 +373,7 @@
                 </li>
 
                 <li class="active treeview">
-                    <a href="{{route('transactions_log')}}">
+                    <a href="{{route('superadmin_logs')}}">
                         <i class="fa fa-archive"></i> <span>System Logs</span>
                     </a>
                 </li>
