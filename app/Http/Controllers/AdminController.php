@@ -659,10 +659,17 @@ class AdminController extends Controller
         $monthly = $total_debt / $period;
         $monthly_installment = round($monthly, 1);
         $next_month = date('jS F Y', strtotime('+ 1 month'));
+        $two_weeks = date('jS F Y', strtotime('+ 2 weeks'));
 
-        $message = 'Your request for an amount of GHC ' . $amount . ' as loan for ' . $period . ' months from your ' . $package . ' package has been successful. Your debt is now GHC ' . $total_debt . '. You are required to pay an amount of GHC ' . $monthly_installment . ' each month starting from ' . $next_month;
+        if ($period == 1) {
+            $message = 'Your request for an amount of GHC ' . $amount . ' as loan for ' . $period . ' month from your ' . $package . ' package has been successful. Your debt is now GHC ' . $total_debt . '. You are required to pay an amount of GHC ' . round(($monthly_installment / 2), 2) . ' in 2 weeks starting from ' . $two_weeks;
+            return $message;
+        } else {
 
-        return $message;
+            $message = 'Your request for an amount of GHC ' . $amount . ' as loan for ' . $period . ' months from your ' . $package . ' package has been successful. Your debt is now GHC ' . $total_debt . '. You are required to pay an amount of GHC ' . $monthly_installment . ' each month starting from ' . $next_month;
+
+            return $message;
+        }
     }
 
     public function show_add_payment()
