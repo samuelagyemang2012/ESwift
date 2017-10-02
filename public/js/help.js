@@ -143,7 +143,7 @@ function del_admin(id) {
             {},
             function (response) {
                 if (response.code == 1) {
-                    alert("Admin deleted");
+                    alert("Administrator deleted");
                     window.location.reload();
                 }
             }
