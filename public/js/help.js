@@ -135,15 +135,15 @@ function del_client(id) {
 }
 
 function del_admin(id) {
-    var response = confirm("Are you sure you want to delete this client?");
+    var response = confirm("Are you sure you want to delete this administrator?");
 
     if (response == true) {
         //alert("id: "+id);
-        $.post('http://eswift.npontu.com/api/delete_client/' + id,
+        $.post('http://eswift.npontu.com/api/delete_admin/' + id,
             {},
             function (response) {
                 if (response.code == 1) {
-                    alert("Client deleted");
+                    alert("Admin deleted");
                     window.location.reload();
                 }
             }
