@@ -127,7 +127,7 @@ function del_client(id) {
             function (response) {
                 if (response.code == 1) {
                     alert("Client deleted");
-                    window.location.reload()
+                    window.location.reload();
                 }
             }
         );
