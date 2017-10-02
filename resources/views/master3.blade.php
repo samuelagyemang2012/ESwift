@@ -37,6 +37,8 @@
 
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
+    {{--    <script src="{{asset('js/bootbox.min.js')}}"></script>--}}
+
     <script src=""></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

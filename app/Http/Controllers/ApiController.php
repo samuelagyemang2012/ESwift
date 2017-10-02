@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use App\Package;
 use App\Rate;
+use App\User;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -22,6 +24,25 @@ class ApiController extends Controller
 
         return response()->json(['code' => 1, 'minimum' => $registration_fee]);
     }
+
+    public function delete_client($id)
+    {
+        $u = new User();
+        $a = new Account();
+        $date = date("Y-m-d H:i:s");
+
+        $u->remove($id, $date);
+        $a->delete_account($id, $date);
+
+        return response()->json(['code' => 1, 'action' => 'done']);
+
+//        return redirect('eswift/clients')->with('status', 'Client deleted');
+    }
+
+//    public function delete_client()
+//    {
+//
+//    }
 
 //    public function get_minimum_balance($name)
 //    {

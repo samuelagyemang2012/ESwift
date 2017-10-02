@@ -821,7 +821,6 @@ class AdminController extends Controller
 
     }
 
-
     private function calculate_total_debt($amount, $loan_period)
     {
         $r = new Rate();
