@@ -118,7 +118,24 @@ function get_balance() {
 
 function del_client(id) {
 
-    var response = confirm("Are you sure you want to delete this client?")
+    var response = confirm("Are you sure you want to delete this client?");
+
+    if (response == true) {
+        //alert("id: "+id);
+        $.post('http://eswift.npontu.com/api/delete_client/' + id,
+            {},
+            function (response) {
+                if (response.code == 1) {
+                    alert("Client deleted");
+                    window.location.reload();
+                }
+            }
+        );
+    }
+}
+
+function del_admin(id) {
+    var response = confirm("Are you sure you want to delete this client?");
 
     if (response == true) {
         //alert("id: "+id);

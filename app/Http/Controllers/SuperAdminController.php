@@ -116,13 +116,47 @@ class SuperAdminController extends Controller
 
         $tel = uniqid();
 
-        $u->insert($input['first_name'], "n/a", $input['last_name'], $input['email'], $npass, $tel, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 2, 'n/a');
+        $u->insert($input['first_name'], "n/a", $input['last_name'], $input['email'], $npass, $tel, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 2, 'n/a', 'n/a');
 
 //        Log
         $msg = $done_by['email'] . ' added ' . $input['email'] . ' as a new admin';
         $l->insert($done_by['email'], $msg, 2);
 
         return redirect('eswift/admins')->with('status', 'New Administrator added successfully');
+    }
+
+    public function show_edit_admin($id)
+    {
+        $u = new User;
+
+        $data = $u->get_admin($id);
+
+        return view('super_admin.edit_admin')
+            ->with('data', $data[0]);
+    }
+
+    public function edit_admin($id, Request $request)
+    {
+        $input = $request->all();
+
+        $u = new User;
+        $l = new Log;
+        $done_by = Auth::user();
+
+        $rules = [
+            'last_name' => 'required|min:2',
+            'first_name' => 'required|min:2',
+            'email' => 'required|email|unique:users,email,' . $id,
+        ];
+
+        $this->validate($request, $rules);
+
+        $u->edit_admin($id, $input['first_name'], $input['last_name'], $input['email']);
+
+        $l->insert($done_by['email'], $done_by['email'] . " edited the details of amin with id " . $id, 5);
+
+        return redirect('eswift/admins')->with('status', 'Administrator updated successfully');
+
     }
 
     public function logs()

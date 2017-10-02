@@ -36,27 +36,15 @@ class ApiController extends Controller
 
         return response()->json(['code' => 1, 'action' => 'done']);
 
-//        return redirect('eswift/clients')->with('status', 'Client deleted');
     }
 
-//    public function delete_client()
-//    {
-//
-//    }
+    public function delete_admin($id)
+    {
+        $u = new User();
+        $date = date("Y-m-d H:i:s");
 
-//    public function get_minimum_balance($name)
-//    {
-//        $r = new Rate();
-//
-//        $fee_percentage = $r->get_rate(3);
-//
-//        $p = new Package();
-//
-//        $data = $p->get_maximum($name);
-//
-//        $registration_fee = ($fee_percentage[0]->rate / 100) * $data[0]->maximum;
-//
-//        return $registration_fee;
-//    }
+        $u->remove($id, $date);
 
+        return response()->json(['code' => 1, 'action' => 'done']);
+    }
 }

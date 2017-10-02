@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('get_minimum/{name}', 'ApiController@get_minimum_balance');
 
 Route::post('delete_client/{id}', 'ApiController@delete_client');
+
+Route::post('delete_admin/{id}', 'ApiController@delete_admin');

@@ -34,11 +34,17 @@ Route::group(['middleware' => 'superadmin'], function () {
 
     Route::get('eswift/super_admin/logs', 'SuperAdminController@logs')->name('superadmin_logs');
 
+    Route::get('eswift/super_admin/edit/{id}', 'SuperAdminController@show_edit_admin')->name('edit_admin');
+
     Route::post('edit_rate', 'SuperAdminController@edit_rate')->name('edit_rate');
 
     Route::get('eswift/add_admin', 'SuperAdminController@show_admin')->name('show_add_admins');
 
     Route::post('add_admin', 'SuperAdminController@add_admin')->name('add_admin');
+
+    Route::post('edit_admin/{id}', 'SuperAdminController@edit_admin')->name('edit_admin');
+
+
 });
 
 //------------------------------------------------------------------------------------------------------

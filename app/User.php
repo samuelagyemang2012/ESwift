@@ -193,11 +193,26 @@ class User extends Authenticatable
             ->get();
     }
 
-//    public function is_deleted_account($telephone)
-//    {
-//        return DB::table('users')
-//            ->where('telephone','=',$telephone)
-//            ->whereNotNull()
-//    }
+    public function get_admin($id)
+    {
+        return DB::table('users')
+//            ->join('accounts', 'accounts.telephone', '=', 'users.telephone')
+//            ->select('id', 'first_name', 'last_name', 'telephone', 'employer', 'employer_location', 'residential_address', 'monthly_salary', 'mobile_money_account')
+//            ->where('users.role_id', '=', 1)
+            ->where('users.id', '=', $id)
+//            ->whereNull('users.deleted_at')
+            ->get();
+    }
+
+    public function edit_admin($id, $fname, $lname, $email)
+    {
+        DB::table('users')
+            ->where('id', '=', $id)
+            ->update([
+                'first_name' => $fname,
+                'last_name' => $lname,
+                'email' => $email,
+            ]);
+    }
 
 }

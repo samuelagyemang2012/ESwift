@@ -18,7 +18,9 @@
     </div>
 
     <div class="container">
-        <center><h3 style="color: #3C8DBC">Admins</h3><hr></center>
+        <center><h3 style="color: #3C8DBC">Admins</h3>
+            <hr>
+        </center>
     </div>
     <br>
 
@@ -35,7 +37,7 @@
             <thead>
             {{--<th>ID</th>--}}
             <th>First Name</th>
-            <th>Last Name (%)</th>
+            <th>Last Name</th>
             <th>Email</th>
             <th></th>
             {{--<th>Status</th>--}}
@@ -60,22 +62,25 @@
 //                        {data: 'amount', name: 'amount'},
 //                        {data: 'sname',name:'sname'},
 //                        {data: 'created_at', name: 'created_at'},
-//                        {
-//                            data: '6', name: 'action', render: function (data, type, full, meta) {
-//
-//                            return '<div class="btn-group">' +
-//                                    '<a class="btn btn-sm btn-primary" href="rate/' + full['id'] + '">' +
-//                                    'Edit' +
+                        {
+                            data: '6', name: 'action', render: function (data, type, full, meta) {
+
+                            return '<div class="btn-group">' +
+                                    '<a class="btn btn-sm btn-primary" href="super_admin/edit/' + full['id'] + '">' +
+                                    'Edit' +
+                                    '</a>' +
+                                    '<a class="btn btn-sm btn-danger" onclick="del_admin(' + full['id'] + ')">' +
+                                    'Delete' +
+                                    '</a>' +
+//                                    '<a title="approve" class="btn btn-sm btn-success" href="/transactions/approve/' + full['id'] + '/'+ full['amount'] +'/'+ full['user_id']+'/'+full['id']+'/'+full['telephone'] +'">' +
+//                                    '<i class="fa fa-check"></i>' +
 //                                    '</a>' +
-////                                    '<a title="approve" class="btn btn-sm btn-success" href="/transactions/approve/' + full['id'] + '/'+ full['amount'] +'/'+ full['user_id']+'/'+full['id']+'/'+full['telephone'] +'">' +
-////                                    '<i class="fa fa-check"></i>' +
-////                                    '</a>' +
-////                                    '<a title="refuse" class="btn btn-sm btn-danger" href="/transactions/refuse/' + full['id'] + '">' +
-////                                    '<i class="fa fa-close"></i>' +
-////                                    '</a>' +
-//                                    '</div>';
-//                        }
-//                        }
+//                                    '<a title="refuse" class="btn btn-sm btn-danger" href="/transactions/refuse/' + full['id'] + '">' +
+//                                    '<i class="fa fa-close"></i>' +
+//                                    '</a>' +
+                                    '</div>';
+                        }
+                        }
                     ]
                 });
             });
