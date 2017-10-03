@@ -27,7 +27,9 @@
                         {data: 'telephone', name: 'telephone'},
                         {data: 'message', name: 'message'},
                         {data: 'updated_at', name: 'updated_at'}
-                    ]
+                    ],
+
+                    "order": [[3, "desc"]]
 
                 });
             });
