@@ -28,7 +28,7 @@ class Log extends Model
     {
         return DB::table('logs')
             ->select('by', 'message', 'created_at')
-            ->where('role_id', '=', 2)
+            ->where('role_id', '<', 5)
             ->orderBy('created_at', 'desc')
             ->get();
     }
