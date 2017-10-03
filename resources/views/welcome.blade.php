@@ -72,16 +72,25 @@
         </div>
     @endif
 
+    {{--    <img src="{{asset('/uploads/mmfc_logo.png')}}">--}}
+
     <div class="content">
+
+        <div class="">
+            <img src="{{asset('/uploads/mmfc_logo.png')}}">
+        </div>
+
+        <br><br><br>
         <div class="title m-b-md" style="color: #3c8dbc">
             ESWIFT
         </div>
         <br>
 
         <div class="title m-b-md" style=" color: #3c8dbc; font-size: 30px">
-            MultiMoney Microfinance Company Limited
+            {{--MultiMoney Microfinance Company Limited--}}
         </div>
-        <br><br>
+        <br>
+        {{--<br><br>--}}
 
         <div class="links" style="">
             <a></a>
