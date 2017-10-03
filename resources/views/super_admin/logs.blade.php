@@ -25,7 +25,9 @@
                         {data: 'by', name: 'by'},
                         {data: 'message', name: 'message'},
                         {data: 'created_at', name: 'created_at'}
-                    ]
+                    ],
+
+                    "order": [[2, "desc"]]
 
                 });
             });
