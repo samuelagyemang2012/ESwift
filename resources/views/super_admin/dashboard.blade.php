@@ -22,7 +22,7 @@
         <hr>
         <table class="table" id="mytable">
             <thead>
-            {{--<th>ID</th>--}}
+            <th>ID</th>
             <th>Name</th>
             <th>Rate (%)</th>
             <th>Last Changed</th>
@@ -42,7 +42,7 @@
                     ajax: '{{route('super_admin_home')}}',
 
                     columns: [
-//                        {data: 'id', name: 'id'},
+                        {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
                         {data: 'rate', name: 'rate'},
                         {data: 'updated_at', name: 'updated_at'},
