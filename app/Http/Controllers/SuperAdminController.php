@@ -62,6 +62,8 @@ class SuperAdminController extends Controller
     public function edit_rate(Request $request)
     {
         $r = new Rate();
+        $l = new Log;
+        $done_by = Auth::user();
 
         $input = $request->all();
 
@@ -72,6 +74,8 @@ class SuperAdminController extends Controller
         $this->validate($request, $rule);
 
         $r->update_rate($input['id'], $input['rate']);
+
+        $l->insert($done_by['email'], $done_by['email'] . " edited rate with id " . $input['id'] . " to " . $input['rate'] . "%", 5);
 
         return redirect('eswift/superadmin')->with('status', 'Rate updated successfully');
     }
@@ -171,6 +175,5 @@ class SuperAdminController extends Controller
 
         return view('super_admin.logs');
     }
-
 
 }
