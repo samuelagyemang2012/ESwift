@@ -899,8 +899,6 @@ class AdminController extends Controller
     {
         $n = new Notification();
 
-//        return $data = $n->unread();
-
         if (request()->isXmlHttpRequest()) {
             $data = $n->unread();
 
