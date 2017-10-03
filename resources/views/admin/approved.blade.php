@@ -28,6 +28,8 @@
                         {data: 'last_name', name: 'last_name'},
                         {data: 'amount', name: 'amount'}
                     ]
+
+//                    "order": [[3, "desc"]]
                 });
             });
         </script>

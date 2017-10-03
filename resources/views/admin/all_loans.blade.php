@@ -32,7 +32,7 @@
                         {data: 'last_name', name: 'last_name'},
                         {data: 'telephone', name: 'telephone'},
                         {data: 'amount', name: 'amount'},
-                        {data: 'sname',name:'sname'},
+                        {data: 'sname', name: 'sname'},
                         {data: 'created_at', name: 'created_at'},
                         {
                             data: '6', name: 'action', render: function (data, type, full, meta) {
@@ -50,7 +50,9 @@
                                     '</div>';
                         }
                         }
-                    ]
+                    ],
+
+                    "order": [[6, "asc"]]
                 });
             });
         </script>

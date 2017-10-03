@@ -48,7 +48,9 @@
 //                        return '<a class="btn btn-sm btn-primary" href="debt/' + full['loan_id'] + '">Details</a>';
 //                    }
 //                    }
-                ]
+                ],
+
+                "order": [[6, "desc"]]
             });
         })
         ;

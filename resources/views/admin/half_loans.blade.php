@@ -52,7 +52,9 @@
                             return '<div><a class="btn btn-sm btn-primary" href="/eswift/account_deductions/' + full['user_id'] + '">Go To Account</a></div>';
                         }
                         }
-                    ]
+                    ],
+
+                    "order": [[4, "desc"]]
                 });
             })
             ;
