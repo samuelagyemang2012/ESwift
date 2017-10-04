@@ -150,3 +150,16 @@ function del_admin(id) {
         );
     }
 }
+
+function port() {
+
+    if (document.getElementById('ported').checked) {
+
+        document.getElementById("mobile_money_account").readOnly = false;
+
+    } else {
+
+        document.getElementById("mobile_money_account").readOnly = true;
+
+    }
+}

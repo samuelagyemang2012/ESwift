@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="col-2">
+        <center><h3 style="color:#3C8DBC">Pending Loans</h3>
+            <hr>
+        </center>
         <table class="table" id="mytable">
             <thead>
             <th>ID</th>
@@ -27,7 +30,6 @@
                         {data: 'id', name: 'id'},
                         {data: 'first_name', name: 'first_name'},
                         {data: 'last_name', name: 'last_name'},
-//                        {data: 'pname', name: 'pname'},
                         {data: 'amount', name: 'amount'},
                         {data: 'mobile_money_account', name: 'mobile_money_account'},
                         {data: 'created_at', name: 'created_at'},

@@ -12,7 +12,8 @@
             <div>
                 {{--<h3>Carthograph </h3>--}}
                 <hr>
-                <img src="/uploads/{{$data->picture}}" width="200px" height="200px"><hr>
+                <img src="/uploads/{{$data->picture}}" width="200px" height="200px">
+                <hr>
             </div>
             <br>
 
@@ -89,6 +90,21 @@
                 </thead>
 
                 <thead>
+                <th>Gender</th>
+                <td style="color: #3c8dbc">{{$data->gender}}</td>
+                </thead>
+
+                <thead>
+                <th>Marital Status</th>
+                <td style="color: #3c8dbc">{{$data->marital_status}}</td>
+                </thead>
+
+                <thead>
+                <th>Date of Birth</th>
+                <td style="color: #3c8dbc">{{$b_date}}</td>
+                </thead>
+
+                <thead>
                 <th>Residential Address</th>
                 <td style="color: #3c8dbc">{{$data->residential_address}}</td>
                 </thead>
@@ -106,6 +122,11 @@
                 <thead>
                 <th>Salary</th>
                 <td style="color: #3c8dbc">GHC {{$data->monthly_salary}}</td>
+                </thead>
+
+                <thead>
+                <th>Interest Rate (%)</th>
+                <td style="color: #3c8dbc">{{$data->interest_rate}}</td>
                 </thead>
 
                 <thead>

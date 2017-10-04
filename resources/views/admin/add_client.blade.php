@@ -77,28 +77,28 @@
 
                 {{--<div class="col-sm-1"></div>--}}
 
-                <div class="col-sm-2">
-                    <label>First Name</label>
+                <div class="col-sm-3">
+                    <label>First Name</label><b style="color: red;">*</b>
                     <div>
                         <input class="form-control" name="first_name" type="text" required value="{{old('first_name')}}"
                                min="2">
                     </div>
                     <br>
 
-                    <label>Last Name</label>
+                    <label>Last Name</label><b style="color: red;">*</b>
                     <div>
                         <input class="form-control" name="last_name" type="text" required value="{{old('last_name')}}"
                                min="2">
                     </div>
                     <br>
 
-                    <label>Email</label>
+                    <label>Email</label><b style="color: red;">*</b>
                     <div>
                         <input class="form-control" name="email" type="email" required value="{{old('email')}}">
                     </div>
                     <br>
 
-                    <label>Telephone</label><br>
+                    <label>Telephone</label><b style="color: red;">*</b><br>
                     <span style="color: cornflowerblue"><b id="telplus"></b></span>
                     <div>
                         <input id="tel" class="form-control" name="telephone" type="tel" onblur="process_tel()" required
@@ -107,63 +107,78 @@
                     </div>
                     <br>
 
-                    <label>Mobile Money Account</label>
+                    <label>Mobile Money Account</label><b style="color: red;">*</b>
                     <div>
                         <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly
                                value="{{old('mobile_money_account')}}">
                     </div>
-                    <br>
-
-                </div>
-
-                <div class="col-sm-2">
-
-                    <label>Employer</label>
-                    <div>
-                        <input class="form-control" name="employer" type="text" required value="{{old('employer')}}"
-                               min="2">
-                    </div>
-                    <br>
-
-                    <label>Employer Location</label>
-                    <div>
-                        <input class="form-control" name="employer_location" type="text" required
-                               value="{{old('employer_location')}}" min="2">
-                    </div>
-                    <br>
-
-                    <label>Residential Address</label>
-                    <div>
-                        <input class="form-control" name="residential_address" type="text" required
-                               value="{{old('residential_address')}}" min="2">
-                    </div>
-                    <br>
-
-                    <label>Carthograph</label>
-                    <div>
-                        <input class="form-control" name="carthograph" type="file" required
-                               value="{{old('carthograph')}}">
-                    </div>
+                    <input id="ported" type="checkbox" onclick="port()">&nbsp;<label>Ported</label>
                     <br>
 
                 </div>
 
                 <div class="col-sm-3">
 
-                    <label>Multi-Money Savings Acount Number</label><br>
+                    <label>Employer</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="employer" type="text" required value="{{old('employer')}}"
+                               min="2">
+                    </div>
+                    <br>
+
+                    <label>Employer Location</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="employer_location" type="text" required
+                               value="{{old('employer_location')}}" min="2">
+                    </div>
+                    <br>
+
+                    <label>Residential Address</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="residential_address" type="text" required
+                               value="{{old('residential_address')}}" min="2">
+                    </div>
+                    <br>
+
+                    <label>Date of Birth</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="date_of_birth" type="date" required
+                               value="{{old('date_of_birth')}}" min="8">
+                    </div>
+                    <br>
+
+                    <div>
+                        <label>Gender</label><b style="color: red;">*</b><br>
+                        <select class="form-control" name="gender" required>
+                            <option></option>
+                            <option value="MALE">MALE</option>
+                            <option value="FEMALE">FEMALE</option>
+                            {{--<option value="TRANSGENDER_MALE">TRANSGENDER MALE</option>--}}
+                            {{--<option value="TRANSGENDER_FEMALE">TRANSGENDER FEMALE</option>--}}
+                        </select>
+                    </div>
+                    <br>
+
+                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                </div>
+
+                <div class="col-sm-3">
+
+                    <label>Carthograph</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="carthograph" type="file" required
+                               value="{{old('carthograph')}}">
+                    </div>
+                    <br>
+
+                    <label>Multi-Money Savings Acount Number</label><b style="color: red;">*</b><br>
                     <div>
                         <input class="form-control" name="multimoney_account_number"
                                value="{{old('multimoney_account_number')}}" type="text" required>
                     </div>
                     <br>
 
-                    {{--<label>20% of Multi-Money Savings Account</label><br>--}}
-                    {{--<div>--}}
-                    {{--<input class="form-control" name="percentage" value="{{old('percentage')}}" type="text" required>--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
-
-                    <label>Select a Package</label><br>
+                    <label>Select a Package</label><b style="color: red;">*</b><br>
                     <span style="color: cornflowerblue"><b id="package"></b></span>
 
                     <div>
@@ -178,36 +193,56 @@
                     </div>
                     <br>
 
-                    <label>Eswift Password</label>
-                    <div>
-                        <input class="form-control" name="password" type="password" required min="6">
-                    </div>
-                    <br>
-
-                    <label>Confirm Eswift Password</label>
-                    <div>
-                        <input class="form-control" name="confirm_password" type="password" required>
-                    </div>
-                    <br>
-
-                </div>
-
-                <div class="col-sm-3">
-                    <label>Picture</label>
+                    <label>Picture</label><b style="color: red;">*</b>
                     <div>
                         <input class="form-control" name="picture" type="file" required
                                value="{{old('picture')}}">
                     </div>
                     <br>
 
-                    <label>Monthly Salary</label>
+                    <label>Interest rate (%)</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="interest_rate" type="number" min="1" max="100" required
+                               value="{{old('interest_rate')}}">
+                    </div>
+                    <br>
+
+
+                    {{--<label>Eswift Password</label><b style="color: red;">*</b>--}}
+                    {{--<div>--}}
+                    {{--<input class="form-control" name="password" type="password" required min="6">--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
+
+                    {{--<label>Confirm Eswift Password</label><b style="color: red;">*</b>--}}
+                    {{--<div>--}}
+                    {{--<input class="form-control" name="confirm_password" type="password" required>--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
+
+                </div>
+
+                <div class="col-sm-2">
+
+                    <div>
+                        <label>Marital Status</label><b style="color: red;">*</b><br>
+                        <select class="form-control" name="marital_status" required>
+                            <option></option>
+                            <option value="SINGLE">SINGLE</option>
+                            <option value="MARRIED">MARRIED</option>
+                            <option value="DIVORCED">DIVORCED</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <label>Monthly Salary</label><b style="color: red;">*</b>
                     <div>
                         <input class="form-control" name="salary" type="number" required value="{{old('salary')}}"
                                min="1">
                     </div>
                     <br>
 
-                    <label>Secret Question</label><br>
+                    <label>Secret Question</label><b style="color: red;">*</b><br>
                     <div>
                         <select class="form-control" name="secret_question" required>
                             <option></option>
@@ -228,12 +263,24 @@
                     </div>
                     <br>
 
-                    <label>Secret Answer</label><br>
+                    <label>Secret Answer</label><b style="color: red;">*</b><br>
                     <div>
                         <input class="form-control" name="secret_answer" type="text" required>
                     </div>
                     <br>
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+
+                    <label>Eswift Password</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="password" type="password" required min="6">
+                    </div>
+                    <br>
+
+                    <label>Confirm Eswift Password</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="confirm_password" type="password" required>
+                    </div>
+                    <br>
+
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
-    public function insert($fname, $mman, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package, $pic)
+    public function insert($fname, $mman, $lastname, $email, $password, $telephone, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $role, $package, $pic, $gender, $dob, $ms, $interest_rate)
     {
         $id = DB::table('users')->insertGetId(
             ['multimoney_account_number' => $mman,
@@ -25,7 +25,11 @@ class User extends Authenticatable
                 'mobile_money_account' => $mmacount,
                 'role_id' => $role,
                 'package' => $package,
-                'picture' => $pic
+                'picture' => $pic,
+                'gender' => $gender,
+                'date_of_birth' => $dob,
+                'marital_status' => $ms,
+                'interest_rate' => $interest_rate
             ]);
 
         return $id;
@@ -38,7 +42,7 @@ class User extends Authenticatable
             ->update(['deleted_at' => $date]);
     }
 
-    public function update_client($id, $fname, $lastname, $email, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $package)
+    public function update_client($id, $fname, $lastname, $email, $employer, $e_loc, $r_add, $carthograph, $salary, $mmacount, $package, $gender, $date, $ms)
     {
         DB::table('users')
             ->where('id', '=', $id)
@@ -53,7 +57,10 @@ class User extends Authenticatable
                 'carthograph' => $carthograph,
                 'monthly_salary' => $salary,
                 'mobile_money_account' => $mmacount,
-                'package' => $package
+                'package' => $package,
+                'gender' => $gender,
+                'date_of_birth' => $date,
+                'marital_status' => $ms
             ]);
     }
 

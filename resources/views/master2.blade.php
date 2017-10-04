@@ -374,7 +374,7 @@
                                 Loans</a></li>
                         <li><a href="{{route('transactions_approved_loans')}}"><i class="fa fa-circle-o"></i> Approved
                                 Loans</a></li>
-                        <li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Refused
+                        <li><a href="{{route('transactions_refused_loans')}}"><i class="fa fa-circle-o"></i> Rejected
                                 Loans</a></li>
                         <li></li>
                     </ul>

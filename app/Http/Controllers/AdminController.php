@@ -194,9 +194,12 @@ class AdminController extends Controller
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
             'residential_address' => 'required|min:2',
+            'gender' => 'required',
+            'date_of_birth' => 'required|date',
             'carthograph' => 'required',
+            'marital_status' => 'required',
+            'interest_rate' => 'required|numeric|max:100|min:1',
             'multimoney_account_number' => 'required',
-//            'percentage' => 'required|numeric',
             'salary' => 'required|numeric',
             'mobile_money_account' => 'required',
             'password' => 'required|min:4',
@@ -231,7 +234,7 @@ class AdminController extends Controller
             $picture = $file->getClientOriginalName();
         }
 
-        $insert_id = $u->insert($input['first_name'], $input['multimoney_account_number'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package'], $picture);
+        $insert_id = $u->insert($input['first_name'], $input['multimoney_account_number'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package'], $picture, $input['gender'], $input['date_of_birth'], $input['marital_status'], $input['interest_rate']);
 
         $mbalance = $this->get_minimum_balance($input['package']);
 
@@ -387,24 +390,13 @@ class AdminController extends Controller
             'employer' => 'required|min:2',
             'employer_location' => 'required|min:2',
             'residential_address' => 'required|min:2',
-//            'telephone' => 'required|min:12|max:12|unique:users,telephone,' . $id,
             'salary' => 'required',
             'mobile_money_account' => 'required',
+            'gender' => 'required',
+            'date_of_birth' => 'required|date',
+            'marital_status' => 'required'
         ];
-//        $rules = [
-//            'first_name' => 'required|min:2',
-//            'last_name' => 'required|min:2',
-//            'email' => Rule::unique('users')->ignore($id, 'id')->where(function ($query) {
-//                $query->whereNull('deleted_at');
-//            }),
-//            'email'=> Rule::
-//            'employer' => 'required|min:2',
-//            'employer_location' => 'required|min:2',
-//            'residential_address' => 'required|min:2',
-//            'telephone' => 'required|min:12|max:12|unique:users,telephone,' . $id,
-//            'salary' => 'required',
-//            'mobile_money_account' => 'required',
-//        ];
+
         $this->validate($request, $rules);
 
         if (Input::hasFile('carthograph')) {
@@ -417,28 +409,11 @@ class AdminController extends Controller
             $file_name = $carthograph[0]->carthograph;
         }
 
-//        $ntelephone = $this->process_telephone($input['telephone']);
+        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package'], $input['gender'], $input['date_of_birth'], $input['marital_status']);
 
-        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package']);
-//        $a->update_account_name($id, $ntelephone);
         $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
 
         return redirect('eswift/clients')->with('status', 'Client updated successfully');
-//        } else {
-//
-////            return 'package upgrade';
-//            $new_balance = $this->get_upgrade_balance($telephone, $input['packages']);
-//
-//            $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['telephone'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['packages']);
-//
-//            $a->update_account($telephone, $new_balance);
-//
-//            $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
-//            $lg->insert($auth['email'], "Client with id=" . $id . " upgraded his package from " . $package . " to " . $input['packages'], $auth['role_id']);
-//
-//            return redirect('eswift/clients')->with('status', 'Client data and account updated successfully');
-//
-//        }
 
     }
 
@@ -452,10 +427,15 @@ class AdminController extends Controller
         $edata = $account->get_eswift_account($id);
         $mdata = $account->get_mmf_account($id);
 
+
+        $b_date = strtotime($data[0]->date_of_birth);
+        $date_words = date('jS F, Y', $b_date);
+
         return view('clients.client_details')
             ->with('data', $data[0])
             ->with('edata', $edata[0])
-            ->with('mdata', $mdata[0]);
+            ->with('mdata', $mdata[0])
+            ->with('b_date', $date_words);
     }
 
     public function get_unpaid_debts()

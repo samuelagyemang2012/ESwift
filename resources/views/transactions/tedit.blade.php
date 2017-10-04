@@ -65,22 +65,6 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-2">
-                    {{----}}
-                    {{----}}
-                    {{--<label>Select a New Package</label><br>--}}
-                    {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
-                    {{--<div>--}}
-                    {{--<select class="form-control" name="packages" id="pkg" onchange="get_balance()">--}}
-                    {{--<option></option>--}}
-                    {{--@foreach($packages as $p)--}}
-                    {{--<option value="{{$p->pname}}">{{$p->pname}}</option>--}}
-                    {{--@endforeach--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
-                </div>
-
                 <div class="col-sm-4">
 
                     <label>First Name</label>
@@ -121,18 +105,8 @@
                                value="{{$data->mobile_money_account}}"
                                value="{{old('mobile_money_account')}}" id="mobile_money_account">
                     </div>
-                    <br>
-
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-
-                    {{--<label>Telephone</label>--}}
-                    {{--<div>--}}
-                    {{--<input onblur="process_tel()" class="form-control" name="telephone" type="tel" required--}}
-                    {{--value="{{$data->telephone}}"--}}
-                    {{--value="{{old('telephone')}}"--}}
-                    {{--min="10" id="tel">--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
+                    <input type="checkbox" id="ported" onclick="port()">&nbsp;<label>Ported</label>
+                    <br><br>
 
                 </div>
 
@@ -166,6 +140,20 @@
                                value="{{old('carthograph')}}">
                     </div>
                     <br>
+                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                </div>
+
+                <div class="col-sm-3">
+                    <div>
+                        <label>Gender</label>
+                        <select class="form-control" name="gender" required>
+                            <option></option>
+                            <option value="MALE" {{$data->gender=='MALE' ? 'selected="selected"':''}}>MALE</option>
+                            <option value="FEMALE" {{$data->gender=='FEMALE' ? 'selected="selected"':''}}>FEMALE
+                            </option>
+                        </select>
+                    </div>
+                    <br>
 
                     <label>Current Package</label>
                     <div>
@@ -175,26 +163,30 @@
                     </div>
                     <br>
 
+                    <label>Date of Birth</label><b style="color: red;"></b>
+                    <div>
+                        <input class="form-control" name="date_of_birth" type="date" required
+                               value="{{$data->date_of_birth}}"
+                               value="{{old('date_of_birth')}}" min="8">
+                    </div>
+                    <br>
 
+                    <div>
+                        <label>Marital Status</label>
+                        <select class="form-control" name="marital_status" required>
+                            <option></option>
+                            <option value="SINGLE" {{$data->marital_status=='SINGLE' ? 'selected="selected"':''}}>SINGLE
+                            </option>
+                            <option value="MARRIED" {{$data->marital_status=='MARRIED' ? 'selected="selected"':''}}>
+                                MARRIED
+                            </option>
+                            <option value="DIVORCED" {{$data->marital_status=='DIVORCED' ? 'selected="selected"':''}}>
+                                DIVORCED
+                            </option>
+                        </select>
+                    </div>
+                    <br>
                 </div>
-
-                {{--<div class="col-sm-2">--}}
-
-
-                {{--<label>Select a New Package</label><br>--}}
-                {{--<span style="color: cornflowerblue"><b id="package"></b></span>--}}
-                {{--<div>--}}
-                {{--<select class="form-control" name="packages" id="pkg" onchange="get_balance()">--}}
-                {{--<option></option>--}}
-                {{--@foreach($packages as $p)--}}
-                {{--<option value="{{$p->pname}}">{{$p->pname}}</option>--}}
-                {{--@endforeach--}}
-                {{--</select>--}}
-                {{--</div>--}}
-                {{--<br>--}}
-
-
-                {{--</div>--}}
 
             </div>
         </div>

@@ -451,6 +451,7 @@ return array(
     'EditLoans' => $baseDir . '/database/migrations/2017_08_14_160150_edit_loans.php',
     'EditLog2Table' => $baseDir . '/database/migrations/2017_06_29_174111_edit_log2_table.php',
     'EditLogTable' => $baseDir . '/database/migrations/2017_06_29_170851_edit_log_table.php',
+    'EditUser3' => $baseDir . '/database/migrations/2017_10_04_110803_edit_user3.php',
     'Faker\\Calculator\\Iban' => $vendorDir . '/fzaninotto/faker/src/Faker/Calculator/Iban.php',
     'Faker\\Calculator\\Luhn' => $vendorDir . '/fzaninotto/faker/src/Faker/Calculator/Luhn.php',
     'Faker\\DefaultGenerator' => $vendorDir . '/fzaninotto/faker/src/Faker/DefaultGenerator.php',
