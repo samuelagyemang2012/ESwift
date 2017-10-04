@@ -615,7 +615,7 @@ class AdminController extends Controller
 
         $data = $l->get_loan_period($input['loan_id']);
 
-        $total_debt = $this->calculate_total_debt($input['amount_transferred'], $data[0]->loan_period);
+        $total_debt = $this->calculate_total_debt($input['telephone'], $input['amount_transferred'], $data[0]->loan_period);
         $half_debt = $total_debt / 2;
 
         $dates = $this->calculate_loan_dates($data[0]->loan_period);
@@ -808,13 +808,15 @@ class AdminController extends Controller
 
     }
 
-    private function calculate_total_debt($amount, $loan_period)
+    private function calculate_total_debt($tel, $amount, $loan_period)
     {
-        $r = new Rate();
+        $r = new User();
 
-        $interest = $r->get_rate(1);
+        $interest = $r->get_user_rate($tel);
 
-        $total_interest_percentage = ($interest[0]->rate / 100) * $loan_period;
+//        return $interest;
+
+        $total_interest_percentage = ($interest[0]->interest_rate / 100) * $loan_period;
 
         $total_interest = $total_interest_percentage * $amount;
 

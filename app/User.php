@@ -222,4 +222,12 @@ class User extends Authenticatable
             ]);
     }
 
+    public function get_user_rate($tel)
+    {
+        return DB::table('users')
+            ->select('interest_rate')
+            ->where('users.telephone', '=', $tel)
+            ->get();
+    }
+
 }
