@@ -796,6 +796,7 @@ class AdminController extends Controller
 
 
         if ($post_e_balance[0]->balance > $cur_m_balance[0]->balance) {
+
             $message = "Your Eswift account has been credited with GHC " . round($dec_e, 2);
             $s->send($msisdn, $message);
         } else {
