@@ -811,6 +811,7 @@ class AdminController extends Controller
             $s->send($msisdn, $message);
 
         } elseif ($post_m_balance[0]->balance < $cur_m_balance[0]->balance) {
+
             $message = "Your Mobile Registration fee account has been debited with GHC " . round($dec_e, 2);
             $s->send($msisdn, $message);
         }
