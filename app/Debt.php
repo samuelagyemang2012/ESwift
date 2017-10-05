@@ -49,4 +49,19 @@ class Debt extends Model
             ->get();
     }
 
+    public function get_user_id($id)
+    {
+        return DB::table('debts')
+            ->select('debts.user_id')
+            ->where('id', '=', $id)
+            ->get();
+    }
+
+    public function get_debt_details_by_did($debt_id)
+    {
+        return DB::table('debts')
+            ->select('debts.total_debt')
+            ->where('debts.id', '=', $debt_id)
+            ->get();
+    }
 }

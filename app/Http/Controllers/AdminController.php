@@ -959,10 +959,11 @@ class AdminController extends Controller
 
     public function update_accounts_hld(Request $request, $id)
     {
-//        return $request . 'user_id =' . $id;
         $a = new Account();
         $ln = new Loan();
         $l = new Log();
+        $d = new Debt();
+        $s = new Sms();
         $auth = Auth::user();
 
         $input = $request->all();
@@ -972,16 +973,32 @@ class AdminController extends Controller
             'mobile_registration_balance' => 'required|numeric',
             'debt_id' => 'required'
         ];
-///
+
         $this->validate($request, $rules);
+
+        $user_id = $d->get_user_id($input['debt_id']);
+
+        $cur_e_balance = $a->get_eswift_account($user_id);
+        $cur_m_balance = $a->get_mmf_account($user_id);
+        $msisdn = $cur_e_balance[0]->name;
 
         $a->update_accounts($id, $input['eswift_balance'], $input['mobile_registration_balance']);
         $ln->update_hld($input['debt_id']);
-//
-        $l->insert($auth['email'], $auth['email'] . ' updated client with id ' . $id . ' accounts', $auth['role_id']);
-//
+
+        $post_e_balance = $a->get_eswift_account($user_id);
+        $post_m_balance = $a->get_mmf_account($user_id);
+
+        $final_e_balance = round($cur_e_balance[0]->balance, 2) - round($post_e_balance[0]->balance, 2);
+        $final_m_balance = round($cur_m_balance[0]->balance, 2) - round($post_m_balance[0]->balance, 2);
+
+        $total_debt = $d->get_debt_details_by_did($input['debt_id']);
+
+        $msg = "Your Eswift and Mobile registration fee with Multimoney has been debited with GHC " . $final_e_balance . "and GHC " . $final_m_balance . " respectively as repayment of to repay part of your debt of GHC " . $total_debt . ". Your current Eswift account balance is now GHC " . $post_e_balance[0]->balance . " and your final Mobile registration fee account is now GHC " . $post_m_balance[0]->balance;;
+        $s->send($msisdn, $msg);
+        $l->insert($auth['email'], $auth['email'] . ' updated client with account name ' . $msisdn . ' debited his eswift account with GHC ' . $final_e_balance, $auth['role_id']);
+        $l->insert($auth['email'], $auth['email'] . ' updated client with account name ' . $msisdn . ' debited his mobile registration fee account with GHC ' . $final_m_balance, $auth['role_id']);
+
         return redirect('eswift/loans/half_loans_due')->with('status', 'Account Updated Successfully');
 
     }
-
 }
