@@ -788,8 +788,8 @@ class AdminController extends Controller
 
         $a->update_accounts($id, $input['eswift_balance'], $input['mobile_registration_balance']);
 
-        $post_e_balance = $a->get_eswift_account($input['user_id']);
-        $post_m_balance = $a->get_mmf_account($input['user_id']);
+        $post_e_balance = $a->get_eswift_account($id);
+        $post_m_balance = $a->get_mmf_account($id);
 
         $dec_e = $post_e_balance[0]->balance - $cur_e_balance[0]->balance;
         $dec_m = $post_m_balance[0]->balance - $cur_m_balance[0]->balance;
