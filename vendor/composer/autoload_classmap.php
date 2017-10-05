@@ -56,6 +56,7 @@ return array(
     'ChangeNotifications' => $baseDir . '/database/migrations/2017_09_20_111509_change_notifications.php',
     'ChangeUser' => $baseDir . '/database/migrations/2017_09_28_141113_change_user.php',
     'CreateDebtTable' => $baseDir . '/database/migrations/2017_08_03_163108_create_debt_table.php',
+    'CreateHistoryTable' => $baseDir . '/database/migrations/2017_10_05_135942_create_history_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePaymentsTable' => $baseDir . '/database/migrations/2017_08_03_163842_create_payments_table.php',
     'CreateRatesTable' => $baseDir . '/database/migrations/2017_09_16_194632_create_rates_table.php',

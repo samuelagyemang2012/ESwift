@@ -219,6 +219,13 @@
                     </ul>
                 </li>
 
+                <li class="treeview">
+                    <a href="{{route('get_history')}}">
+                        <i class="fa fa-history"></i>
+                        <span>Payment History</span>
+                    </a>
+                </li>
+
 
                 <li class="active treeview">
                     <a href="#">

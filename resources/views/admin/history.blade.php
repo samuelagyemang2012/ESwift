@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-2">
         {{--<div class="container">--}}
-        <center><h2 style="color: #3D8DBB">Unpaid Debts</h2></center>
+        <center><h2 style="color: #3D8DBB">Payment History</h2></center>
         <hr>
     </div>
 
@@ -26,14 +26,11 @@
     <table class="table" id="mytable">
         <thead>
         <th>ID</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Telephone</th>
-        <th>Total Debt</th>
-        <th>Amount Paid</th>
-        {{--<th>Half Loan Due</th>--}}
-        {{--<th>Half Loan Due Date</th>--}}
-        {{--<th>Full Loan Due</th>--}}
+        <th>Account Name</th>
+        <th>Amount Paid (GHC)</th>
+        <th>Transaction ID</th>
+        <th>Purpose</th>
+        <th>Recorded By</th>
         <th>Date</th>
         <th></th>
         </thead>
@@ -45,31 +42,23 @@
             $('#mytable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{route('get_unpaid_debts')}}',
+                ajax: '{{route('get_history')}}',
 
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'first_name', name: 'first_name'},
-                    {data: 'last_name', name: 'last_name'},
                     {data: 'telephone', name: 'telephone'},
-                    {data: 'total_debt', name: 'total_debt'},
                     {data: 'amount_paid', name: 'amount_paid'},
+//                    {data: 'last_name', name: 'last_name'},
+                    {data: 'transaction_id', name: 'transaction_id'},
+                    {data: 'purpose', name: 'purpose'},
+                    {data: 'by', name: 'by'},
 //                    {data: 'half_debt', name: 'half_debt'},
 //                    {data: 'created_at', name: 'created_at'},
 //                    {data: 'total_debt', name: 'total_debt'},
-                    {data: 'created_at', name: 'created_at'},
-                    {
-                        data: 6, name: 'action', render: function (data, type, full, meta) {
-
-                        return '<div class="btn-group">' +
-                                ' <a class="btn btn-sm btn-primary" href="/debts/' + full['loan_id'] + '">Details</a>' +
-                                ' <a class="btn btn-sm btn-primary" href="/confirm_payment/' + full['loan_id'] + '/' + full['id'] + '">Confirm Payment</a>' +
-                                '</div>';
-                    }
-                    }
+                    {data: 'created_at', name: 'created_at'}
                 ],
 
-                "order": [[6, "desc"]]
+                "order": [[5, "desc"]]
             });
         });
     </script>

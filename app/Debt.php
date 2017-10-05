@@ -64,4 +64,23 @@ class Debt extends Model
             ->where('debts.id', '=', $debt_id)
             ->get();
     }
+
+    public function update_amount_paid($did, $amount)
+    {
+        DB::table('debts')
+            ->where('debts.id', '=', $did)
+            ->update(['amount_paid' => $amount]);
+    }
+
+    public function mark_as_paid($loan_id, $debt_id)
+    {
+        DB::table('debts')
+            ->where('debts.id', '=', $debt_id)
+            ->update(['is_paid' => 1]);
+
+        DB::table('loans')
+            ->where('loans.id', '=', $loan_id)
+            ->update(['is_paid' => 1]);
+    }
+
 }

@@ -160,6 +160,10 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('debts/{loan_id}', 'AdminController@get_debt_details')->name("get_debt_details");
 
+    Route::get('confirm_payment/{loan_id}/{debt_id}', 'AdminController@show_confirm_payment')->name('show_confirm_payment');
+
+    Route::post('confirm_payment', 'AdminController@confirm_payment')->name('confirm_payment');
+
 //    Notifications
     Route::get('eswift/notifications/unread', 'AdminController@get_unread')->name("get_unread");
 
@@ -174,6 +178,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('eswift/account_deductions/{id}/{user_id}', 'AdminController@show_edit_account_hld')->name('edit_account_hld');
 
     Route::post('update_account_hld/{id}', 'AdminController@update_accounts_hld')->name('update_account_hld');
+
+    Route::get('eswift/history', 'AdminController@get_history')->name('get_history');
+
 
 });
 

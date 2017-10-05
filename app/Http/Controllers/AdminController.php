@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Debt;
+use App\History;
 use App\Loan;
 use App\Log;
 use App\Notification;
@@ -1035,5 +1036,89 @@ class AdminController extends Controller
 
         return redirect('eswift/loans/half_loans_due')->with('status', 'Account Updated Successfully');
 
+    }
+
+    public function show_confirm_payment($loan_id, $debt_id)
+    {
+        $l = new Loan();
+        $d = new Debt();
+        $user = Auth::user();
+
+        $debt_details = $d->get_debt_details($loan_id);
+
+        return view('admin.confirm_payment')
+            ->with('loan_id', $loan_id)
+            ->with('debt_id', $debt_id)
+            ->with('telephone', $debt_details[0]->telephone)
+            ->with('by', $user['email']);
+    }
+
+    public function confirm_payment(Request $request)
+    {
+        $d = new Debt();
+        $s = new Sms();
+        $h = new History();
+
+        $input = $request->all();
+
+        $rules = [
+            'loan_id' => 'required',
+            'debt_id' => 'required',
+            'amount_paid' => 'required|numeric|min:0',
+            'telephone' => 'required|min:12|max:12|',
+            'transaction_id' => 'required',
+            'purpose' => 'required|min:5',
+            'recorded_by' => 'required|email'
+        ];
+
+        $this->validate($request, $rules);
+
+        $details = $d->get_debt_details($input['loan_id']);
+
+        $amount_paid = $details[0]->amount_paid;
+        $msisdn = $details[0]->telephone;
+        $total_debt = $details[0]->total_debt;
+        $date = date("Y-m-d H:i:s");
+
+        $am = round($input['amount_paid'], 2);
+
+        $amount_paid += floatval($am);
+
+        if ($amount_paid >= $total_debt) {
+
+            $d->update_amount_paid($input['debt_id'], $amount_paid);
+            $d->mark_as_paid($input['loan_id'], $input['debt_id']);
+            $h->insert($msisdn, $am, $input['transaction_id'], $input['purpose'], $input['recorded_by'], $date);
+
+            $s->send($msisdn, "You have successfully deposited GHC " . $am . " to pay off your debt of GHC " . $total_debt);
+
+            return redirect('eswift/debts/unpaid')->with('status', 'Payment made successfully.');
+
+        } else {
+
+            $d->update_amount_paid($input['debt_id'], $amount_paid);
+            $h->insert($msisdn, $am, $input['transaction_id'], $input['purpose'], $input['recorded_by'], $date);
+
+            $details1 = $d->get_debt_details($input['loan_id']);
+            $amount_paid2 = $details1[0]->amount_paid;
+            $left = round(($total_debt - $amount_paid2), 2);
+            $s->send($msisdn, "You have successfully deposited GHC " . $am . " to pay part your debt of GHC " . $total_debt . " You have GHC " . $left . " to repay.");
+
+            return redirect('eswift/debts/unpaid')->with('status', 'Payment made successfully.');
+
+        }
+    }
+
+    public function get_history()
+    {
+        $h = new History();
+
+        if (request()->isXmlHttpRequest()) {
+            $data = $h->get_history();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('admin.history');
     }
 }
