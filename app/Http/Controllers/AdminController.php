@@ -799,6 +799,7 @@ class AdminController extends Controller
 
             $message = "Your Eswift account has been credited with GHC " . round($dec_e, 2);
             $s->send($msisdn, $message);
+
         } else {
             $message = "Your Eswift account has been debited with GHC " . round($dec_e, 2);
             $s->send($msisdn, $message);
