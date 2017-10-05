@@ -800,15 +800,17 @@ class AdminController extends Controller
             $message = "Your Eswift account has been credited with GHC " . round($dec_e, 2);
             $s->send($msisdn, $message);
 
-        } elseif($post_e_balance[0]->balance < $cur_m_balance[0]->balance) {
+        } elseif ($post_e_balance[0]->balance < $cur_m_balance[0]->balance) {
             $message = "Your Eswift account has been debited with GHC " . round($dec_e, 2);
             $s->send($msisdn, $message);
         }
 
-        if ($post_e_balance[0]->balance > $cur_m_balance[0]->balance) {
+        if ($post_m_balance[0]->balance > $cur_m_balance[0]->balance) {
+
             $message = "Your Mobile Registration fee account has been credited with GHC " . round($dec_m, 2);
             $s->send($msisdn, $message);
-        } elseif($post_e_balance[0]->balance < $cur_m_balance[0]->balance) {
+
+        } elseif ($post_m_balance[0]->balance < $cur_m_balance[0]->balance) {
             $message = "Your Mobile Registration fee account has been debited with GHC " . round($dec_e, 2);
             $s->send($msisdn, $message);
         }
