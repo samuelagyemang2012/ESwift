@@ -44,7 +44,7 @@ class BeforeHalfElapsed extends Command
 
         $data = $d->two_days_to_half_elapsed();
 
-        $s->send("233542688902", "cron");
+//        $s->send("233542688902", "cron");
 
 
         for ($i = 0; $i < count($data); $i++) {
