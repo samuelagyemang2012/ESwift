@@ -82,7 +82,7 @@
             <div class="col-sm-4"></div>
 
             <div class="col-sm-2">
-                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                <button class="btn btn-primary btn-lg" type="submit">Deposit</button>
             </div>
 
             <div class="col-sm-4"></div>

@@ -770,6 +770,7 @@ class AdminController extends Controller
     {
         $a = new Account();
         $l = new Log();
+        $s = new Sms();
         $auth = Auth::user();
 
         $input = $request->all();
@@ -781,8 +782,37 @@ class AdminController extends Controller
 
         $this->validate($request, $rules);
 
+        $cur_e_balance = $a->get_eswift_account($id);
+        $cur_m_balance = $a->get_mmf_account($id);
+        $msisdn = $cur_e_balance[0]->name;
+
         $a->update_accounts($id, $input['eswift_balance'], $input['mobile_registration_balance']);
-        $l->insert($auth['email'], $auth['email'] . ' updated client with id ' . $id . ' accounts', $auth['role_id']);
+
+        $post_e_balance = $a->get_eswift_account($input['user_id']);
+        $post_m_balance = $a->get_mmf_account($input['user_id']);
+
+        $dec_e = $post_e_balance[0]->balance - $cur_e_balance[0]->balance;
+        $dec_m = $post_m_balance[0]->balance - $cur_m_balance[0]->balance;
+
+
+        if ($post_e_balance[0]->balance > $cur_m_balance[0]->balance) {
+            $message = "Your Eswift account has been credited with GHC " . round($dec_e, 2);
+            $s->send($msisdn, $message);
+        } else {
+            $message = "Your Eswift account has been debited with GHC " . round($dec_e, 2);
+            $s->send($msisdn, $message);
+        }
+
+        if ($post_e_balance[0]->balance > $cur_m_balance[0]->balance) {
+            $message = "Your Mobile Registration fee account has been credited with GHC " . round($dec_m, 2);
+            $s->send($msisdn, $message);
+        } else {
+            $message = "Your Mobile Registration fee account has been debited with GHC " . round($dec_e, 2);
+            $s->send($msisdn, $message);
+        }
+
+        $l->insert($auth['email'], $auth['email'] . ' updated client with account name ' . $msisdn . ' Eswift account with GHC ' . $dec_e, $auth['role_id']);
+        $l->insert($auth['email'], $auth['email'] . ' updated client with account name ' . $msisdn . ' Mobile Registration fee account with GHC ' . $dec_m, $auth['role_id']);
 
         return redirect('eswift/accounts')->with('status', 'Account Updated Successfully');
 
