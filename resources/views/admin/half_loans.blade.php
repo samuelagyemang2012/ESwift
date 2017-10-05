@@ -25,7 +25,7 @@
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Telephone</th>
-            <th>Debt (GHC)</th>
+            <th>Half Debt (GHC)</th>
             <th>Half Loan Date</th>
             <th></th>
             </thead>
