@@ -49,7 +49,7 @@
                             data: '6', name: 'action', render: function (data, type, full, meta) {
 //                            console.log(full);
 //                            var  s = full['0'];
-                            return '<div><a class="btn btn-sm btn-primary" href="/eswift/account_deductions/' + full['user_id'] + '">Go To Account</a></div>';
+                            return '<div><a class="btn btn-sm btn-primary" href="/eswift/account_deductions/' + full['id'] + '">Go To Account</a></div>';
                         }
                         }
                     ],
