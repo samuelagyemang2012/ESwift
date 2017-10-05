@@ -85,7 +85,7 @@ class Debt extends Model
 
     public function two_days_to_half_elapsed()
     {
-        return DB::select(DB::raw("SELECT telephone,half_debt,total_debt,half_loan_date FROM `debts` where CURDATE() + 2 = half_loan_date and amount_paid = 0"));
+        return DB::select(DB::raw("SELECT * FROM `debts` WHERE DATE_ADD(CURDATE() , INTERVAL 2 DAY) AND amount_paid = 0"));
 
     }
 

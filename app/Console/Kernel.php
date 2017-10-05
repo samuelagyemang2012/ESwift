@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-//        $schedule->command('beforehalfelapsed')
-//            ->everyMinute();
+        $schedule->command('beforehalfelapsed')
+            ->everyMinute();
 
 //        $schedule->call(function () {
 //            $s = new Sms();
