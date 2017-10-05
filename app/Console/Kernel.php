@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('beforehalfelapsed')
+            ->everyMinute();
 //        $schedule->call(function () {
 //            $s = new Sms();
 //            $s->send("233542688902", "scheduler test");
