@@ -978,15 +978,15 @@ class AdminController extends Controller
 
         $user_id = $d->get_user_id($input['debt_id']);
 
-        $cur_e_balance = $a->get_eswift_account($user_id);
-        $cur_m_balance = $a->get_mmf_account($user_id);
+        $cur_e_balance = $a->get_eswift_account($user_id[0]->user_id);
+        $cur_m_balance = $a->get_mmf_account($user_id[0]->user_id);
         $msisdn = $cur_e_balance[0]->name;
 
         $a->update_accounts($id, $input['eswift_balance'], $input['mobile_registration_balance']);
         $ln->update_hld($input['debt_id']);
 
-        $post_e_balance = $a->get_eswift_account($user_id);
-        $post_m_balance = $a->get_mmf_account($user_id);
+        $post_e_balance = $a->get_eswift_account($user_id[0]->user_id);
+        $post_m_balance = $a->get_mmf_account($user_id[0]->user_id);
 
         $final_e_balance = round($cur_e_balance[0]->balance, 2) - round($post_e_balance[0]->balance, 2);
         $final_m_balance = round($cur_m_balance[0]->balance, 2) - round($post_m_balance[0]->balance, 2);
