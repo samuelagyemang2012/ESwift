@@ -36,7 +36,8 @@
 
                 <div>
 
-                    <input hidden value="{{$edata->id}}" name="debt_id">
+                    <input hidden value="{{$id}}" name="debt_id">
+                    <input hidden value="{{$user_id}}" name="user_id">
                     <label> Account Name</label>
                     <input class="form-control" value="{{$edata->name}}" readonly><br>
 

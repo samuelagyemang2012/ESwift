@@ -171,7 +171,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/loans/elapsed_loans', 'AdminController@get_elapsed_loans')->name('elapsed_loans');
 
-    Route::get('eswift/account_deductions/{id}', 'AdminController@show_edit_account_hld')->name('edit_account_hld');
+    Route::get('eswift/account_deductions/{id}/{user_id}', 'AdminController@show_edit_account_hld')->name('edit_account_hld');
 
     Route::post('update_account_hld/{id}', 'AdminController@update_accounts_hld')->name('update_account_hld');
 

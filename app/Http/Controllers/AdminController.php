@@ -944,17 +944,18 @@ class AdminController extends Controller
 
     }
 
-    public function show_edit_account_hld($id)
+    public function show_edit_account_hld($id, $user_id)
     {
         $account = new Account();
 
-        $ea = $account->get_eswift_account_hld($id);
-        $ma = $account->get_mmf_account_hld($id);
+        $ea = $account->get_eswift_account_hld($user_id);
+        $ma = $account->get_mmf_account_hld($user_id);
 
         return view('admin.hld_account')
             ->with('edata', $ea[0])
             ->with('mdata', $ma[0])
-            ->with('id', $id);
+            ->with('id', $id)
+            ->with('user_id', $user_id);
     }
 
     public function update_accounts_hld(Request $request, $id)
@@ -971,22 +972,21 @@ class AdminController extends Controller
         $rules = [
             'eswift_balance' => 'required|numeric',
             'mobile_registration_balance' => 'required|numeric',
-            'debt_id' => 'required'
+            'debt_id' => 'required',
+            'user_id' => 'required',
         ];
 
         $this->validate($request, $rules);
 
-        $user_id = $d->get_user_id($input['debt_id']);
-
-        $cur_e_balance = $a->get_eswift_account($user_id[0]->user_id);
-        $cur_m_balance = $a->get_mmf_account($user_id[0]->user_id);
+        $cur_e_balance = $a->get_eswift_account($input['user_id']);
+        $cur_m_balance = $a->get_mmf_account($input['user_id']);
         $msisdn = $cur_e_balance[0]->name;
 
         $a->update_accounts($id, $input['eswift_balance'], $input['mobile_registration_balance']);
         $ln->update_hld($input['debt_id']);
 
-        $post_e_balance = $a->get_eswift_account($user_id[0]->user_id);
-        $post_m_balance = $a->get_mmf_account($user_id[0]->user_id);
+        $post_e_balance = $a->get_eswift_account($input['user_id']);
+        $post_m_balance = $a->get_mmf_account($input['user_id']);
 
         $final_e_balance = round($cur_e_balance[0]->balance, 2) - round($post_e_balance[0]->balance, 2);
         $final_m_balance = round($cur_m_balance[0]->balance, 2) - round($post_m_balance[0]->balance, 2);
