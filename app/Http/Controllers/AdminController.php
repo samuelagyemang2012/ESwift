@@ -797,22 +797,22 @@ class AdminController extends Controller
 
         if ($post_e_balance[0]->balance > $cur_e_balance[0]->balance) {
 
-            $message = "Your Eswift account has been credited with GHC " . round($dec_e, 2);
+            $message = "Your Eswift account has been credited with GHC " . round(abs($dec_e), 2) . ". Your current Eswift account balance is GHC " . $post_e_balance[0]->balance;
             $s->send($msisdn, $message);
 
         } elseif ($post_e_balance[0]->balance < $cur_e_balance[0]->balance) {
-            $message = "Your Eswift account has been debited with GHC " . round($dec_e, 2);
+            $message = "Your Eswift account has been debited with GHC " . round(abs($dec_e), 2) . ". Your current Eswift account balance is GHC " . $post_e_balance[0]->balance;
             $s->send($msisdn, $message);
         }
 
         if ($post_m_balance[0]->balance > $cur_m_balance[0]->balance) {
 
-            $message = "Your Mobile Registration fee account has been credited with GHC " . round($dec_m, 2);
+            $message = "Your Mobile Registration fee account has been credited with GHC " . round(abs($dec_m), 2) . ". Your current Mobile registration fee account balance is GHC " . $post_m_balance[0]->balance;
             $s->send($msisdn, $message);
 
         } elseif ($post_m_balance[0]->balance < $cur_m_balance[0]->balance) {
 
-            $message = "Your Mobile Registration fee account has been debited with GHC " . round($dec_e, 2);
+            $message = "Your Mobile Registration fee account has been debited with GHC " . round(abs($dec_e), 2) . ". Your current Mobile registration fee account balance is GHC " . $post_m_balance[0]->balance;
             $s->send($msisdn, $message);
         }
 
