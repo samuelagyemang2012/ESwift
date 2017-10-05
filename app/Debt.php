@@ -83,4 +83,10 @@ class Debt extends Model
             ->update(['is_paid' => 1]);
     }
 
+    public function two_days_to_half_elapsed()
+    {
+        return DB::select(DB::raw("SELECT telephone,half_debt,total_debt,half_loan_date FROM `debts` where CURDATE() + 2 = half_loan_date and amount_paid = 0"));
+
+    }
+
 }

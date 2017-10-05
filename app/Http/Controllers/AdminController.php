@@ -1113,6 +1113,12 @@ class AdminController extends Controller
     {
         $h = new History();
 
+//        $data = $h->get_history();
+
+//        for ($i = 0; $i < count($data); $i++) {
+//            echo $data[$i]->telephone . PHP_EOL;
+//        }
+//
         if (request()->isXmlHttpRequest()) {
             $data = $h->get_history();
 
