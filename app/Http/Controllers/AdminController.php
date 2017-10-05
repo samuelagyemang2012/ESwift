@@ -993,7 +993,7 @@ class AdminController extends Controller
 
         $total_debt = $d->get_debt_details_by_did($input['debt_id']);
 
-        $msg = "Your Eswift and Mobile registration fee with Multimoney has been debited with GHC " . $final_e_balance . " and GHC " . $final_m_balance . " respectively as repayment of to repay part of your debt of GHC " . $total_debt[0]->total_debt . ". Your current Eswift account balance is now GHC " . $post_e_balance[0]->balance . " and your final Mobile registration fee account is now GHC " . $post_m_balance[0]->balance;;
+        $msg = "Your Eswift and Mobile registration fee with Multimoney has been debited with GHC " . $final_e_balance . " and GHC " . $final_m_balance . " respectively as elapsed half repayment of your debt of GHC " . $total_debt[0]->total_debt . ". Your current Eswift account balance is now GHC " . $post_e_balance[0]->balance . " and your Mobile registration fee account is now GHC " . $post_m_balance[0]->balance;;
         $s->send($msisdn, $msg);
         $l->insert($auth['email'], $auth['email'] . ' updated client with account name ' . $msisdn . ' debited his eswift account with GHC ' . $final_e_balance, $auth['role_id']);
         $l->insert($auth['email'], $auth['email'] . ' updated client with account name ' . $msisdn . ' debited his mobile registration fee account with GHC ' . $final_m_balance, $auth['role_id']);
