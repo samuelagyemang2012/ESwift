@@ -365,7 +365,7 @@
 
                 <li class="active treeview">
                     <a href="{{route('get_client_rates')}}">
-                        <i class="fa fa-user"></i> <span>Client Rates</span>
+                        <i class="fa fa-users"></i> <span>Client Rates</span>
             <span class="pull-right-container">
               {{--<i class="fa fa-angle-left pull-right"></i>--}}
             </span>
