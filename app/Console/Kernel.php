@@ -29,6 +29,15 @@ class Kernel extends ConsoleKernel
         $schedule->command('beforehalfelapsed')
             ->dailyAt('9:00');
 
+        $schedule->command('halfelapsed')
+            ->dailyAt('9:00');
+
+        $schedule->command('beforefullelapsed')
+            ->dailyAt('9:00');
+
+        $schedule->command('fullelapsed')
+            ->dailyAt('9:00');
+
 //        $schedule->call(function () {
 //            $s = new Sms();
 //            $s->send("233542688902", "scheduler test");

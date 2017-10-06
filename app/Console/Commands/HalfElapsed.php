@@ -6,21 +6,21 @@ use App\Debt;
 use App\Sms;
 use Illuminate\Console\Command;
 
-class BeforeHalfElapsed extends Command
+class HalfElapsed extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'beforehalfelapsed';
+    protected $signature = 'halfelapsed';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Alert clients 2 days before half loan is due.';
+    protected $description = 'Alert clients that half loan is due.';
 
     /**
      * Create a new command instance.
@@ -42,16 +42,15 @@ class BeforeHalfElapsed extends Command
         $s = new Sms();
         $d = new Debt();
 
-        $data = $d->two_days_to_half_elapsed();
+        $data = $d->half_elapsed();
 
         for ($i = 0; $i < count($data); $i++) {
 
             $half = $data[$i]->half_debt;
             $total_debt = $data[$i]->total_debt;
-            $half_date = $data[$i]->half_loan_date;
             $msisdn = $data[$i]->telephone;
 
-            $msg = "Your half-loan period for your debt of GHC " . $total_debt . " will be due in 2 days. You have to make a payment of GHC " . $half . " by " . $half_date;
+            $msg = "Your half-loan period for your debt of GHC " . $total_debt . " is due today. An amount of GHC " . $half . " is to be paid. You will recieve an sms after deductions have been made from your account";
 
             $s->send($msisdn, $msg);
         }
