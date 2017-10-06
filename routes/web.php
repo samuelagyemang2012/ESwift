@@ -40,9 +40,15 @@ Route::group(['middleware' => 'superadmin'], function () {
 
     Route::get('eswift/add_admin', 'SuperAdminController@show_admin')->name('show_add_admins');
 
+    Route::get('eswift/client/rates', 'SuperAdminController@get_client_rates')->name('get_client_rates');
+
+    Route::get('eswift/client/rate/{id}', 'SuperAdminController@get_client_rate')->name('get_client_rate');
+
     Route::post('add_admin', 'SuperAdminController@add_admin')->name('add_admin');
 
     Route::post('edit_admin/{id}', 'SuperAdminController@edit_admin')->name('edit_admin');
+
+    Route::post('update_rate', 'SuperAdminController@update_rate')->name('update_rate');
 
 
 });
@@ -180,7 +186,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('update_account_hld/{id}', 'AdminController@update_accounts_hld')->name('update_account_hld');
 
     Route::get('eswift/history', 'AdminController@get_history')->name('get_history');
-
 
 });
 

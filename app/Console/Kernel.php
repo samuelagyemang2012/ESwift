@@ -15,7 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        'App\Console\Commands\BeforeHalfElapsed'
+        'App\Console\Commands\BeforeHalfElapsed',
+        'App\Console\Commands\HalfElapsed',
+        'App\Console\Commands\BeforeFullElapsed',
+        'App\Console\Commands\FullElapsed'
     ];
 
     /**

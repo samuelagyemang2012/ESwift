@@ -230,4 +230,13 @@ class User extends Authenticatable
             ->get();
     }
 
+    public function update_rate($id, $rate)
+    {
+        DB::table('users')
+            ->where('id', '=', $id)
+            ->update([
+                'interest_rate' => $rate
+            ]);
+    }
+
 }

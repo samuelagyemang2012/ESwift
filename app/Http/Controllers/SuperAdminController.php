@@ -163,6 +163,28 @@ class SuperAdminController extends Controller
 
     }
 
+    public function get_client_rates()
+    {
+        $u = new User();
+
+        if (request()->isXmlHttpRequest()) {
+            $data = $u->get_clients();
+
+            return Datatables::of($data)->make(true);
+        }
+
+        return view('super_admin.clients');
+    }
+
+    public function get_client_rate($id)
+    {
+        $u = new User();
+
+        $data = $u->get_client($id);
+
+        return view('super_admin.client_rate')->with('data', $data[0]);
+    }
+
     public function logs()
     {
         $l = new Log;
@@ -174,6 +196,26 @@ class SuperAdminController extends Controller
         }
 
         return view('super_admin.logs');
+    }
+
+    public function update_rate(Request $request)
+    {
+        $u = new User();
+
+        $input = $request->all();
+
+//        return $input;
+//
+        $rules = [
+            'interest_rate' => 'required|numeric'
+        ];
+
+        $this->validate($request, $rules);
+
+        $u->update_rate($input['id'], $input['interest_rate']);
+
+        return redirect('eswift/client/rates')->with('status', 'Interest rate change successfully');
+
     }
 
 }
