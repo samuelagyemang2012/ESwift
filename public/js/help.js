@@ -88,6 +88,29 @@ function process_tel() {
             $("#mobile_money_account").val("");
         }
     }
+
+
+}
+
+function set_network() {
+
+    var a = $("#mobile_money_account").val();
+
+    if (a.charAt(0) == 'M' || a.charAt(0) == 'm') {
+        $('#mobile_money_account').val('MTN');
+    }
+
+    if (a.charAt(0) == 'A' || a.charAt(0) == 'a') {
+        $('#mobile_money_account').val('AIRTEL');
+    }
+
+    if (a.charAt(0) == 'T' || a.charAt(0) == 't') {
+        $('#mobile_money_account').val('TIGO');
+    }
+
+    if (a.charAt(0) == 'V' || a.charAt(0) == 'v') {
+        $('#mobile_money_account').val('VODAFONE');
+    }
 }
 
 function get_balance() {

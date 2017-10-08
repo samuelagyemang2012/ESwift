@@ -95,6 +95,21 @@
                 </thead>
 
                 <thead>
+                <th>Occupation</th>
+                <td style="color: #3c8dbc">{{$data->occupation}}</td>
+                </thead>
+
+                <thead>
+                <th>ID Type</th>
+                <td style="color: #3c8dbc">{{$data->ID_type}}</td>
+                </thead>
+
+                <thead>
+                <th>ID Number</th>
+                <td style="color: #3c8dbc">{{$data->ID_number}}</td>
+                </thead>
+
+                <thead>
                 <th>Marital Status</th>
                 <td style="color: #3c8dbc">{{$data->marital_status}}</td>
                 </thead>

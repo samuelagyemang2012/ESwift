@@ -109,10 +109,16 @@
 
                     <label>Mobile Money Account</label><b style="color: red;">*</b>
                     <div>
-                        <input class="form-control" name="mobile_money_account" id="mobile_money_account" readonly
+                        <input onkeyup="set_network()" class="form-control" name="mobile_money_account" id="mobile_money_account" readonly
                                value="{{old('mobile_money_account')}}">
                     </div>
                     <input id="ported" type="checkbox" onclick="port()">&nbsp;<label>Ported</label>
+                    <br>
+
+                    <label>Occupation</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="occupation" type="text" required value="{{old('occupation')}}">
+                    </div>
                     <br>
 
                 </div>
@@ -147,19 +153,18 @@
                     </div>
                     <br>
 
+                    <label>ID Type</label><b style="color: red;">*</b>
                     <div>
-                        <label>Gender</label><b style="color: red;">*</b><br>
-                        <select class="form-control" name="gender" required>
-                            <option></option>
-                            <option value="MALE">MALE</option>
-                            <option value="FEMALE">FEMALE</option>
-                            {{--<option value="TRANSGENDER_MALE">TRANSGENDER MALE</option>--}}
-                            {{--<option value="TRANSGENDER_FEMALE">TRANSGENDER FEMALE</option>--}}
-                        </select>
+                        <input class="form-control" name="idtype" type="text" required value="{{old('idtype')}}">
                     </div>
                     <br>
 
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                    <label>ID Number</label><b style="color: red;">*</b>
+                    <div>
+                        <input class="form-control" name="idnumber" type="text" required value="{{old('idnumber')}}">
+                    </div>
+                    <br>
+
                 </div>
 
                 <div class="col-sm-3">
@@ -207,18 +212,17 @@
                     </div>
                     <br>
 
-
-                    {{--<label>Eswift Password</label><b style="color: red;">*</b>--}}
-                    {{--<div>--}}
-                    {{--<input class="form-control" name="password" type="password" required min="6">--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
-
-                    {{--<label>Confirm Eswift Password</label><b style="color: red;">*</b>--}}
-                    {{--<div>--}}
-                    {{--<input class="form-control" name="confirm_password" type="password" required>--}}
-                    {{--</div>--}}
-                    {{--<br>--}}
+                    <div>
+                        <label>Gender</label><b style="color: red;">*</b><br>
+                        <select class="form-control" name="gender" required>
+                            <option></option>
+                            <option value="MALE">MALE</option>
+                            <option value="FEMALE">FEMALE</option>
+                            {{--<option value="TRANSGENDER_MALE">TRANSGENDER MALE</option>--}}
+                            {{--<option value="TRANSGENDER_FEMALE">TRANSGENDER FEMALE</option>--}}
+                        </select>
+                    </div>
+                    <br>
 
                 </div>
 
@@ -280,6 +284,8 @@
                         <input class="form-control" name="confirm_password" type="password" required>
                     </div>
                     <br>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
 
                 </div>
             </div>

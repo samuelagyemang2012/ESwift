@@ -208,7 +208,10 @@ class AdminController extends Controller
             'confirm_password' => 'required|same:password',
             'secret_question' => 'required',
             'secret_answer' => 'required|min:2',
-            'picture' => 'required'
+            'picture' => 'required',
+            'occupation' => 'required',
+            'idtype' => 'required',
+            'idnumber' => 'required'
         ];
 
         $this->validate($request, $rules);
@@ -235,7 +238,7 @@ class AdminController extends Controller
             $picture = $file->getClientOriginalName();
         }
 
-        $insert_id = $u->insert($input['first_name'], $input['multimoney_account_number'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package'], $picture, $input['gender'], $input['date_of_birth'], $input['marital_status'], $input['interest_rate']);
+        $insert_id = $u->insert($input['first_name'], $input['multimoney_account_number'], $input['last_name'], $input['email'], $npass, $ntelephone, $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], 1, $input['package'], $picture, $input['gender'], $input['date_of_birth'], $input['marital_status'], $input['interest_rate'], $input['occupation'], $input['idtype'], $input['idnumber']);
 
         $mbalance = $this->get_minimum_balance($input['package']);
 
@@ -395,7 +398,10 @@ class AdminController extends Controller
             'mobile_money_account' => 'required',
             'gender' => 'required',
             'date_of_birth' => 'required|date',
-            'marital_status' => 'required'
+            'marital_status' => 'required',
+            'occupation' => 'required',
+            'idtype' => 'required',
+            'idnumber' => 'required'
         ];
 
         $this->validate($request, $rules);
@@ -410,7 +416,7 @@ class AdminController extends Controller
             $file_name = $carthograph[0]->carthograph;
         }
 
-        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package'], $input['gender'], $input['date_of_birth'], $input['marital_status']);
+        $u->update_client($id, $input['first_name'], $input['last_name'], $input['email'], $input['employer'], $input['employer_location'], $input['residential_address'], $file_name, $input['salary'], $input['mobile_money_account'], $input['package'], $input['gender'], $input['date_of_birth'], $input['marital_status'], $input['occupation'], $input['idtype'], $input['idnumber']);
 
         $lg->insert($auth['email'], $auth['email'] . " edited a client with id=" . $id, $auth['role_id']);
 
@@ -1113,12 +1119,6 @@ class AdminController extends Controller
     {
         $h = new History();
 
-//        $data = $h->get_history();
-
-//        for ($i = 0; $i < count($data); $i++) {
-//            echo $data[$i]->telephone . PHP_EOL;
-//        }
-//
         if (request()->isXmlHttpRequest()) {
             $data = $h->get_history();
 

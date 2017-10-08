@@ -108,6 +108,12 @@
                     <input type="checkbox" id="ported" onclick="port()">&nbsp;<label>Ported</label>
                     <br><br>
 
+                    <label>ID Number</label>
+                    <div>
+                        <input class="form-control" name="idnumber" type="text" required value="{{$data->ID_number}}">
+                    </div>
+                    <br>
+
                 </div>
 
                 <div class="col-sm-4">
@@ -134,13 +140,19 @@
                     </div>
                     <br>
 
+                    <label>Occupation</label>
+                    <div>
+                        <input type="text" class="form-control" name="occupation" min="2"  required
+                               value="{{$data->occupation}}">
+                    </div>
+                    <br>
+
                     <label>Carthograph</label>
                     <div>
                         <input type="file" class="form-control" name="carthograph"
                                value="{{old('carthograph')}}">
                     </div>
                     <br>
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </div>
 
                 <div class="col-sm-3">
@@ -166,8 +178,7 @@
                     <label>Date of Birth</label><b style="color: red;"></b>
                     <div>
                         <input class="form-control" name="date_of_birth" type="date" required
-                               value="{{$data->date_of_birth}}"
-                               value="{{old('date_of_birth')}}" min="8">
+                               value="{{$data->date_of_birth}}" min="8">
                     </div>
                     <br>
 
@@ -186,6 +197,15 @@
                         </select>
                     </div>
                     <br>
+
+                    <label>ID Type</label><b style="color: red;"></b>
+                    <div>
+                        <input class="form-control" name="idtype" type="text" required
+                               value="{{$data->ID_type}}" min="2">
+                    </div>
+                    <br>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
 
             </div>

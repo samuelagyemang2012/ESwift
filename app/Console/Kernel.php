@@ -40,11 +40,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('fullelapsed')
             ->dailyAt('9:00');
-
-//        $schedule->call(function () {
-//            $s = new Sms();
-//            $s->send("233542688902", "scheduler test");
-//        })->everyMinute();
     }
 
     /**
