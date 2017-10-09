@@ -3,6 +3,7 @@
 @section('content')
     <div class="col-2">
         {{--<div class="container">--}}
+        <a href="{{route('paid_excel')}}" class="btn btn-primary">Export as xls</a>
         <center><h2 style="color: #3D8DBB">Paid Debts</h2></center>
         <hr>
     </div>

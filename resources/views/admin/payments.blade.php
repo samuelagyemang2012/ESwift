@@ -24,6 +24,7 @@
     <br>
 
     <div class="col-2">
+        <a href="{{route('payments_excel')}}" class="btn btn-primary">Export as xls</a>
         <center><h2 style="color: #3D8DBB">Payments Personnel</h2></center>
         <hr>
         <table class="table" id="mytable">

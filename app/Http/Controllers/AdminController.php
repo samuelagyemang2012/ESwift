@@ -1309,5 +1309,114 @@ class AdminController extends Controller
         })->download('xls');
     }
 
+    public function unpaid_excel()
+    {
+        $d = new Debt();
+
+        $all_loans = $d->get_unpaid_debts();
+
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Total Debt'];
+
+        foreach ($all_loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->total_debt);
+        }
+
+        $all_loans = $header;
+
+        Excel::create('Unpaid Debts', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Unpaid Debts');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Unpaid Debts');
+
+            $excel->sheet('Unpaid Debts', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
+    public function paid_excel()
+    {
+        $d = new Debt();
+
+        $all_loans = $d->get_paid_debts();
+
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Total Debt'];
+
+        foreach ($all_loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->total_debt);
+        }
+
+        $all_loans = $header;
+
+        Excel::create('Paid Debts', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Paid Debts');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Paid Debts');
+
+            $excel->sheet('Paid Debts', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
+    public function payments_excel()
+    {
+        $d = new User();
+
+        $all_loans = $d->all_payments_personnel();
+
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Email'];
+
+        foreach ($all_loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->email);
+        }
+
+        $all_loans = $header;
+
+        Excel::create('Payments Personel', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Payments Personel');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Payments Personel');
+
+            $excel->sheet('Payments Personel', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
+    public function transaction_excel()
+    {
+//        all_transactions_personnel()
+        $d = new User();
+
+        $all_loans = $d->all_transactions_personnel();
+
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Email'];
+
+        foreach ($all_loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->email);
+        }
+
+        $all_loans = $header;
+
+        Excel::create('Transactions Personel', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Transactions Personel');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Transactions Personel');
+
+            $excel->sheet('Transactions Personel', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
 
 }

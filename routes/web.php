@@ -202,6 +202,14 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('clients_excel', 'AdminController@clients_excel')->name('clients_excel');
 
+    Route::get('unpaid_excel', 'AdminController@clients_excel')->name('unpaid_excel');
+
+    Route::get('paid_excel', 'AdminController@paid_excel')->name('paid_excel');
+
+    Route::get('payments_excel', 'AdminController@paid_excel')->name('payments_excel');
+
+    Route::get('transactions_excel', 'AdminController@paid_excel')->name('transactions_excel');
+
 });
 
 //--------------------------------------------------------------------------------------------------------
