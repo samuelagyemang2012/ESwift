@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="col-2">
+        <div class="container">
+            <a href="{{route('approved_loans_excel')}}" class="btn btn-primary">Export as xls</a>
+        </div>
+
         <center><h2 style="color: #3D8DBB">Approved Loans</h2></center>
         <hr>
         <table class="table" id="mytable">

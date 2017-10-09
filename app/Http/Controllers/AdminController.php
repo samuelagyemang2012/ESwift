@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Maatwebsite\Excel\Facades\Excel;
 
 //use Illuminate\Support\Facades\Validator;
 //use Illuminate\Validation\Rule;
@@ -1127,4 +1128,159 @@ class AdminController extends Controller
 
         return view('admin.history');
     }
+
+//    Reports
+
+    private function loans_to_Array($loans)
+    {
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Amount', 'Date'];
+
+        foreach ($loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->amount, $loan->created_at);
+        }
+
+        return $header;
+    }
+
+    public function all_loans_excel()
+    {
+        $l = new Loan();
+
+        $all_loans = $l->get_all_loans();
+
+        $all_loans = $this->loans_to_Array($all_loans);
+
+        Excel::create('All Loans', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('All Loans');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('All Loans');
+
+            $excel->sheet('All Loans', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
+    public function pending_loans_excel()
+    {
+        $l = new Loan();
+
+        $all_loans = $l->get_pending_loans();
+
+        $all_loans = $this->loans_to_Array($all_loans);
+
+        Excel::create('Pending Loans', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Pending Loans');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Pending Loans');
+
+            $excel->sheet('Pending Loans', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+
+    }
+
+    public function approved_loans_excel()
+    {
+        $l = new Loan();
+
+        $all_loans = $l->get_approved_loans();
+
+        $all_loans = $this->loans_to_Array($all_loans);
+
+        Excel::create('Approved Loans', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Approved Loans');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Approved Loans');
+
+            $excel->sheet('Approved Loans', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
+    public function rejected_loans_excel()
+    {
+        $l = new Loan();
+
+        $all_loans = $l->get_refused_loans();
+
+        $all_loans = $this->loans_to_Array($all_loans);
+
+        Excel::create('Rejected Loans', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Rejected Loans');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Approved Loans');
+
+            $excel->sheet('Rejected Loans', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+
+    }
+
+    public function elapsed_half_excel()
+    {
+        $l = new Loan();
+
+        $all_loans = $l->get_half_loans_due();
+
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Half Debt', 'Half Loan Date'];
+
+        foreach ($all_loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->half_debt, $loan->half_loan_date);
+        }
+
+        $all_loans = $header;
+
+        Excel::create('Elapsed Half Loans', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Elapsed Half Loans');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Elapsed Half Loans');
+
+            $excel->sheet('Elapsed Half Loans', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
+    public function elapsed_excel()
+    {
+        $l = new Loan();
+
+        $all_loans = $l->get_elapsed_loans();
+
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Half Debt', 'Half Loan Date'];
+
+        foreach ($all_loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->total_debt, $loan->full_loan_date);
+        }
+
+        $all_loans = $header;
+
+        Excel::create('Elapsed Loans', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Elapsed Loans');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Approved Loans');
+
+            $excel->sheet('Elapsed Loans', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
+
 }

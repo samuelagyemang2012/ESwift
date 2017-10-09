@@ -187,6 +187,19 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('eswift/history', 'AdminController@get_history')->name('get_history');
 
+//    Reports
+    Route::get('all_loans_excel', 'AdminController@all_loans_excel')->name('all_loans_excel');
+
+    Route::get('pending_loans_excel', 'AdminController@pending_loans_excel')->name('pending_loans_excel');
+
+    Route::get('approved_loans_excel', 'AdminController@approved_loans_excel')->name('approved_loans_excel');
+
+    Route::get('rejected_loans_excel', 'AdminController@rejected_loans_excel')->name('rejected_loans_excel');
+
+    Route::get('elapsed_half_excel', 'AdminController@elapsed_half_excel')->name('elapsed_half_excel');
+
+    Route::get('elapsed_excel', 'AdminController@elapsed_excel')->name('elapsed_excel');
+
 });
 
 //--------------------------------------------------------------------------------------------------------
