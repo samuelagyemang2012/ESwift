@@ -19,12 +19,13 @@
     </div>
 
     <div class="container">
+
         <a href="{{route('show_add_transaction')}}" class="btn btn-primary">Add Transactions Personnel</a>
+        <a href="{{route('transactions_excel')}}" class="btn btn-primary">Export as xls</a>
     </div>
     <br>
 
     <div class="col-2">
-        <a href="{{route('transactions_excel')}}" class="btn btn-primary">Export as xls</a>
         <center><h2 style="color: #3D8DBB">Transactions Personnel</h2></center>
         <hr>
         <table class="table" id="mytable">
