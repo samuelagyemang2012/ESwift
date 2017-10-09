@@ -120,7 +120,7 @@ class SuperAdminController extends Controller
 
         $tel = uniqid();
 
-        $u->insert($input['first_name'], "n/a", $input['last_name'], $input['email'], $npass, $tel, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 2, 'n/a', 'n/a');
+        $u->insert($input['first_name'], "n/a", $input['last_name'], $input['email'], $npass, $tel, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 2, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 0.00, 'n/a', 'n/a', 'n/a');
 
 //        Log
         $msg = $done_by['email'] . ' added ' . $input['email'] . ' as a new admin';
