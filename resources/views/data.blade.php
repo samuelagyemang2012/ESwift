@@ -20,6 +20,7 @@
 
     <div class="container">
         <a href="{{route('show_add_client')}}" class="btn btn-primary">Add Client</a>
+        <a href="{{route('clients_excel')}}" class="btn btn-primary">Export as xls</a>
     </div>
     <br>
 

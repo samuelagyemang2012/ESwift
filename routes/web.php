@@ -200,6 +200,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('elapsed_excel', 'AdminController@elapsed_excel')->name('elapsed_excel');
 
+    Route::get('clients_excel', 'AdminController@clients_excel')->name('clients_excel');
+
 });
 
 //--------------------------------------------------------------------------------------------------------

@@ -1282,5 +1282,32 @@ class AdminController extends Controller
         })->download('xls');
     }
 
+    public function clients_excel()
+    {
+        $u = new User();
+
+        $all_loans = $u->get_clients();
+
+        $header[] = ['Lastname', 'Firstname', 'Telephone', 'Residential Address'];
+
+        foreach ($all_loans as $loan) {
+            $header[] = array($loan->last_name, $loan->first_name, $loan->telephone, $loan->residential_address);
+        }
+
+        $all_loans = $header;
+
+        Excel::create('Clients', function ($excel) use ($all_loans) {
+
+            $excel->setTitle('Clients');
+            $excel->setCreator('Multimoney Microfinance Limited Company')->setCompany('Multimoney Microfinance Limited Company');
+            $excel->setDescription('Clients');
+
+            $excel->sheet('Clients', function ($sheet) use ($all_loans) {
+                $sheet->fromArray($all_loans, null, 'A1', false, false);
+            });
+
+        })->download('xls');
+    }
+
 
 }
