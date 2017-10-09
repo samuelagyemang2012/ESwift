@@ -90,7 +90,7 @@
                     <label>Transaction ID</label>
                     <div>
                         <input class="form-control" name="transaction_id" type="text" required
-                               value="" value="{{old('transaction_id')}}" min="2">
+                               value="" value="{{old('transaction_id')}}">
                     </div>
                     <br>
 
