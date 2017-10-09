@@ -83,7 +83,7 @@
                     <label>Amount Paid</label>
                     <div>
                         <input class="form-control" name="amount_paid" type="number" required
-                               value="" value="{{old('amount_paid')}}" min="2">
+                               value="" value="{{old('amount_paid')}}" min="0.5">
                     </div>
                     <br>
 
